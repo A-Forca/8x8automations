@@ -1,0 +1,71 @@
+---
+id: retrieve-image
+title: "Retrieve Image"
+description: "This operation allows you to download an image from a conversation."
+sidebar_label: "Retrieve Image"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVE1v2zAM/SsCT1uhREmKbplP62EYctrQdQOGIAfWZmyttqRKdJrA8H8f6Hy0a9cdhvoigxTJR/I9dRApBe8SJcg6mE0mchSU8mgDW+8gA9CQe8fkWHxn5kyOlFfUoPzxLhBk4G9+Uc6gIUQfKLIdMvbDp4GxTJAt4YqCj2xdqS6/LmCln5S6rmxSEo5iUFjX/j6pnW8Ve1X4e1d7LBQ6ZRssSa2jbxSq3LsNxTTEjJVAwIgNMUWp2YGV1AG5Ag0OG0FbW3cLGiLdtTZSARnHlvTzrhJH60oQnGtsa4YMTDo3bRAgySSHIVWek5lNph/MuZmb6cXFbDKdv5u8n09npwvj4Eroe30AUxEWFB/gbEfsb8n9J6Lup2/jZcvVtSTpoe9XGk5TXBSQwRVxtLSh0UIGBxoa4sqLp6RhaTKdDEwng+lBQ6K4Oc6vjbVgZg4pM2ZjC/IjLMnxeL6dj3PfGJCK1q29AJW4/Tqn4wloYMu1IP8hgWrhmCLmw36FA3+lgE2KKxK/LN46pjIik5pv5+p5mhB90eY8PhAV84Goh9FKyMLloJ+0kQfEdGwANFCDVvyDfZTaIET9ePQLhSk26cv6G8WNzemlTCaVZrg5QleMcu8KKxiTkRTBJ27QPUJ33Is67uWPYXQPwnstaRxYxLRlE2q0TnANk+kOJFhCNqhjpaHyicXQdTeY6Hus+17Mdy3FHWTLlYYNRos3st5lB4VN8l9AtsY60T+aeXN1oPnbFzEdjOh2IGXqlvZP0S3tjvrtV70+SunV6+/rPAjzBEFEvHde5jkFfuSTt1GUcBLX50/X0Pe/AYLo0LM=
+sidebar_class_name: "get api-method"
+info_path: connect/reference/video-interaction-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve Image"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{link}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This operation allows you to download an image from a conversation. 
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"link","required":true,"schema":{"type":"string","default":"/s3/uploads/snapshots/2019/3/8/1552018607812/snapshot.png"}},{"in":"header","name":"x-token","required":true,"schema":{"type":"string","default":"{YourAuthToken}"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"","content":{"*/*":{"schema":{"type":"object","properties":{}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

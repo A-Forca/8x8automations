@@ -1,0 +1,59 @@
+import ApiChip from '@site/docusaurus/components/ApiChip';
+
+# API Endpoint migration guide
+
+This outlines the changes to our API endpoints and provides guidance for migrating your applications to use the updated endpoints. We're introducing these changes to improve consistency, reliability, and functionality across our services.
+
+These endpoint changes include updates to both **SMS** and **Messaging Apps** services.
+Please review all changes carefully to ensure a smooth endpoint transition.
+
+## Key Changes
+
+- SMS endpoints: Several endpoints have been consolidated for improved efficiency.
+- Response format standardization across Messaging Apps endpoints.
+- Parameter handling changes in certain endpoints.
+
+<br />
+
+## What To Do
+
+- Migrate to the **New Endpoint URL** and corresponding payload/response updates.
+- Contact support for any clarification.
+
+<br />
+
+## SMS API Endpoints
+
+> 📘
+>
+> *The SMS endpoint payload and response remain consistent with the previous version and remain unchanged.*
+>
+> *Migrate and update your API calls to use the new endpoint URL, as listed in the New Endpoint column.*
+
+| Old Endpoint                                                                 | New Endpoint                                                              |
+|------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| <ApiChip method="POST" endpoint="/sms/v1/{subAccountId}/single" />           | [Send SMS Single](/connect/reference/send-sms-single)                     |
+| <ApiChip method="POST" endpoint="/sms/v1/{subAccountId}/many" />             | [Send Many SMS](/connect/reference/send-many-sms)                         |
+| <ApiChip method="POST" endpoint="/sms/v1/{subAccountId}/many/compact" />     | [Send Many SMS](/connect/reference/send-many-sms)                         |
+| <ApiChip method="DELETE" endpoint="/sms/v1/{subAccountId}/single/{umid}" />  | [Cancel Scheduled Message](/connect/reference/cancel-scheduled-message)   |
+| <ApiChip method="DELETE" endpoint="/sms/v1/{subAccountId}/many/{batchId}" /> | [Cancel Many SMS Messages](/connect/reference/cancel-many-sms-messages)   |
+
+<br />
+
+## Messaging Apps API Endpoints
+
+> 📘
+>
+> *Migrate to the new endpoint (see New Endpoint column).*
+>
+> *There are updates in the payload and response structures; refer to the New Endpoint column for documentation to update corresponding payload/response properties.*
+
+<br />
+
+| Old Endpoint | New Endpoint | Payload/Response Changes |
+|---------------|--------------|-------------------------|
+| <ApiChip method="POST" endpoint="/chatapps/v1/{subAccountId}/message/read" />   | [Mark Message Read](/connect/reference/mark-message-read) | Payload Changes:<br/>- Payload is removed.<br/><br/>- `umid` is passed directly in the path of new endpoint. |
+| <ApiChip method="POST" endpoint="/ipm/v1/{subAccountId}/message/single" />      | [Send Message](/connect/reference/send-message) | Response Changes:<br/>- `Status` property<br/><br/>Old Success Response:<br/> `"status": {`<br/>`"code": "QUEUED",`<br/>`"description": "Message is accepted and queued for processing"`<br/>`}`<br/><br/>New Success Response:<br/>`"status": {`<br/>`"state": "queued",`<br/>`"timestamp": "2021-01-04T08:19:45.99Z"`<br/>`}` |
+| <ApiChip method="POST" endpoint="/chatapps/v1/{subAccountId}/message/single" /> | [Send Message](/connect/reference/send-message) | same, as for <ApiChip method="POST" endpoint="/ipm/v1/{subAccountId}/message/single" /> |
+| <ApiChip method="POST" endpoint="/ipm/v1/{subAccountId}/message/many" />        | [Send Message Many](/connect/reference/send-message-many) | same, as for <ApiChip method="POST" endpoint="/ipm/v1/{subAccountId}/message/single" /> |
+| <ApiChip method="POST" endpoint="/chatapps/v1/{subAccountId}/message/many" />   | [Send Message Many](/connect/reference/send-message-many) | same, as for <ApiChip method="POST" endpoint="/ipm/v1/{subAccountId}/message/single" /> |

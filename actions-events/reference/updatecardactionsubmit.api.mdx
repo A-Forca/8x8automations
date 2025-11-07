@@ -1,0 +1,71 @@
+---
+id: updatecardactionsubmit
+title: "Sends the adaptive card action submit."
+description: "Updates the adaptive card action submit flag and sends the activity notification."
+sidebar_label: "Sends the adaptive card action submit."
+hide_title: true
+hide_table_of_contents: true
+api: eJztWG1v2zYQ/isEP7WY4rcmq6FP89y0CApsWdrsS2AEZ/Ecs5NJhaQce4L++3CkZEt+ydIgAzogXwxbIo/PPffc0XcFd3BneXzDx2CE5ZOIC7SJkZmTWvGYX2cCHFrm5shAQObkElkCRjBIaAmz+XQhHZulcMdACWZRiWp54uRSujVT2smZTIDWd3jEdYbG/7gQPOa5P4FMBovBII+4xSQ30q15fFPw4Wo4yuRnXHusWjlIHBujcmjYeA6OfQKHD7Dmk3IS8QwMLNChsX6zggXymDtUoNyF4BGX5FsGbs4jbvA+lwYFj53JcZeAr34TkwIVeYGGPLDJHBfA44K7dUamrTNS3fGIz7RZgGs+wRUssnR7fq/PyzLagEq0WqKxNR/fA23c2PoiAPuDszY2MOJ7MZE0XgILTBNeUizpPLTuVy3WZKN93AecSYVbvW0FWW1jGaxTDaJzAHmilUPlyCpkWVoptPvNkumigRvS9PeZV1LlgZ5+w4Q0mhkSs5NoaV2g7fv8HK6GvPSOOun8k1GVZkTlyPv0xbt0GTyh1SU5YzOtbDh40Dvd52Z0IF07FTsPYFlIPMFsniRo7SxP07VPYSKzmbN+tUXlOryM+Gmvt3+Wz0ipLAPWeMH0zBtDY7SXwhHGM6OnKS5+2mf+cb4XaC3cHaS8De+cALBqeafF/wWVEAVpDbKMuP9mG1bBGFhTGjhc2H+HlWjxBEzXSt7nFTeMtrRxSbWEVIrb+xxzJFRPdvajQWQOV66y3XjbPuIPMs0uPrB+f8CkZdWRHa+wcivIT6jQyOR8laC30hbiaa//P9BDM+DeSzY26MsUpJboPRa07cbPo7g/eHd69vN73mTnWkHu5trIv1FcBuAbZt49jZklsjqdf9AsGfkSQSIRqCSKF8mTJ4Vr9+SnxQr8rtt6S1UxZ2hQJUh/Ox7bLCARPSEGZ4P3g3cwaEX7ozZTKQSqP6VOfVx2Y36gEh+JuVThYqgS8wcM+xVanZvEXwdspnMlfpj6aCpot0q72w20ly+S58rRf1iqXOsMWes/14N0cyYFAwB/R25Y2iuhNZG/afeRFhyppWevd+vr3drQg8AZ5Kl71cSrJipNeGBurqlzznLPBbVlMe9CJrvLfjc0md2ibnbLbrPDtN2i3XCWXeoO6LHv9cpu6BNOGl24WdZ9dG5SHvO5c5mNu3RgZ7gadhK94NS/1P36F1JTiEyja98GNzyI6iZzdQKZPPnLP/J95hxBoPG3Lgn0atv/nddUbjpU3z3Rvpn2R1QMPjYgiDj5E0LX7/Q6vSpPIPF5gguQ5GWSnCRp/u0kMVpp+8vG0d3ok57vTOM+oAQcroZsB8Ob8fhtADK6vCAzmbZuAarhzJft6OT4pKWzq79im+X/ybSmChsJvJulIBWB90ooKu3dUEyJ1z4t97rjEY8b45aWBOnd3tTDq9C/qWcObSFOIj7X1tFhRTEFi9cmLUt6fJ+joanQJOJLMBKmpICbggtp6bvg8QxSuzuoaLL25qoaDLxlB6c9Bxmo1ay8oiDN6RePOAm5MWqiacqzkDwy3HkGnh2+n49qf7zzHDQhxuWkjOpsp4iFl+Nw7slXMrHdvDehIR/CDmoRMndkbeuuozK1KZ+X1195xKfVXGnhLxFu4IEmRfAQ8OosSDYuwrOCp6Ducn8v8GCS6hR1gO0SF+pZ9aUxOWoz0qx9wRf6JM8OLi+KUDzLcrM+vDq6o2K3Xk3BmZRl+Q+C0503
+sidebar_class_name: "put api-method"
+info_path: actions-events/reference/contact-center-chat-gateway
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Sends the adaptive card action submit."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/api/v1/tenant/{tenantId}/conversations/{conversationId}/cards/{cardId}/action-submit"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Updates the adaptive card action submit flag and sends the activity notification.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"tenantId","in":"path","required":true,"description":"Tenant identifier.","schema":{"type":"string","format":"string","example":"tenant01"}},{"name":"conversationId","in":"path","required":true,"description":"Conversation identifier.","schema":{"type":"string","format":"string","example":"125"}},{"name":"cardId","in":"path","required":true,"description":"Card identifier.","schema":{"type":"string","format":"string","example":"abc"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Defines the action submit request payload.","required":true,"content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"name":{"type":"string","format":"string","example":"8x8"}}}],"title":"AdaptiveCardActionSubmitPayload"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Adaptive card action.submit was updated successfully and the notification was sent."},"400":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}},"401":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Invalid Credentials"},"code":{"type":"string","example":"KA:1234567"}},"title":"UnauthorizedProblem"}}}},"403":{"description":"Contains a descriptive response.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Access is denied."},"errors":{"type":"array","items":{"type":"object","properties":{"message":{"type":"string","example":"Access is denied"},"code":{"type":"string","example":"access_denied"}}}},"referenceId":{"type":"string","example":"dacd0dd252723a2"}},"title":"ForbiddenViolationProblem"}}}},"404":{"description":"Contains a descriptive information.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Resource not found"},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"resource_not_found"},"message":{"type":"string","description":"Free text error description.","example":"Entity of type Conversation with id aaa was not found."}}}}},"title":"ResourceNotFoundExceptionPayload"}}}},"500":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}},"default":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

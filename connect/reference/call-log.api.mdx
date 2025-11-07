@@ -1,0 +1,87 @@
+---
+id: call-log
+title: "Call Logs"
+description: "This API endpoint allows to retrieve information related to past calls. You need to use the Token API first to create an Authorization Token. You can to list the calls during a time period or with a specific Call_Reference or Phone_Number."
+sidebar_label: "Call Logs"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVuFuGkcQfpXV/Ehb6Q4OYgxeyWpdJ02QktgypGprLHt9N3Db3O2ud/eIKULKg7QvlyepZg8MNtiKKqW/Aj84bma/mW9u5pubgzZohZda9TPgkIqiiAs9gQi8mDjg53CGRlsv1YQdnfbhIgKLzmjl0AGfQztJ6CdDl1ppCAc4QASpVh6VJ5swppBpiNH805HDHPBWlKaoIVZ4dD0VRRUujMXpcWWdtsCh0+12IAKFt351T1VFEUEhnQd+PodjURSBQKfb3YMI3ju0P1++HfQHL94Bh/3nB+1WJ+nutbo9iODYovCYHXng0E5aB3HSjpPOMOny1gFv9xq9TvIHRPCLVNLlO/3ae7yTNFrd4PeiqisIvN2JYOCFrxxweEmRdKW8nfUHJ21RmFwAh9PXEMEZjtGiShE4jMeZG9MXInij0yUUEVxE95h19reZ1XV4hNLeMNnjScLb+432NqX66Dr5ZCP34925f/709+DV50//PGBQZtrMdKm2CVws6k/0oEOGuXTUTwxVZrRUnomi0B8d85pZ9FbiFJlUY23LAMcsFsSP7EY4z6hRXYP9riumsL5fOWQ+RzbUH1AF8LG0zpMpDdVhQrGjyufayr9q1OBao6RCkSd1VEAJAVhWWep8wbwskRm0UmdMW/ZR+pwJ5gymcixTRk/p8q4k5HGaa4WX76ryGm2DjdRIvax7nrU4G6mrq6uRSitbsPg3dnoyGLLce+N4szmVGepYTFD5Ru+210h12WwKI5vTVnM1no6NRiMVv2YjOK4HLR7ODHL2cNZGsPK8jT2R5UTWUhUC9++COSSzTrDNd+Q3Uk8l+DC/H8dWl4ez2WwWl2WcZc+83vx3c9hqP9/rPEvDNB92up3uV2AEERhhRYkerQsyIan3chQZWtITUVL3bsYDkrebSlrMgHtbYQQuzbEUpEmeHDg4Tz0B1NJjURU0cVsSt6DR3RltmfV/DDS/x3WxEeemQjtbh6H6w1OY9WgBh0x4vBeDrR/U4/hef030myfAHz1UN9OTJy8iKNHnmvR0gj40iM+Bw1YDEwza6apxKlvQs3xiAoDASbHCGkPraqFrNRLapdIXlMivdJD1lUcr0qBAtFN3iqN0QYZIxrxmUnmcWNKw3m2PbcMYq7Mq9Y3l5hVp2LzLwtCRvkohekAjNUK4FQGIAEshyR7ux64ytPh/WtkXEXi0pTsZD9BOZRD+nUhNN2kGz1ioLE61yiTl6JoEYbTzpVAb2ZF0sjd1ye/VYb5+ifi2L77ti/9lXywFw+Otb5pCSEU9G6ZmvpSKcxBGQgTTFs3anVxcRJDr8DIK8/m1cPjeFosF3a5VikQkk05cFyT4Y1E4jOADztZSvXz1BSB9e8Q1qO6XON58od+dZq6dL+iPleQN/PxiEa1W2E4Kj07s92fL9fYDe6yudQrrhXgv4dp4lKZo/IZte9Nuavqrl0NYLP4FRkJOjA==
+sidebar_class_name: "get api-method"
+info_path: connect/reference/video-interaction-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Call Logs"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/call-logs"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint allows to retrieve information related to past calls. You need to use the Token API first to create an Authorization Token. You can to list the calls during a time period or with a specific Call_Reference or Phone_Number. 
+
+Example 1: 
+```
+curl -X POST https://video-agent.8x8.com//api/v1/call-logs \
+-H "Content-Type: application/json" \
+-H x-token: YourAuthToken' \
+```
+
+Example 2:
+```
+curl -X POST
+https://video-agent.8x8.com/api/v1/call-logs?from=yyyy-mm-dd&to=yyyy-mm-dd&q=12345&cursor=5757 \
+-H "Content-Type: application/json" \
+-H x-token: YourAuthToken' \
+```
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"header","name":"Content-Type","required":true,"schema":{"type":"string","default":"application/json"}},{"in":"header","name":"x-token","required":true,"schema":{"type":"string","default":"{YourAuthToken}"}},{"in":"query","name":"from","schema":{"type":"string","format":"date","default":" yyyy-mm-dd"}},{"in":"query","name":"to","schema":{"type":"string","format":"date","default":" yyyy-mm-dd"}},{"in":"query","name":"q","schema":{"type":"string"}},{"in":"query","name":"cursor","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"","content":{"application/json":{"examples":{"response":{"value":{"prevCursor":"5775","nextCursor":null,"list":[{"CallId":"5774","UserB_MSISDN":"639215074178","CreatedAt":"2019-02-05T07:19:28.850Z","FinishedAt":"2019-02-05T07:24:50.170Z","Duration":25,"Status":"E","CountryISO2alpha":"PH","Reference":"ffdsfsfsf","Location":null},{"CallId":"5756","UserB_MSISDN":"null,","CreatedAt":"2019-02-04T04:00:26.250Z","FinishedAt":null,"Duration":0,"Status":"C","CountryISO2alpha":"“SG”","Reference":"mdopyomn","Location":null}]}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

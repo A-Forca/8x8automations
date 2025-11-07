@@ -1,0 +1,179 @@
+---
+id: 8-x-8-analytics-for-contact-center-historical-metrics-api
+title: "8x8 Analytics for Contact Center Historical Metrics API"
+description: "As a contact center supervisor, you may need to assess the performance of your agents."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 4.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"8x8 Analytics for Contact Center Historical Metrics API"}
+>
+</Heading>
+
+<ApiLogo
+  logo={{"url":"https://www.8x8.com/wp-content/uploads/2016/06/8x8-Logo-Tagline-bottom.png"}}
+  darkLogo={undefined}
+>
+  
+</ApiLogo>
+
+As a contact center supervisor, you may need to assess the performance of your agents.
+For example:
+- Analyze an agent’s call traffic queue
+- Drill down and analyze an agent’s activity history and get monthly, weekly, and hourly data
+- Determine the number of phone calls offered, accepted, rejected, or abandoned by an agent
+- Identify the total call handling time during the past hour
+
+The 8x8 Analytics for Contact Center Historic Metrics API offers an entire suite of historical reports for agent interactions, agent status, and queue interactions. The Historical Metrics API is an asynchronous API so it can be used to generate, view, and download a custom report from the Historical Reporting database.
+
+**Note**: The Historical Metrics API uses either the **v1**, **v2**, **v3**, **v4**, **v5**, **v6** or **v7** path for the following URLs:
+```
+https://api.8x8.com/analytics/cc/v1/historical-metrics/
+https://api.8x8.com/analytics/cc/v2/historical-metrics/
+https://api.8x8.com/analytics/cc/v3/historical-metrics/
+https://api.8x8.com/analytics/cc/v4/historical-metrics/
+https://api.8x8.com/analytics/cc/v5/historical-metrics/
+https://api.8x8.com/analytics/cc/v6/historical-metrics/
+https://api.8x8.com/analytics/cc/v7/historical-metrics/
+```
+
+_** For step-by-step instructions on using the Historical Metrics API refer to the [Historical Metrics Summary Guide ](doc:cc-historical-analytics-summary-report) or the [Historical Metrics Detailed Report Guide](doc:cc-historical-analytics-detailed-report)**_.
+## **Authentication**
+You can try out this API through request authentication using your client credentials. Refer to [How to get API credentials](doc:how-to-get-api-keys) and [how to authenitcate](doc:oauth-authentication-for-8x8-xcaas-apis) for more information.
+
+All requests must be made over HTTPS - calls made over HTTP will fail.
+
+
+**Note**: The Historical Metrics API uses the **v1**, **v2**, **v3**, **v4**, **v5**, **v6** or **v7** path for the following URL:
+
+- **`GET`** request: **`https://api.8x8.com/analytics/cc/{version}/historical-metrics/`**
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"OAuth 2.0: ApiKeyAuth"}
+      value={"ApiKeyAuth"}
+    >
+      
+      
+      This API uses OAuth 2 with the client credentials grant flow.
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                oauth2
+              </td>
+            </tr><tr>
+              <th>
+                OAuth Flow (clientCredentials):
+              </th><td>
+                <div>
+                  Token URL: https://api.8x8.com/oauth/v2/token
+                </div><span>
+                  Scopes:
+                </span><ul>
+                  <li>
+                    read: Grants read access
+                  </li><li>
+                    write: Grants write access
+                  </li><li>
+                    admin: Grants access to admin operations
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem><TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                access_token
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    Analytics Team: [vcc-analytics@8x8.com](mailto:vcc-analytics@8x8.com)
+  </span><span>
+    URL: [https://www.8x8.com/](https://www.8x8.com/)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://www.8x8.com/terms-and-conditions"}
+  >
+    {'https://www.8x8.com/terms-and-conditions'}
+  </a>
+</div>
+      

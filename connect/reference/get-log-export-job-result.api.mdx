@@ -1,0 +1,82 @@
+---
+id: get-log-export-job-result
+title: "Get log export job result"
+description: "* Sending a **GET** request on this endpoint allows to **check the status of an SMS Logs export job** and to **get a download link** if its generation has succeeded."
+sidebar_label: "Get log export job result"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: connect/reference/sms-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get log export job result"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/subaccounts/{subAccountId}/messages/exports/{jobId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+* Sending a **GET** request on this endpoint allows to **check the status of an SMS Logs export job** and to **get a download link** if its generation has succeeded.
+
+  
+
+### URL
+
+To define which SMS logs export you want to retrieve, you need to enter the Job ID generated by XXXXX in the path as well as the 8x8 SMS subaccountid you used in the previous request.
+`https://sms.8x8.com/api/v1/subaccounts/{subAccountID}/messages/exports/{jobId}`
+
+> To safeguard your privacy, sensitive data such as message content and phone numbers are masked by default. Access to this information can be requested by contacting our support team.
+
+> You must replace `{jobID}`  and `{subAccountId}` in the URL above with the jobID and subaccountid from the start SMS logs export job request
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"subAccountId","in":"path","description":"You must replace *{subAccountId}* with the subaccountid that you want to use. By default this is generated once you signed up with a new account at [https://connect.8x8.com](https://connect.8x8.com).","required":true,"schema":{"maxLength":50,"minLength":3,"pattern":"^[A-Za-z0-9\\-._&]{3,50}$","type":"string"}},{"name":"jobId","in":"path","description":"Export job identifier","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"In case of successful request which comes with a 200 code, you will be presented with a **status** parameter value (string). Here are the possible cases and their meaning:\n\n- **queued** - request for report creation is waiting in the queue\n\n- **running** - report creation has started, but not finished yet\n- **succeeded** - report created and CSV file can be downloaded using the link in the data property\n- **failed** - the report creation failed\n- **cancelled** - the report job has been cancelled \n- **empty** - the report is empty\n- **error** - an internal server error occurred\n\nOnce the platform will have successfully generated an SMS logs export (`\"status\":\"succeeded\"`), the links to the files will be contained in an array value of the parameter called **data**. \n\nThe files to the links have a default expiry date of 1 month from the moment the jobs succeeds and the files are made available for download. This expiration datetime is included in the response along with the data, as the value of a parameter called **expires**\n\n\n\n### SMS Logs files format\n\nThe SMS logs files generated are **CSV files**. The files contains the following columns of data about individual messages:\n\n- **umid**: *Unique Message ID (automatically generated by the platform)*\n- **subaccountid**: *Subaccount used to send/receive the message*\n- **direction**: *Indicates the direction of the message (1 = Outbound, 0= Inbound)*\n- **country**: *Country of destination of the message*\n- **operator**: * Operator of destination of the message*\n- **mcc**: * Mobile Country Code of the recipient number of the message*\n- **mnc**: *Mobile Network Code of the recipient number of the message*\n- **status_value**: *Delivery status of the message*\n- **status_details**: *Additional information about the delivery status of the message*\n- **status_errorcode**: *Error code value if delivery error*\n- **status_errormessage**: *Message associated with the delivery error*\n- **status_timestamp**: *Last update datetime of the delivery status*\n- **msisdn**: *Recipient phone number of the message (Redacted for PII protection)*\n- **source**: *Origin / SenderID for the message*\n- **encoding**: *Encoding of the message body*\n- **createdat**: *Creation datetime of the message in the platform*\n- **smscount**: *Number of SMS parts in the message*\n- **price_currency**: *Billing currency for the message*\n- **price_persms**: *Unit price billed for each SMS part*\n- **price_total**: *Total price for the message (all SMS parts)*\n- **clientmessageid**: *Custom Message ID defined by the client for the message*\n- **clientbatchid**: *Customer Batch of messages ID defined by the client for the message batch*\n- **batchid**: *Unique Messages Batch ID (automatically generated by the plaform)*\n- **body**: *Body of the message (Redacted for PII protection)*","content":{"application/json":{"schema":{"title":"LogExportJobStatus","type":"object","properties":{"status":{"type":"string","description":"Job status","enum":["queued","running","succeeded","failed","cancelled","empty","error"]},"data":{"type":"array","description":"The value presented in the response only when the status is \"succeeded\".\n\nArray of links to download the report. Links are valid until the time defined by `expires` value.","items":{"type":"string"}},"expires":{"type":"string","description":"The value presented in the response only when the status is \"succeeded\".\n\nContains the UTC datetime after which the report won't be accessible anymore.","example":"2020-07-01T06:58:41.74Z"}}},"example":{"status":"succeeded","data":["https://sms.8x8.com/api/v1/subaccounts/your_subAccountId/messages/download/long-unique-token-here"],"expires":"2020-10-25T06:58:41.74Z"}}}},"404":{"description":"","content":{"application/json":{"schema":{"title":"ErrorResponse","required":["code","errorId","timestamp"],"type":"object","properties":{"code":{"type":"integer","description":"Error code"},"message":{"type":"string","description":"Error description"},"errorId":{"type":"string","description":"Unique id of error. You can use it as reference when sending enquiries to 8x8 support","format":"uuid"},"timestamp":{"type":"string","description":"Data and time of the error occurence","format":"date-time"}},"description":"Response in case of error","example":{"code":1001,"message":"Provided subAccountId doesn't belongs to your account","errorId":"91b106f0-c0da-4aba-a43a-7af9c5893a80","timestamp":"2017-04-19T02:31:19.4297387+00:00"}},"example":{"code":4018,"message":"Invalid jobId","errorId":"aa400d4b-fffe-ea11-8277-00155d4ff7ed","timestamp":"2020-09-25T07:18:22.78Z"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

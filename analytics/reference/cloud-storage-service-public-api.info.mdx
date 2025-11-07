@@ -1,0 +1,126 @@
+---
+id: cloud-storage-service-public-api
+title: "Cloud Storage Service Public API"
+description: "8x8’s Cloud Storage Service (CSS) offers you a single point of access for Virtual Office PBX telephone, Virtual Contact Center call recordings, Virtual Contact Center screen recordings and Virtual Meetings. You can access and download these data objects for your further analysis and use. You can also embed your data in other interfaces without a requirement to copy or move the underlying data."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 3.1.6"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Cloud Storage Service Public API"}
+>
+</Heading>
+
+<ApiLogo
+  logo={{"url":"https://www.8x8.com/wp-content/uploads/2016/06/8x8-Logo-Tagline-bottom.png"}}
+  darkLogo={undefined}
+>
+  
+</ApiLogo>
+
+8x8’s Cloud Storage Service (CSS) offers you a single point of access for Virtual Office PBX telephone, Virtual Contact Center call recordings, Virtual Contact Center screen recordings and Virtual Meetings. You can access and download these data objects for your further analysis and use. You can also embed your data in other interfaces without a requirement to copy or move the underlying data.
+
+For example:
+* Make collected data available to customers in your client portal
+* Integrate call recording data into CRM applications to associate with customer interaction records
+* Enable deletion of media (and or metadata) to allow customers to meet internal requirements to cap data retention based on workflows, policies, or compliance needs
+
+You can obtain your stored data by either:
+* Querying for, and then downloading individual data objects
+* Bulk downloading all of your data using a Zip file utility (Note that the limit on bulk file downloads is 2 GB.)
+***Note: This page is in the Beta stage. Contact your [8x8 representative](mailto:ro-rec@8x8.com) for more information on API use.***
+# **Authentication**
+You can try out this API through request authentication using your client credentials. Refer to [Client Credentials](https://8x8gateway-8x8apis.apigee.io/getting-started#client-credentials) on the [Getting Started](https://8x8gateway-8x8apis.apigee.io/getting-started) page for more information.
+
+All requests must be made over HTTPS - calls made over HTTP will fail.
+# **Regions**
+API resources are available for each geographical region in which they are provisioned. The base URLs for select regions are:
+<table> <tr> <td><b>URL</b></td> <td><b>Region</b></td> </tr> <tr> <td><b><a href='https://api.8x8.com/qm/us-west/v1'>https://api.8x8.com/qm/us-west/v1</a></b></td><td>Western US</td></tr><tr> <td><b><a href='https://api.8x8.com/qm/us-east/v1'>https://api.8x8.com/qm/us-east/v1</a></b></td><td>Eastern US</td></tr><tr> <td><b><a href='https://api.8x8.com/qm/uk/v1'>https://api.8x8.com/qm/uk/v1</a></b></td><td>United Kingdom</td></tr><tr> <td><b><a href='https://api.8x8.com/qm/ap/v1'>https://api.8x8.com/qm/ap/v1</a></b></td><td>Australia</td> </tr> <tr> <td><b><a href='https://api.8x8.com/qm/ca/v1'>https://api.8x8.com/qm/ca/v1</a></b></td><td>Canada</td> </tr> </table>
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                access_token
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    Recordings Team: [ro-rec@8x8.com](mailto:ro-rec@8x8.com)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://www.8x8.com/terms-and-conditions"}
+  >
+    {'https://www.8x8.com/terms-and-conditions'}
+  </a>
+</div>
+      

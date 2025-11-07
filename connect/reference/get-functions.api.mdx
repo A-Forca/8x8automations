@@ -1,0 +1,71 @@
+---
+id: get-functions
+title: "Retrieve a list of supported JavaScript functions"
+description: "Automation supports scripting in inputs, outputs and select next steps using JavaScript (supports most features of ECMAScript 2023). On top of standard functions, we have added some custom functions to make scripting easier for you. Use this resource to explore our custom functions."
+sidebar_label: "Retrieve a list of supported JavaScript functions"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVk1v20YQ/SuDudgGaMl2EcDQqUYSFC7qOogT9GAIwZgcihuTu8zOULYq8L8Xu5RIypIToM2xuojcnX188+ZjZ42uZk9qnL3OcIYL1tO8sWlYEExQaSE4u8cbIymXJVl2jeA8wYwl9aYOdjjDq0ZdFVFAmrp2XgU2+3YBxoKxdaOSgGs0PADZDIRLThUsPyuIci3QSDD/nZZ0Fw/DcY9WOVHImbTxLOByeP/25mpjdXF28cvJBG4tqKvDnijZjHwGvSsJPDEUtGSgLOMMxFUMaSPqqsEI1EFFjzyiziSGPeTOw8o1E/gsDFoYAc/iGp9yOMPPdek8g2v8HuYEE/QstbPCgrM1Xpydhb9d/f4wopF45y5nuwCps8pWwzmq69KkUerpVwmH1yhpwRWFJ13VjDMk72mFCRrlSkbr7uErpxoZfWuM5yyE1lLFuBvQBPmZqroM6zV5qljZx7DXPuSLms6XeHSAF/XGLvBlcvxJFQfntODerQm2L8x+hPJueDsItmX8Q6D3nSE0QovDvEYu/zdNo8lo5zWVf4KwPefgQHfsh4qSEgSTgxiDOz3Og3Mlk90DurZZSEkWeCpYC/a7aBDLpUMLFhZSKstQXQcyIqem1EPyvsyGaAhLKpt9/rFeXbSlcliWn5J1PdwrafcK423aHWY8wTb8ElSjAQ23smA7fKRLO1Px3852LxEMZ/fbjEEj72h1m//F/LjH4G3B6aOAyYEgI2VwHgKaKFU15FSWAs4CwcIs2UJGqy3NJ+bH2PvypgwNL2MxCwtPzj/mpXsS0IIUHjg0WIHM5Dl7tlquAl7/GhBlDAnHPFlMku55KfGfbXYy2W07I/d6utviGgVuSFj1DY9yyTZlOQoUXpxdnJ+evTm9eHOoJKIsNAgzgbvtbRJFCzdXeAgGIc8qCteZ56F3h7zoGWexafxrrjfOdggvea52hbROISVhELZi1Cz5ZILtfAw1So3jo0GDowSOPjUsGa2OTrCdt5tEPBwASlPXWL0OvcwEJjVpsUfvqrMCkx3wde+26lUZuCqLftl864vJsA2uVKyF2wwpMUO0wBlOqTbT5fl0Yy3Tdc+xncaxYjoeaIT9cutT40ucYaFay2w6pX6GmVw+X05SV0UBhdPGG13FEw9Mnv1VE758Px9v3wWvuqIcG/VOhq/gxvnYS6NRrG5jc9dVdlf6o2Hq6sM1JhgId8KeT872xf5wHftdRZYWoasOZeksXD5fwgC4mSUo1eGWwWBybVNMXgiS1kTSa5EgV2TCflw/3aT7r71WCSr7Sm7zO/ZLk/JrSFNZTKPlKdnsNHU2MzE403j1OtGK7IjdR1ZvOAxuUO5NSaNRcRzkFy2+H5/+n1O/O6duUlX5Wad1ScaGiMScWG+q7R6pNiEjzzHZ9oIg+GzcF6JGmOAQkXmChRMN59frBxL+7Mu2DcvfGvahtOYJLskbeii76ywzEp4znOVUCn8npMcfN/3lBHbazkFntrOcDS11c3kiJvjIq53m1s7bBAumjH2k0+1fpSnXOjq5N4zvtKnf3n/Ctv0HfHqtYQ==
+sidebar_class_name: "get api-method"
+info_path: connect/reference/automation-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve a list of supported JavaScript functions"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/accounts/{accountId}/steps/functions"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Automation supports scripting in inputs, outputs and select next steps using JavaScript (supports most features of ECMAScript 2023). On top of standard functions, we have added some custom functions to make scripting easier for you. Use this resource to explore our custom functions.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountId","in":"path","description":"Account id","required":true,"schema":{"type":"string","example":"test_account_id"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of supported functions.","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","required":["name","description","example","parameters"],"properties":{"name":{"type":"string","description":"Name of the function."},"description":{"type":"string","description":"Description of the function."},"example":{"type":"string","description":"Example usage of the function."},"parameters":{"type":"array","items":{"type":"object","required":["name","type","required","description","example"],"properties":{"name":{"type":"string","description":"Name of the parameter"},"type":{"type":"string","description":"Data type of the parameter"},"required":{"type":"boolean","description":"Indicates whether the parameter is required when calling the function."},"default":{"type":"object","description":"Default value of the parameter for optional parameters."},"description":{"type":"string","description":"Description of the parameter."},"example":{"type":"object","description":"Example value of the parameter."}}}}},"title":"function"}},"examples":{"timezones":{"value":[{"name":"isDayOfWeek","description":"Checks if a date or timestamp falls on a given day of the week. Useful to design workflows that behaves differently on different days of the week (e.g., week vs weekend).","parameters":[{"name":"timestamp","type":"string","required":true,"default":null,"example":"2021-05-25","description":"Date or a timestamp. Standard date and datetime formats are supported."},{"name":"day","type":"string","required":true,"default":null,"example":"Monday","description":"Day of the week (not case sensitive)."}],"example":"isDayOfWeek('2021-05-25', 'Tuesday')"}]}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: getcustomerassociateddidsinfo
+title: "List the DIDs associated with the Customer"
+description: "Creates a paginated list of all customer associated DIDs detailed information."
+sidebar_label: "List the DIDs associated with the Customer"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1vGzcM/1cEPa3ANU7abij8ZiTpZizFjCbFBgRBQZ9oHxuddJV4TtzA//tAnZ2c7bPnFX30k2HxQxT548fxSTNMo+7f6lHhHUZ17h0Hby0GfZdpgzEPVDF5p/v6PCAwRgWqgik5YDTKUmTlJwqsVXkd2ZcYFMToc0r0i+FFVAYZyKJR5CY+lCD6TnSmfYUh/Rka3ddT5JWGFwWGTBQpnekKApTIGMTeJ+2gRN3XFUwRxhZ1pkmM/FZjmOtMB/xWU0Cj+xxqzHTMCyxB9580zysR9OOvmLPoDWIHE0ahij75LclRWZe6f5qtJMgxTjHoTDevaI7evtGLTEf6vi52dpiYD3xFkVt2QQggD3gIxPiXs/PVC4ixjC3GyIHcVC+WajpU7JRYZJqJrZyNVv5bLO7Ea7HyLjaueHN6Kj/rIEgBbcVRBeRAOEOjYp3nGOOktlZuz71jdMkuqCpLeeLvfY2i5+nggLTU7Gf8guUYjZGQ/6fOJc4Gzzi7IDN0E78jFpuO3KHWkOnwdibn1wxcd8UiUW/SWQct1uNn5w+7lbdZ9tyS+9pxmJ97032TpRxdxB2XWIj8uTLAHcItXAvDa6YSReYBx4X39/HH/bnmzu40+u2dXAU506xt2th7i+DSw1PVMgM+3PI60F5moTeaDTomsN3xyzQ6KQW3egyRcp3pMUKQytpOwPMlFv/G8R/e3w9fUiul9hdL7r7TV2AMCRvY0ZrX9vu0CDjpDLEQLLhpJ3FpbBdlF3QNVgGbnO+kV8FPaIfSprZ33YZlZSWcXbFuOfWK3L3e+B/XOC4dE88/eoP2fFc1kEp5DMHPDUH23GH3O2nVUA/IfvYM9tJiiY7j/5GR3neogKvLMYaDmDe660dkMMCQCOvN9Go5Pe2YnNp9Vq8rNQm5B4J489rR8/i26vdq4sOLFc89PurtOrV1gZjzaalnmTHvuiaHoZuBJaNe5jhFrqr5540KUr8jQ1kdXuq7c2e71sfNzrpvqtudqs0k3EkiFxlcfpA1ufW1ef/jFUlilEMdO/JwseXUH7yh3eKSuZch+LACyij4scXyovHHCjVn26j57KDmwgf6juaIlCNSEvuv3fWFMTiwKmKYYVAoWo6QOUJmCZm325C5xjCjHFXtYAZk5TtYASsuUJVexokjfI7wafBTIhd+uaZKyygudF/3Zme9Km3OdKabutNsp+pgdV8XzFXs93pQ0cn7x/cnuS97E3iEivTWTBa8qfO0UTm3dWQM6sovZ3fZzETM60A8vxa8Na8aVPQnzge1WPLyiZ0O9WqA1/+8HoyGr5ujtCArEAyG5Oa0WEvYbHzxAR4VyH5vlRe/fAC4fqUGo+GWvTcFRUUx5YpwCZN6KCgvVBX8jIwsCtM+SLFfcm1ol88IQY+aIHAdMKoZgfp0eX0jymRBKO5srjs7OU3h95FLSIm3fF8aoUV9Glpb8/MDcZEIq8F18wmt1dLPX20uo8H4yL3KArlmr5DSq8HOrZ6dCZAa9NxluvCye7rVT09jiPg52MVCjpuFpmDKUJQKZXR/Ajbinuf88mm5/Xyldtlyj/P17ekMbC1sCW0zCJTO+7d38mHaYEaMaOQGeY4Vt6S2SqNoec6Z3y9v9GLxLxQ9xLE=
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List the DIDs associated with the Customer"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/phones"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Creates a paginated list of all customer associated DIDs detailed information.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"pageable","in":"query","required":true,"schema":{"type":"object","properties":{"page":{"minimum":0,"type":"integer","format":"int32"},"size":{"minimum":1,"type":"integer","format":"int32"},"sortList":{"type":"array","writeOnly":true,"items":{"type":"string"}},"sort":{"type":"array","items":{"type":"string"}}},"title":"Pageable"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"DIDs information retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"content":{"type":"object","properties":{"_embedded":{"type":"object","properties":{"customerAssociatedDidInfoList":{"type":"array","items":{"type":"object","properties":{"did":{"type":"string"},"didStatus":{"type":"string"},"didType":{"type":"string"},"subscriptionId":{"type":"string"},"subscriptionStatus":{"type":"string"},"countryCode":{"type":"string"},"licenseId":{"type":"string"},"lastUpdate":{"type":"string","format":"date-time"},"webhooks":{"type":"array","items":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"active":{"type":"boolean"},"createdAt":{"type":"string","format":"date-time"},"uri":{"type":"string","format":"uri"},"credentialType":{"type":"string","enum":["basic","bearer"]}},"title":"CustomerWebHookInformation"}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"}},"title":"EntityModelCustomerAssociatedDidInfo"}}}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"},"page":{"type":"object","properties":{"size":{"type":"integer","format":"int64"},"totalElements":{"type":"integer","format":"int64"},"totalPages":{"type":"integer","format":"int64"},"number":{"type":"integer","format":"int64"}},"title":"PageMetadata"}},"description":"List of customer associated DID information","title":"PagedModelEntityModelCustomerAssociatedDidInfo"}},"description":"Paginated response for customer DIDs infos","title":"CustomerAssociatedDidInfoPageResponse"}}}},"400":{"description":"Invalid parameters input","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: deleteconfigurationforfaxeventdidwebhook
+title: "Deletes a customer's DID fax event webhook configuration by ID"
+description: "Deletes an existent customer's DID fax event webhook configuration by customer's DID and webhook ID"
+sidebar_label: "Deletes a customer's DID fax event webhook configuration by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztmFFv2zYQx78KcS9rASVK2mwI9BbELmCsGIIkxQYEeTiLp4gtRarkSbVn6LsPJ8l2HHvZ2oc++ck2dbwj//cj7b9XwPgUIXuAP2leev9FfcCFmrbkWP3h2RQmRzbeqWvvOHhrKcBjAppiHkwtTyCDCVliigqdooWJLJPzJrKvKPwS1WQ2UQUuFPVZv411cu8K89SEIf18+XIGOr2JnU0gAV/TEDzTkIHua+4kKXwocNFX0UaPcyGBGgNWxBRknytwWJEkMBoSMLL+GrmEBAJ9bUwgDRmHhhKIeUkVQrYCXtYyJXIw7gm6LtlkGavMvjuXcUxPFCCBwocKeRj67QK67lGmx9q7SFFmvDu7kJddza9HtXqttj1bd3Gnd7tSD8ppFZs8pxiLxtolJJB7J42TSljXdpybfo5SbvWKGF2XwMXZ2f4SZ65Fa7QSLSiyetaH7y/n558pZ+lmEBDYDNqwqSgyVvX+yp4pq5HpREKhS8aoV6KbYCQuMnIT/7Nl79/1SQ3bA1k7OSqMxh58ZFxkdPn/Wk1ufaMvDwmCWhvRDu3NrjQ7cdKlHJtIBx7tifqDFbY6wHW/3GkIPtyOLN8EP7dUTQY91tyc73PzyWHDpQ/mb9JHUo6kjKQcuATvaspNYUirnevQh809OJso51kVvnFHlo4sDSz9evjbiik4tCpSaCkokixHZI7IjMi8P3D9UGhNTqpx2KKxOLekkBWXpCpfCTRHfI749PEVcem3vqV3JVxCBml7nrpnP9ZjWuDipDcx6WguTuLAWVqX3lFMV9roLl1trEcHCQyX1mBwmmAhg5K5jlmaYm1OLxeXp7mvJDXWBl76t5vgdZMPNs82kSmoj35YDogbiZQ3wfDyTmAdJLmqze+0vGpkDxuBsB+EZG2O/jq5upmdDEO9OSoJNYW+R8YVfgB7EFIsDEaFan2o3nxAvHurrm5me+u9L01UJvYHTaIkSH0rTV6qOvjWaPGivblR7MeoF9lriyzoqYKQm0BRtQbV7fTuXpKdQgIi51Du/PSsZ8dHrrA/teP+Nr73B9xub2l3trXa3hU/yVGPbWNacFpbNE622dOzGvF8gPZc+vkcUDm0a0QhgReQCtk9ppBANnjsbGuSHxMofWRJvFrNMdKnYLtOhr82FJaQPTwm0GIwcpf2MGsT5b2GrEAb6RXN3tyOnvut+re9rTl1QmSLtpFPkMAXWo7/CIi1/4klt8p0j12yPh+y7+H5VZ5Tzc9m7n2HyPncXC6T6cfp/RS67h/pYC20
+sidebar_class_name: "delete api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes a customer's DID fax event webhook configuration by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/v1/notifications/fax-event/webhook-service/phones/{did}/{webhookId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deletes an existent customer's DID fax event webhook configuration by customer's DID and webhook ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"did","in":"path","required":true,"schema":{"type":"string"}},{"name":"webhookId","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Customer DID Fax Event Webhook Notification configuration deleted successfully","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Invalid request parameters","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Specified Customer DID or Webhook ID not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

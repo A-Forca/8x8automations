@@ -1,0 +1,71 @@
+---
+id: getmessagesusingget-1
+title: "Fetches messages for a room. Defaults to `CHAPI sandbox` room."
+description: "Fetches a list of messages from the room."
+sidebar_label: "Fetches messages for a room. Defaults to `CHAPI sandbox` room."
+hide_title: true
+hide_table_of_contents: true
+api: eJydVdty2kgQ/RVVP6bEzcgs8LQUvsTr2pjEwanERTmD1EgTS5rxTAuDKf491ZIAeSHEG16A6TPdPef0ZQUkQgv9e/AjQTBxIUDrG6lJqhT6cIHkR2gd4cTSkqNmToLWihCtMzMqcShCxyiV1MEFpdEIvncVQB9CpA00szINQ6SHFrighREJEhqOuoJUJAh90CLEW/mC4ILkuE8ZmiX8N5sKyuBTJg0G0J+J2KIL1o8wEdBfAS01u5QpYYgGXJgpkwgqjtonudeZyGKCfru5XrvbJPghxxMoEb8PbsnINISqd7LHfef2P31Wx6s+q7leT9iX1Sq1aPn2SbPJX69D3lyDC75KCVNi67vGO/7aiymMEZywJExs5VxNf6BPLKph8UkWsURGkTJji+YN2LkgYcYmPkCeC5gIedgig4PHBdcHZACSFPPRMBLEqd3dHHGjhbF42EQyQUsi0W/RpBr436Ib7m72lP8coVNanZuCpjXfFFrH0s9bqvHDMnQFuBCJjgvuNgLz77mIM9wnv0IvRETa9hsNLuKporpt1zNbe0ZLtVZdJOJFpeLZ1n2VNPxIaFnXaQhbDSDAOcYs3d/dRZdRUNAHPW/pXT91Wr0zfPrabp7Ly7vHYBGPT4b6w9d/mueeGITZJ6+TzH3YKMQyaMl8lkNiVDIO7zGOlfOsTBxsAnx6+vgwPX2WFxl9SS7jl29DY28Dm3yMgm93HTnKHkanQzO6VWfcQhWBWqc9r9fqNpudbsvreX+t848LXrO13wzjtKBOvmAAOai9D7pQZiqDANMC4e0jPihyLlSWBrn4AWqDvqBKRydIkSonZD4PKYI+NISWTDs15q3GZnCCCxbNfDMrs1zGBkPrpQb5FeBut+hnRtIyRw60vMblIGPX95Oq+ZZ7uyifKmjX6vnhZlJFKIK8rkvVFjWhZe0Rl/njZDpT+wR0F13nizKPDneaMxhdgQv8hMLarLfgVTNq6dR2UO49ZSkRebGXUTdLaLd6lHFEsXecs2LoWYeU8334fjC6cqxIg6lafN9uplcJrnYT73+tt5IgwgU1dCxkXgJZMbgKEe+ZPZ6orIkLc37pVsqJC5GyxKjVaiosjk28XvNxsQ5YtkBaMY0rtfLLxCub8GBeLNErVDkfAHgjvT1OufCOxCgRf+g/X3pHvOf2ne8J/zGSneeF7W4qlNkrbgx8HzVVbvFS44vbvrs8/wzr9U/GZQMB
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/chapi-chat-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetches messages for a room. Defaults to `CHAPI sandbox` room."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/chat/v1/messages"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetches a list of messages from the room.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"pageSize","in":"query","description":"pageSize","required":false,"schema":{"type":"integer","format":"int32","default":30}},{"name":"room","in":"query","description":"room","required":false,"schema":{"type":"string"}},{"name":"ts","in":"query","description":"ts","required":false,"schema":{"type":"integer","format":"int64","default":0}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"array","items":{"type":"object","properties":{"authorUser":{"type":"object","properties":{"avatarUrl":{"type":"string"},"email":{"type":"string"},"id":{"type":"string"},"name":{"type":"string"}},"title":"ChatUserVO"},"id":{"type":"string"},"parsed":{"type":"string"},"timestamp":{"type":"integer","format":"int64"}},"title":"MessageVO","description":"The Message Object"}}},"application/json":{"examples":{"response":{"value":{"authorUser":{"avatarUrl":"https://roombot.s3.us-west-1.amazonaws.com/chapi.png","email":"developer@8x8.com","id":"94y4Kq619DeqY30EiGVkdxlU2CpNYJ0E4aAguR46mvc","name":"Chapi"},"messageParsed":"Hello world","id":"RqQ_b5wiFutWmGlzZCrsSdsmQhdZV6iPu_P5CrPSoDs","timestamp":1594918006814947}}}}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

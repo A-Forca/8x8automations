@@ -1,0 +1,71 @@
+---
+id: get-timezones
+title: "Retrieve a list of supported time zones"
+description: "Use this resource to explore supported time zones. Time zones are used as parameters in some of our time related JavaScript helper functions like `IsTimeOfDayBetween(time, start, end, timeZone)`."
+sidebar_label: "Retrieve a list of supported time zones"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVk1v20YQ/SuDOdnoWrRzMnSqnSaFixQJIrsB4gjxiByJa5O7zM5QtiLwvxe7pGU6sZv02Ooiabnz9ebNG27RNxxIrXdnBU5xxXqgtuav3rGgQaWV4PQS/7SSc1WRY98Kzg0WLHmwTTTEKV4Ig5ZWILD4NuQM6oHvmsoHBmmbxgflAqJnSK4ncL77DRQYWuECSKChQDUrBwHrQHzN4Jfg29AbB64oevqD1jRLCUDJVcMBlq3LYzYClb1huDqTGOHt8jfanLLeMru96MGAKAU1wK4wyedH73j/aoIGH2Lj9HKLkpdcE063qJuGcYqiwboVGuQ7qpsqHnEbfMPYGbQRhy8thw0adFTHp7l3StZFIB/j9dpWymGEByw2EI0m8NoHsE6UXB6TZVXrVqAlw9W9u6uI7qch9ieEyooKUFWNHd5aLZNLAS1JYTBOnvpCxi72chKOcdmJVbtmqEnzcn+Cndnel0N57lunZwUO5Tak5Xe1nfS3wMZrgb+0NnCBUw0tm5/CVFn08xDrsy2w6+bRkTTeCUu0fXF4GL8ex31jRSNXRiRDk1rATuN1aprK5onr2bVEmyd6TCFQ7KBVrmV07hfXnOujii4xlZjAmRtsIpRBbZ+iLZ4q8nHG58OggS3gtrR5CVZSf9ZUtc+NRByFEft3tI+dGhr103ET47DrDKrVHvvhUTocWtLDsBOF6RZTfmlGYpn4YQKvEpFgpuQKCkWa7oc5OKlFORRUGzjlUFmXvp2B9z5O5Ex9flP6qjbwl2XnCPYuzl/+cng0PTzcTwRMYV6y00DVD2KdcrUKVLCB06hrUtGaDJy2BTUsauDNdbuorsmRgXeBVi3/TDByz4WbUaBrXnsDsxvfXLOBDxSEbg18pFXgxdPeX/0IsZelFeuoHcxf9ObzLn0M1qylH/Q6CZeWOMWMGputj7JhdiTb7ia2y0S5kWys7cJhfa91bahwiqVqI9Mso1Z9nQZlcnx3PMl9jXEGhfM2WN0kiwVT4HDSxsiX8/HjWZypnijjSztWxig4SEH8319KjLNu6Xu29XQ82SUCJ+/O0GBMuCfx0eTwe+l5dwZLH6AmR6uocLc+3CwrfyvgHRzfHcODw0EbKE/aMMAer5y5HM03gOQNkeywMMg12fg8nR8MC+7XHVYGlUMtb5czDmub83OeMlll6eYBueIg966waZaz6KLxojW5UXbvWYPlNQMlyY9i99Ru/RaW7YMI/k8W9UAk5TvNmoqsi3iljm2HWbhEamzkyxGa+70VgZmOd1gaiehuNxRzg6UXjfbb7YKEL0LVdfG43+yR+IUVWlRxASypEv4HsP9DW/4ZTG948/g1ZlB+THqwpmAjFP8Slr33wwrdh0fvCk9mcL+W3WYc/T6zh252885gyVRwSOn0z0/ynBsdWX73DhDr2Knp76/Osev+Bo3q0tU=
+sidebar_class_name: "get api-method"
+info_path: connect/reference/automation-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve a list of supported time zones"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/accounts/{accountId}/steps/timezones"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Use this resource to explore supported time zones. Time zones are used as parameters in some of our time related JavaScript helper functions like `IsTimeOfDayBetween(time, start, end, timeZone)`.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"schema":{"type":"string","example":"europe"},"in":"query","name":"contains","description":"Filter time zones by name. For instance, setting the `contains` to \"europe\" lists all time zones with names that contain the string \"europe\" (case insensitive match)."},{"name":"accountId","in":"path","description":"Account id","required":true,"schema":{"type":"string","example":"test_account_id"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of time zones.","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","required":["id","name"],"properties":{"id":{"type":"string","description":"Timezone id which is the value used as parameters in our JavaScript functions."},"name":{"type":"string","description":"Timezone name."}},"title":"timezone"}},"examples":{"timezones":{"value":[{"id":"W. Europe Standard Time","name":"Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna (UTC+01:00)"},{"id":"Central Europe Standard Time","name":"Belgrade, Bratislava, Budapest, Ljubljana, Prague (UTC+01:00)"},{"id":"Central European Standard Time","name":"Sarajevo, Skopje, Warsaw, Zagreb (UTC+01:00)"},{"id":"E. Europe Standard Time","name":"Chisinau (UTC+02:00)"}]}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

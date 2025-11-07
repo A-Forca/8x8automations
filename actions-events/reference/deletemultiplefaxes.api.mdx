@@ -1,0 +1,71 @@
+---
+id: deletemultiplefaxes
+title: "Deletes multiple existent faxes by list of IDs"
+description: "Attempts to delete all of the faxes specified in the provided list of IDs. Returns a result body with the details of the bulk operation."
+sidebar_label: "Deletes multiple existent faxes by list of IDs"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV01v2zgQ/SvEnLaAHCftLhDo5uYDMHaBNeIUKGD4MJbGFhtKZMmhY6/h/74YSk7V2Ah2ix56sC+Who/D4eMbamYHjKsA+QzucUNB3diGvTWGPMwzKCkUXjvWtoEcRsxUOw6KrSrJEJNCY5RdKq5ILdP84KjQS02l0k0yO2/XuqRSGR1YsOPbcKEeiKNvgkLlKUTDamHLrXrWXKVJJTFqEw6uF9E8KevIo0RyARm8vIxLyKENpo6GtTOUAoEMPH2NFPijLbeQ76CwDVPD8ojOGV2k+cMvQfa2g1BUVKM88dYR5GAXX6hgyMB5WY01BRld4mZ8G3o49B63kIFmqvv2wF43K9jv9xmwZiO2e9x8jObpNsX70IsvoSRg7amEnH2kZAjONqFd+P3lpfx9fyTTF7rFr7rHjUrOtW0UbaiITGVLa4hFQUF4+UlEdA6X0fwfMjJYojayx2P/WJZaQkEz+W6lNwjtsyk6ktF9Br+f4mrcrNHoUnW6SJL7eXSwrikw1u444gyW1tfIolRkGggUZBMJ9QY6ei24wMixz4RumFbk+1Dd8If38I2ZI9YkmSWpTg7pJjA2xX+KpjA2ltc/cH4dTs6nwBjoxNARqT+4Qk8hNyncO++tf+jSaeLtwlB92/JxUMzVsWI+NRi5sl7/Q+VZKWelJPgfp+8WJt+gUYH8mrwi8XKWzFkynWQ+nPh0k1/rglRscI3a4MKQQk71Tm1rEc1ZPmf5JHxNXFkpdJ0N6XSRK8hhuL4apmJ3KAXyoK2CIYP2DpKifgfRG8ihYnYhHw7R6YvrzfVFYWuZiU7D6yJ/4m0Zi1RA3pgYmLz6y7a6g/1cnBfRa95ORXvtDkdO/0nbUZSgvlWCyQgZNFjL++fBaDIetCYtC1WEJflEuei5Vw3fbbB2rVAO1fbscObzpIilbWX9UlUrlF7ikFK/3SNO36nRZHy0vcdKB6VDSjNBCUg9V7qoDp1KUJgKW+lyWtQr784gi/DUkpCjp6DWGtXD3fRRnEl3Iuy3y11dXCbl2MA1ppzt6GiL1qAOTYuijQ6S610ftdj2G6bX2+h1M79SV9YdPdOGh86gbmTvSYG7TrMzWF9J3nYtWl+38wwqkXc+g91ugYE+ebPfi/lrJL+FfDbPYI1ey00pb/vsoCER+hNtJaNaWgaPEonATWzF+Ory3GeHGaOiIMdvYue9DJz8PX2UwLumsralzPH4LA0nPkMOqTuV2Sk3km0HBptVxJVgW5/y+xckpmCA
+sidebar_class_name: "post api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes multiple existent faxes by list of IDs"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/faxes/bulk-delete"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Attempts to delete all of the faxes specified in the provided list of IDs. Returns a result body with the details of the bulk operation.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"faxIDs":{"type":"array","items":{"type":"string"}}},"title":"FaxBulkDeleteRequestBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Specified Bulk Fax Deletion executed with success","content":{"application/json":{"schema":{"type":"object","properties":{"successful":{"type":"array","items":{"type":"string"}},"failed":{"type":"object","additionalProperties":{"type":"string"}}},"title":"BulkDeleteResult"}}}},"400":{"description":"Invalid request body","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

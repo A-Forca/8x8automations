@@ -1,0 +1,71 @@
+---
+id: getcustomerdidunreadfaxlist
+title: "Get customer's current unread fax list by DID"
+description: "Retrieve the customer's current unread fax list with each fax detail based on sorting parameters, for a specific customer's DID."
+sidebar_label: "Get customer's current unread fax list by DID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWUtv2zgQ/isEL9sCapy03UXhWzaPItguNkhSYIEgKMbiyGJLkSo5dO0a+u+LoaTEjuXUKXrYg09OOO/hx+FwtJQE0yDHt/Ic5hjEibPknTHo5V0mFYbc65q0s3Isr5C8xhkKKlHkMZCr0P8WRB69R0siWo+gRAFzYXQg8U1TKRDyMi0pJNBGTCCgEs6K4DxpOxU1eKiQ0IdMFM4LEKHGXBc6X7VxenF6IDPpavTA7lwoOZZTpJ5FadWaL2DOxmUmHxTL8e1SWqhQjqXSSmZSczw1UCkz6fFr1B6VHJOPmMmQl1iBHC8lLWoWCeS1ncqmye611DBFmBjsVX2N6Be76HKTz5gn7zzHQhoDU1kf/1ba6ipWcnyY9RLaEk7Ry0wWzldA7dKb17LJZNDf18WOdhNznj5wkh78Au+BA/jmNeE/1iz6CDRhFQaTkdQMqNgq0WSSNBleO4f5ZZ/CprnjxIXa2dBm4/XhIf+so++k22lxDnPB3gvf4VGJEPMcQyiiMexB7iyhTb5BXRudJ8iMPgdWtNx5U1bUPM34CasJKsXb/iPWAubHRF5PImHYsgePE7hd1YUayHMmA4GnG13hJnUFDgoIXxFzNZlEq54nYCDQNQHhx5rXnyes0OCzZbTHvMXCpghaRv+t1HbiouUT7iL1f070q3thMPKuyWThXXWqh7NHbhvFY+UIL8HTYkvmC5inpAxvS5xsJ+YQwzCFYb44cXENiU8d71T4BgEESuk2C5drUNo82xPwJ06tUZ8Jz76k7eBwyzIQugIaLsSrheRP8LlTmJY/GW2//EzoW4IoPRaDnjHBgJ0OI6h1boiyNVKsPbZ1apBee1foLUrbO2nIGla1AVqrSxPnDIJdS+IHbb/IR/+HNY4zS5oWfzuF5ny1gnFV36f916Y9e3x0tiSpv/yfPGB/vG1LGoE5M1ihpfAcGb6kdxWwsZqg34l5JWi28DcSpKPeNI97znTRu0K03am2rSamratQCZtPwPSx4kuYasubJPrWI3WfD3bkWpF50MXWrjqRDv5vh/qVCzsDo1n914iBVvrcX9eh8N0YCKp692t0+CiscEevux6C4o+3vivgW09e2/UPkrQNBDbfyZvcuKje/XyBaQZu2J60kdSftLAC6pPk7pn3zvdQufRuYrA6bfPR4+ZoEzcfLUQqndffUe2RskdKh5S3T7yITi9OhXUkiq7h3WNmj5lM/j58KxF6C0YE9DP0AlnLHjJ7yHSQebMJmWv0M52jiBZmoA3PbARQGgJWjjvKPXz28GnxUyGVrpvMpgkslXIsR7OjUcF99aguncUwWiqtmlE7r5WZbEtRO6WN3sixLInqMB6NoNYH7+bvDnJXsQaotdzo471TMY12xImJgdCLD6570fFgMWAevabFNUOwDfS41n/h4jiycw/TjbQo+2ed/PfV8eXFq3YpjXhLBIU+ZT49DxJc798HAoIA0R+VF+cA1y/F8eXFhr83pQ5Ch3R8mIuZxLdS56WovZtphUFAmmYKch3XI+38uGRAiQKBoscgZhrE1dn1DSvjMTmnszV3dHCYEOECVZDOYhffe6RdZviTBXcXj6NYmY3+H74KdFtIOKdRbUBbDjkhadlh8FbOjmQazyE/v1ocykyO288BHRTvMlk6HsneyuWSXfroTdPwcjvfZ4AqHbgCKjkuwAR8IjEvrrqPAS/FNh+/4GL9Y8IMTGS2BN0ZeJ3Wf7ndHvN2sWqz94dz0vCUtIM8m28px3mONa3IbBR79vu+Crw/u5FN8x+wVBx6
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get customer's current unread fax list by DID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/faxes/phones/{did}/unread"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve the customer's current unread fax list with each fax detail based on sorting parameters, for a specific customer's DID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"did","in":"path","required":true,"schema":{"type":"string"}},{"name":"pageable","in":"query","required":true,"schema":{"type":"object","properties":{"page":{"minimum":0,"type":"integer","format":"int32"},"size":{"minimum":1,"type":"integer","format":"int32"},"sortList":{"type":"array","writeOnly":true,"items":{"type":"string"}},"sort":{"type":"array","items":{"type":"string"}}},"title":"FaxPageable"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Customer Fax List retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"content":{"type":"object","properties":{"_embedded":{"type":"object","properties":{"faxAttributesList":{"type":"array","items":{"type":"object","properties":{"faxId":{"type":"string"},"startTime":{"type":"string","format":"date-time"},"endTime":{"type":"string","format":"date-time"},"lastStateUpdateTime":{"type":"string","format":"date-time"},"deleteTime":{"type":"string","format":"date-time"},"direction":{"type":"string","enum":["inbound","outbound","bi-directional"]},"fromDid":{"type":"string"},"toDid":{"type":"string"},"remotePartyId":{"type":"string"},"faxState":{"type":"string"},"subState":{"type":"string"},"cause":{"type":"string"},"retryCount":{"type":"integer","format":"int32"},"params":{"type":"object","additionalProperties":{"type":"string"}},"barCodes":{"type":"array","items":{"type":"object","properties":{"page":{"type":"integer","format":"int32"},"type":{"type":"string"},"data":{"type":"string"}},"title":"FaxBarcode"}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"}},"title":"EntityModelFaxAttributes"}}}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"},"page":{"type":"object","properties":{"size":{"type":"integer","format":"int64"},"totalElements":{"type":"integer","format":"int64"},"totalPages":{"type":"integer","format":"int64"},"number":{"type":"integer","format":"int64"}},"title":"PageMetadata"}},"description":"List of Faxes information","title":"PagedModelEntityModelFaxAttributes"}},"description":"Paginated response for Faxes info","title":"FaxAttributesPageResponse"}}}},"400":{"description":"Invalid request parameters","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Customer DID not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

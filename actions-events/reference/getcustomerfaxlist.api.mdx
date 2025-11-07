@@ -1,0 +1,71 @@
+---
+id: getcustomerfaxlist
+title: "Get customer's current fax list"
+description: "Retrieve the customer's current fax list with each fax detail based on sorting parameters."
+sidebar_label: "Get customer's current fax list"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN9v2zgM/lcEvdwGuL+2u8OQt17XDsVtuKLtgAOKYmBsOtEmSx5FZckK/+8Hyk7rJE6XDru3PjmRSIqkPtL0d6cZJkGPbvQZzDGoE++YvLVI+jbTBYacTM3GOz3Sl8hkcIaKp6jyGNhXSL8FlUcidKxKmCtrAqtvhqcKIZ+mpQIZjFVjCFgo71TwxMZNVA0EFTJS2NeZ9jUSyEHnhR7pCfLygBLmYlRn+kFBj27utIMK9UjXMEEYW9SZNuLl14i00Jkm/BoNYaFHTBEzHfIpVqBHd5oXtSj68WfMk12Sw9lgkF2xJ8/KOFPFSo8Os6WGcYwTJJ3p0lMF3C69fqWbTAfzfVXtaDc1T/xewnvwC4hAAvhGhvEfZxfLCAxjFXqCgcm4iW46MwMmtmo0mWbDVtbOYH6xTGHTZPd5LQxhnm5+a2JLsGEos90xgp8SopWAx2bv3iBYnWl0kqQbbdzYR1cIAiIvf65J3/b9Ko1lpDMwNhKGpzs39t4iuL53SbRpbkU91N6FFgmvDg/lsVoEJx0s1RnMldycoq4sChVinmMIZbRWfMm9Y3TpXqCurckTvg8+BzF0tzMge2YeF/yE1RiLQoL/kWgJ82NmMuPIGLbgbx08202dFwMYy3RgIL42FQ5B474UCmDcY5FqBBXF0xQsBL5iYPxYy/rTlAu0+GSd+7IYUHkaqDNdkq/emuHssd+2Q1h5xgsgXmzJfAnzlJTha4nj7Zs5xDC8IzBfnPi4gsTHWltq14MAgqIwbRYuVqC02dfGQCe+WNl9IjyX7XwHh1uRgdAL4IH2ttZE/wLKfZF6qP5kjfvyM6FvCWJKWA56JhsW3GQYQa1zQztbI8WasO1Tg/s1+dJsMdr256HTsKot8EpfWnbhfhLfG/dFr/0PKxKnjg0vPvgC7Vm/g8kb7Tntvzbt2XrpbEnScvB5tMD+/L1taQz21GKFjsNTdGRA2VXBxWqMtJNwL2g54QMypFJvmvXRN73ofanaIdm41lI7HPVNFAmbj8B03fAFTIyTS1LL0UOVnnrn6JUm82BLTrvsVDr4/z40r5y7GVhT9KZtZVwd+dfNJ/JmDAxVvftLdLgQetKRTDdBcPzxxXfte2vdtV8gg1vGBQaX7+RNbn0s3vx8e2kG3q/LrY2k/uQJPUifJHdPiTwtgXJBfmyxetvmY4mao03UfHQQeerJfMfiGSnPSEnifwz3F0ZyYFVAmiEpFCvPkHmGTAeZ15uQuUKamRxVdDADY4V5UMCJVaq8zAbP8HmGT4ufCnnqO0IwMYA81SN9MDs6KGVC0plu207LCEayeqSnzHUYHRxAbfbfzN/s574SaaiN3pi+yBcxfZCrExsDI6n3vpvDhQ4KmEcyvLgSuLVBHdfmb1wcR3Hk4Zs0LerlMK7/3Tu+ON9rlxI9NUUokFKW01CXoHk/1SkICtSyLF6cAVy9VMcX5xv+Xk9NUCakUhEpEVLfpiafqpr8zBQYFCQOSrHvpNasyyeBgEeVCCwMmpoZUJenV9diTJhYSWd73NH+Ybp9H7iCVHddfO+QHyOA1/3ucVj/L4ncXQfjnA9qC8aJ+wkVdx12bvTsSCeCBIMw3FMv3NeNvrsT0x/JNo0st3SiYKowQRrUA6G4NbIXlx33+FJtc+ULLlYZ6xnYKGJaCM6No1rxPhG7i/wGQfqgdCt/yKTDRzfCQHXAlEhb7eM8x5p7WhvtV6zc1+W702vdNP8B675hjg==
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get customer's current fax list"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/faxes"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve the customer's current fax list with each fax detail based on sorting parameters.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"pageable","in":"query","required":true,"schema":{"type":"object","properties":{"page":{"minimum":0,"type":"integer","format":"int32"},"size":{"minimum":1,"type":"integer","format":"int32"},"sortList":{"type":"array","writeOnly":true,"items":{"type":"string"}},"sort":{"type":"array","items":{"type":"string"}}},"title":"FaxPageable"}},{"name":"direction","in":"query","required":false,"schema":{"type":"string","default":"bi-directional","enum":["inbound","outbound","bi-directional"]}},{"name":"filterFailures","in":"query","required":false,"schema":{"type":"boolean","default":false}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Customer Fax List retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"content":{"type":"object","properties":{"_embedded":{"type":"object","properties":{"faxAttributesList":{"type":"array","items":{"type":"object","properties":{"faxId":{"type":"string"},"startTime":{"type":"string","format":"date-time"},"endTime":{"type":"string","format":"date-time"},"lastStateUpdateTime":{"type":"string","format":"date-time"},"deleteTime":{"type":"string","format":"date-time"},"direction":{"type":"string","enum":["inbound","outbound","bi-directional"]},"fromDid":{"type":"string"},"toDid":{"type":"string"},"remotePartyId":{"type":"string"},"faxState":{"type":"string"},"subState":{"type":"string"},"cause":{"type":"string"},"retryCount":{"type":"integer","format":"int32"},"params":{"type":"object","additionalProperties":{"type":"string"}},"barCodes":{"type":"array","items":{"type":"object","properties":{"page":{"type":"integer","format":"int32"},"type":{"type":"string"},"data":{"type":"string"}},"title":"FaxBarcode"}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"}},"title":"EntityModelFaxAttributes"}}}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"},"page":{"type":"object","properties":{"size":{"type":"integer","format":"int64"},"totalElements":{"type":"integer","format":"int64"},"totalPages":{"type":"integer","format":"int64"},"number":{"type":"integer","format":"int64"}},"title":"PageMetadata"}},"description":"List of Faxes information","title":"PagedModelEntityModelFaxAttributes"}},"description":"Paginated response for Faxes info","title":"FaxAttributesPageResponse"}}}},"400":{"description":"Invalid parameters input","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

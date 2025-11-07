@@ -1,0 +1,176 @@
+---
+id: 8-x-8-analytics-for-contact-center-real-time-metrics-api
+title: "8x8 Analytics for Contact Center Real-time Metrics API"
+description: "The 8x8 Analytics for Contact Center Real-time Metrics API enables you to obtain the latest, real-time statistical data on queues and agents queue interactions. In addition to real-time data (which is refreshed every 5 seconds) you can also obtain data for select 15 or 30-minute intervals."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 2.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"8x8 Analytics for Contact Center Real-time Metrics API"}
+>
+</Heading>
+
+<ApiLogo
+  logo={{"url":"https://www.8x8.com/wp-content/uploads/2016/06/8x8-Logo-Tagline-bottom.png"}}
+  darkLogo={undefined}
+>
+  
+</ApiLogo>
+
+The 8x8 Analytics for Contact Center Real-time Metrics API enables you to obtain the latest, real-time statistical data on queues and agents queue interactions. In addition to real-time data (which is refreshed every 5 seconds) you can also obtain data for select 15 or 30-minute intervals.
+
+The Real-time API supports both JSON and XML file response formats. You can switch between both formats using the `Accept` header.
+
+**Note**: the Real-time metrics endpoint is available on the following URLs:
+```
+https://api.8x8.com/analytics/cc/v1/realtime-metrics/
+https://api.8x8.com/analytics/cc/v2/realtime-metrics/
+https://api.8x8.com/analytics/cc/v3/realtime-metrics/
+https://api.8x8.com/analytics/cc/v4/realtime-metrics/
+https://api.8x8.com/analytics/cc/v5/realtime-metrics/
+```
+
+_**This page is in the Beta stage. For step-by-step instructions on using the Real-time API refer to the [Real-time Metrics Use Case](https://8x8gateway-8x8apis.apigee.io/real-time-metrics-use-case)**_.
+## **Authentication**
+You can try out this API through request authentication using your client credentials. Refer to [How to get API credentials](doc:how-to-get-api-keys) and [how to authenitcate](doc:oauth-authentication-for-8x8-xcaas-apis).
+
+All requests must be made over HTTPS - calls made over HTTP will fail.
+
+
+**Note**: The Real Time Metrics API uses either the **v1**, **v2**, **v3**, **v4** or **v5** path for the following URLs:
+- Access token: **`https://api.8x8.com/oauth/v2/token`**
+
+- **`GET`** request: **`https://api.8x8.com/analytics/cc/{version}/realtime-metrics/`**
+
+
+
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"OAuth 2.0: ApiKeyAuth"}
+      value={"ApiKeyAuth"}
+    >
+      
+      
+      This API uses OAuth 2 with the client credentials grant flow.
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                oauth2
+              </td>
+            </tr><tr>
+              <th>
+                OAuth Flow (clientCredentials):
+              </th><td>
+                <div>
+                  Token URL: https://api.8x8.com/oauth/v2/token
+                </div><span>
+                  Scopes:
+                </span><ul>
+                  <li>
+                    read: Grants read access
+                  </li><li>
+                    write: Grants write access
+                  </li><li>
+                    admin: Grants access to admin operations
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem><TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                access_token
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    Analytics Team: [vcc-analytics@8x8.com](mailto:vcc-analytics@8x8.com)
+  </span><span>
+    URL: [https://www.8x8.com/](https://www.8x8.com/)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://www.8x8.com/terms-and-conditions"}
+  >
+    {'https://www.8x8.com/terms-and-conditions'}
+  </a>
+</div>
+      

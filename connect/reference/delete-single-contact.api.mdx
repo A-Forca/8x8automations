@@ -1,0 +1,71 @@
+---
+id: delete-single-contact
+title: "Delete single contact"
+description: "Delete single contact by id"
+sidebar_label: "Delete single contact"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVW1v20YM/isEMWCJIFlNWgyePqzz1gww1mZF030YbA+5SLR1iHSn3lFOPEH/faAs26pdY0WxT7bI49tD8mGDtiKnWFszzTDBjApiirw2q4Ki1BpWKWOIrFYekxn+upV4mLyf4iJER76yxpPHpMHrF6/kJyOfOl2JT0zw1oIYkWFs2/BI+aYLB9tw0IeDhw3oDEOslFMlMTkJ3aBRJWGCKk1tbXgqL7Q4qRTneOz5L1tDWXsGR1WhUoKg2Ru2ATxpzoFzgl6oM+BcMWxsDU/KMLCF2tMIpcRPtXaUYcKuphB9mlOppNBSPb8ls+Ick5c/hFhqs/+8luyZyUkuf89eRD9Oot9UtFw043YWLV5fvE6Gwled8LJ52Q6lV9ftd4L9ppK6PTttVgJiM8jhSBnuUOqxPEHpuJrPUevbC9MM20WIJXFuD2PRtUTKw1hVOl5fxT16Ph6AG/ehfdzsk2gxRE9uvWtl7QpMMGeufBLvDUbj5/EoteVJMydeq+i9SvVSp+BoJVKB4Yyb+rynW+s4h0lJTqfqK1yJn/rxxM1N7WxFX2nfzfLn9lOTWUNeH1JYCEBp7TRvOoRUpX8n+bsYqu6k79tl2z3Yj4DExn485fuBlCN3EjqA8fMY7t7dyQrL+FPFHpSBIJh0LuGXzhA+2kcyQQCq5pwM67RjCdjOxGhu5iYA2bJUGViRERYhABYrD0tnS1kmB2nt2ZbkoLKOVQEwG4BkKOVdr+LFxTnN5SGaIcpkObVJizqjboeXtijskzYryEll5ECbbWwZdvLsE7if1Jxbp//pikh2NTZbFNt7CfATBMGtZQqCBD70rCHu7/evoBPmtpAgewp5pM0egGxbuYiPCh/NTRRFczNddiSTqzWZ7xlSR51Zl2+/RLAhDqEqSHmClZVypWdP9OA101kAz+J3KR68Xhmoq9HcdDyszdJ2w6O5oMPmb4k9RNnU7bxcnUzQ8CmsRb+7E8mepCXfqUkxPF6MSqnhdlKptOg7eeTrSsD6eadvQ2Rypf9jeUdurVM65yn2q7h7GSmTydnKtCTrY3FRWc+lMoPsvnh2jutsurLkbv3XneoXkOmZ46pQWhhhW3fTE+ZM1lVgFbR2pIkhJsNjtiMNkR/oexFibj2Lj6Z5UJ7+dEXbivhTTa5jiBDXymn1II2cNZhpL/8zTJaq8MccPyzr4kN/DS7h/7uXX0SjFyqzERRUUcsXhvgoFDY46UKl35T/4HJ9UwoHwNtFO7h8b27e3ny8wbb9F+Y3I9g=
+sidebar_class_name: "delete api-method"
+info_path: connect/reference/contacts-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete single contact"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/api/v1/accounts/{accountId}/contacts/{contactId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete single contact by id
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountId","in":"path","description":"You must replace *{accountId}* with the accountid that you want to use.","required":true,"schema":{"maxLength":36,"minLength":32,"pattern":"^[0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}$","type":"string"}},{"schema":{"type":"string"},"name":"contactId","in":"path","required":true,"description":"Contact Id"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"No Content"}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: get-usage-history
+title: "Retrieve a list of executed workflow counts by yearly"
+description: "API which can be used to fetch usage historical data for Automation service"
+sidebar_label: "Retrieve a list of executed workflow counts by yearly"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVcGO4zYM/RWBpxZQYsezM8n61KAo2gAtOtht0cMgWDAyHWvXlrwSnZkg8L8Xkp3Emdn2UDSXKKLIRz7yMSewLTlkbc2mgBz2xLPO455mlfZs3REkMO495E/wm/aK6hoN2c7DVkJBXjndBmfIYf24Ec+VVpVQaMSOROepEGxFSawqEaOKIapWWIsCGUVpnVh3bJuYgvDkDloRSHDkW2s8echPkKVp+LrF+1V7FrYUvmtb65gKUXZGBaOfgwRlDZPh4IdtW2sVEZLPPjifwKuKGgwnPrYEOaBzGKrVTI2f3NvdZ1IcM/raaUdFoAKVsp3hTRFoaF3gkPWQ69V0jeHZabOH14ytXlZifX4+h76XwJrr4BHZ+mVsQTDQCzZtPUBEYzwdsO4I8qcT6NC9h6xY3L1/d/d+ma7UCu/TdwUV5eIe5DQtYPL8abz4pAsI0Ul1TMVf1n0pa/v8YzBB/rBMUwmNNVxBvpRwJHSQZ2mW9fIMmdLDLstKdb9YqnS5ui/oTmGW/VfIbDWBfLiB3PbxI6FFhw0xOR9LN9jEBl7gJOhAb4tcveF85FvEHK4tZdeRfDsUl8aN9H+jkr7fSmiIKzvqB+SAnEOCrU4Oi2R87ZPTJcc+iU1MrioLo3+uqHM15FAxtz5PErzoY756Wc2VbSBgelKd03yMHjtCR27dBdyn7dT8MdQ0TMv00aXEgAJj6eH38CjOnDaljS/HoZwIdf24AQkh4YHWxTx9S/XjJuq7QYN7bfbieWy1F9aIOPyXgKNgUUXBjh0NTzZGgXxFiGoR/YULCdSgDvZ4Pxv3wQ8XriQwucb/Xn4ct8s/REr8PokvZ2iKmbKm0HGbJCFEaz03aCbZfSB2mg4kUNTjKjrP9KVSMTRe7I4iDHJ9fE3S6bqn/ucFOraX6YWTtkZtQhWRx9M4n0+ArQ5dXFzF6kFCPlVSRAUJ50HdSqis5+B9Ou3Q05+u7vtw/bUjF4ZxK+GATuOuHjZToX04F5CXWHv6FwK++zDq8XtxI9NvlnJe2yZwOu5BAAlf6HizDPptL6EiLMjFdAb7WilqeeL55j/iRtY///QH9P3fxGhzuA==
+sidebar_class_name: "get api-method"
+info_path: connect/reference/automation-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve a list of executed workflow counts by yearly"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/accounts/{accountId}/usage/history"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+API which can be used to fetch usage historical data for Automation service
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountId","in":"path","description":"Account id","required":true,"schema":{"type":"string","example":"test_account_id"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of supported functions.","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","required":["accountId"],"properties":{"accountId":{"type":"string","description":"8x8 AccountId."}},"title":"usageHistory"}},"examples":{"usages":{"value":[{"id":"62d139439708c8a504dedf15","accountId":"test_account_id","executedWorkflowCount":6700,"month":7,"year":2022},{"id":"60e6b22fc517c0785de3ca22","accountId":"test_account_id","executedWorkflowCount":2800,"month":6,"year":2022}]}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

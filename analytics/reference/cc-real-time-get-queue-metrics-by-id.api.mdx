@@ -1,0 +1,71 @@
+---
+id: cc-real-time-get-queue-metrics-by-id
+title: "Individual Queue Metrics"
+description: "This method retrieves real-time metrics for a specific queue. The response returns an object which contains the queue ID, queue name and a list of metric objects. The metric contains a key field with a label or description as well as a value field."
+sidebar_label: "Individual Queue Metrics"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: analytics/reference/8-x-8-analytics-for-contact-center-real-time-metrics-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Individual Queue Metrics"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/queues/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This method retrieves real-time metrics for a specific queue. The response returns an object which contains the queue ID, queue name and a list of metric objects. The metric contains a key field with a label or description as well as a value field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"id","in":"path","description":"The queue identifier","required":true,"schema":{"type":"string"},"example":"118"},{"name":"metrics","in":"query","description":"The set of metric identifiers to be returned.","required":false,"explode":true,"schema":{"type":"array","items":{"type":"string"}},"example":["abandoned.int-15m","abandoned.int-30m","abandoned.today","abandonedPercentage.int-15m","abandonedPercentage.int-30m","abandonedPercentage.today","accepted.int-15m","accepted.int-30m","accepted.today","acceptedPercentage.int-15m","acceptedPercentage.int-30m","acceptedPercentage.today","availableIdle.rt","avgDivertedTime.int-15m","avgDivertedTime.int-30m","avgDivertedTime.today","avgHandlingTime.int-15m","avgHandlingTime.int-30m","avgHandlingTime.today","avgOfferingTime.int-15m","avgOfferingTime.int-30m","avgOfferingTime.today","avgProcessingTime.int-15m","avgProcessingTime.int-30m","avgProcessingTime.today","avgWorkTime.int-15m","avgWorkTime.int-30m","avgWorkTime.today","avgWrapUpTime.int-15m","avgWrapUpTime.int-30m","avgWrapUpTime.today","busy.rt","busyExternal.rt","busyOther.rt","diverted.int-15m","diverted.int-30m","diverted.today","divertedPercentage.int-15m","divertedPercentage.int-30m","divertedPercentage.today","eligibl.rt","enabled.rt","entered.int-15m","entered.int-30m","entered.today","handling.rt","interactionsAvgWaitTime.int-15m","interactionsAvgWaitTime.int-30m","interactionsAvgWaitTime.today","interactionsHandling.rt","interactionsLongestWaitInQueue.int-15m","interactionsLongestWaitInQueue.int-30m","interactionsLongestWaitInQueue.rt","interactionsLongestWaitInQueue.today","interactionsWaitInQueue.rt","interactionsWrapUp.rt","longestOfferingTimeInQueue.int-15m","longestOfferingTimeInQueue.int-30m","longestOfferingTimeInQueue.today","offering.rt","onBreak.rt","shortAbandoned.int-15m","shortAbandoned.int-30m","shortAbandoned.today","shortAbandonedPercentage.int-15m","shortAbandonedPercentage.int-30m","shortAbandonedPercentage.today","slaPercentage.int-12h","slaPercentage.int-15m","slaPercentage.int-1h","slaPercentage.int-30m","slaPercentage.int-4h","slaPercentage.int-8h","slaPercentage.today","slaPercentageTarget.today","slaTimeThreshold.today","totalAbandoned.int-15m","totalAbandoned.int-30m","totalAbandoned.today","totalAbandonedPercentage.int-15m","totalAbandonedPercentage.int-30m","totalAbandonedPercentage.today","workingOffline.rt","wrapUp.rt"]},{"name":"timezone","in":"query","description":"The specified timezone (applicable for TODAY metrics only).","required":false,"schema":{"type":"string"},"example":"Europe/Helsinki"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Success/OK","content":{"application/xml":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"123"},"name":{"type":"string","example":"Demo Sales Queue"},"metrics":{"type":"array","items":{"type":"object","title":"MetricItem","properties":{"key":{"type":"string","example":"abandoned.int-15m"},"value":{"type":"number","example":5}}}}},"title":"SingleQueueResponseXML","xml":{"name":"MetricsResponse","attribute":true}}},"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"123"},"name":{"type":"string","example":"Demo Sales Queue"},"metrics":{"type":"array","items":{"type":"object","title":"MetricItem","properties":{"key":{"type":"string","example":"abandoned.int-15m"},"value":{"type":"number","example":5}}}}},"title":"SingleQueueResponse","xml":{"name":"item","attribute":true}}}}},"400":{"description":"Bad request"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not found"},"405":{"description":"Method not allowed"}}}
+>
+  
+</StatusCodes>
+
+
+      

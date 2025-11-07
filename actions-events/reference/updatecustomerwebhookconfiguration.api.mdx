@@ -1,0 +1,71 @@
+---
+id: updatecustomerwebhookconfiguration
+title: "Updates a webhook details by ID"
+description: "Updates a customer webhook details from the provided parameters by ID"
+sidebar_label: "Updates a webhook details by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztmE1v2zgQhv8KMacWUOKkzS4C3bxuijV2D0Y+sAsEPoylscWWIlVyqMRr6L8Xo4/ajtNsG+xpYV9sUTPD4cuHsl9vgHEVIL2Hv2hROPdZTZxl74whD/MEcgqZ1xVrZyGFuypHpqBQZTGwK8mrhz4tJ0Ztglp6VyouSFXe1TqnXFXosSQmH9RiraYfIAFXkUepOc0hhdhWHSr2BTNnl3oVuzBIYFsF0vsNWCwJUuiDpzkkoKXDCrmABDx9idpTDin7SAmErKASId0ArytJ1JZpRR4SWDpfIndDv15A08y7dAr8m8vXkpM5y2RZPmJVGZ21TY0+BRFlc1jcLT5RxtK0l5WyptDmZqxr2olbOGcILTRNAqzZyNikl6HfjsmeDI1E7q+tHQiVs6Gb5N3Zhbzt79uwtyFmGYWwjMasVSe7KPez6wvstV1JN00CF2dnhxNObY1G56oXcoeBV0z3HTlZlxQYy+qws51dlTWeSCiIyG3UC9HRa4kLjBzDv+Ly/h1sd+5AHTk8ciaevaVtYLTZD3WTGRfzy+cEwTzXoh2a2b40e3GySxnGQM/cOhD1lTPsEty2e+W989c9mTPvFobKD50eAzfnh9zcWYxcOK//eRWYR1L+n6S88EizjtXSRXvE5YhLh8svz38hMXmLRgXyNXlFUuWIzBGZHpn3h8jckK91RiparFEbXBhSyO1v29KVAs0RnyM+bXxJXLi8sx9Z0boVLiCFUX0+so71sgcjjHrDMtp8cy4NJNA9lDpnE72BFArmKqSjEVb69PLx8jRz5WiJj1hpeGrKZt7lMZMLNTExMHn1p8t6wzCX4ln0mtc3AmO35HGl/6D1OEqT3wTAdhCSwVv9fTKeTU+6odZbFYQ5+XYPBPDrrUm6esSy6sgZTE7vTbRduo7wTtGP+KhQDORwut58RLx5q8az6cHCbgsdlA7tiZMoCVIPhc6KwVwGha2hUez6qCfVK4MsDKolIUdPQdUa1fXVza0UO4UERPduuvPTsxYiF7jE9vj2Qmxd71OzO/jZvb53/OJ/Zpj7LWJ65FFlUFvptCVl07N2D/W57N0ubZAMBhkSSLdeeZ5A4QJL0mazwEB33jSNDH+J5NeQ3s8TqNFreea1UOY6yOcc0iWaQC+s+M11b0/fqu/1PfBmhawaTZQrSOAzrfcsfTNvkgE6aaK7P+mmOrmVKtv8g8dvkwwZ4yyjil+Mne+c4dn4dvI7JLDo3X/pckny+CB/LOBD16yrOonTTTe2AYN2FXElsV1ReX0FbkgIIw==
+sidebar_class_name: "patch api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Updates a webhook details by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/v1/notifications/webhook/{webhookId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Updates a customer webhook details from the provided parameters by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"webhookId","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"active":{"type":"boolean"}},"title":"CustomerWebhookConfiguration"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Webhook successfully updated","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Invalid request parameters","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Webhook not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

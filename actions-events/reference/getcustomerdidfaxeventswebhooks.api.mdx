@@ -1,0 +1,71 @@
+---
+id: getcustomerdidfaxeventswebhooks
+title: "Gets all fax event webhook configurations specific for DIDs"
+description: "Retrieves all of the customer's fax event webhook configurations associated with the customer's DIDs."
+sidebar_label: "Gets all fax event webhook configurations specific for DIDs"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWEtvGzkM/iuCLtsCTpy03UXhW5CkXWPb3SBJ0QWCoKBHHA8bjTSVOE5cw/99wXmkY3vsukWxp5yciOJD5MfHcKEZplGPbvRHnGTe36k38KDOZ+hY/e2ZUkqAyTt16h0Hby0GfTvQBmMSqBCKHulL5EA4w6jAWuVTxRmqpIzscwy/RZXCg8JK5H2jJPEupWkZKtlRQYw+IWA06p44W+c/G5/FQz3QvsCaY2z0SE+R2zuGTAoPlYrYqIh6oAsIkCNjkAcutIMc9UgXMEWYWNQDTWL9lxLDXA90wC8lBTR6xKHEgY5Jhjno0ULzvBBGP/mMCYvcIJYwYRSqyJPfnBzlZa5HR4OWgxzjFIMe6NSHHLg+evlCLwc60tdVtuP92HzgdxS5YxeEAPKA+0CM/zg7b19AjHnsXIwcyE31shHTI2Irx3KgmdjK2UXrv+XyVrwWC+9i7YoXR0fys4oOiV4HVa6LqjZYq4BQoQGUUbFMEowxLa0V+xLvGF1lORSFbcQMP0fRtNg7ZB0xuy9+wnyCxggoviuzweIZmY84+dP7u7Grw0febYnYuru3iKau+n5w/PFKwAEJ0ww7lyfeWwQntCSgJNgJb4a3I8oA4wFTjsJiVhS3WKjOrxi47ENKRb2uznposZw8QmPcL7x7ZaeWgEmNsM3noJOEutHkJr50RkpHye2fEzp4ZAarb5cDXQba6RWh1y406JjA9j/wm+IJREpEF0KQirkc6E+W3F1vsMEYqo25WAn7blBkAdNezwjBgpv2Epsk7qNsi5nBImCdaL30IviUtgitS26fNswLK3jsA2un2Lwjd6fX/o8rN84dE8/fe4P2dFcKShF7CsOvDcPgsfntdlLb6/YoYewZ7LnFXHr5j/BIW9qXwZX5BMNel9ca33tkMMBQEVb7nNR4GX7aRqB+vPHpVWWmQvUPAHzdpG/KP7b6ukNdXJ/DUh/Uadf8jkE7dYu1l80k0CTaq75ZYOxmYMkombUwsupMaL+suUv3igx5sX+j60+6zQYQ1/vRrklte44bZCDbSyIXGVyylzWJ9aV5/fOlTKKUQBl7Eni54dSf1NBJn9PK3PMQfGihchH8xGJ+Vvujxc3xJm4+OCg584G+onlCyhNSquu/91cYxuDAqohhhkGhSHmCzBNkGsi83ITMFYYZJahKBzMgK9+2CrhaQuRe5pAn+DzBp8ZPjpz5ZvlULZg40yM9nB0Pu9NdHKbwcFCto4bNoHcQa5ANi8w7lGmnrk/1ZqoMVo90xlzE0XAIBR2+fnh9mPhcBEFBen2wuwjelEm9mLNlZAzqnW8+DmQrEzEpA/H8SnBZv/6koL9wflKKxd8WEdWhbr8Q9L8HJxfjg/qoWo5lCAZDFQ5yqa8xXPtMhkuIClSbP8/eAFw9VycX4w17rzOKimKVU3JLLqn7jJJMFcHPyMjusNr0KPbNrTXp8p0iKFMpApcBo5oRqMvzq2sRJutBcWet7vjwqIKJj5xDlaDN+94i10vK764kY4GJBLSaiZtReOVNnS3S/7YAbaLG+MDDwgJVi50KPIsGizd6dizh7KJR0rPFo6wJVxEpMK4xeTvQmZc91Y1eLCYQ8UOwy6Uc1ytSQaqhKPXR6FEKNuIOnzy7bPapz9U2y+9wvrqPnYEt5VqF4RkEqs5HN7I/aZAoRtR8J0mCBXe4NgqzSHnM2Lfn13q5/A/Bzfog
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Gets all fax event webhook configurations specific for DIDs"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/notifications/fax-event/webhook-service/phones"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves all of the customer's fax event webhook configurations associated with the customer's DIDs.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"pageable","in":"query","required":true,"schema":{"type":"object","properties":{"page":{"minimum":0,"type":"integer","format":"int32"},"size":{"minimum":1,"type":"integer","format":"int32"},"sortList":{"type":"array","writeOnly":true,"items":{"type":"string"}},"sort":{"type":"array","items":{"type":"string"}}},"title":"Pageable"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"DIDs Fax Event notification webhooks configuration retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"content":{"type":"object","properties":{"_embedded":{"type":"object","properties":{"customerDidWebHookInformationList":{"type":"array","items":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"active":{"type":"boolean"},"createdAt":{"type":"string","format":"date-time"},"did":{"type":"string"},"didStatus":{"type":"string"},"didType":{"type":"string"},"subscriptionId":{"type":"string"},"subscriptionStatus":{"type":"string"},"direction":{"type":"string","enum":["inbound","outbound","bi-directional"]},"uri":{"type":"string","format":"uri"},"credentialType":{"type":"string","enum":["basic","bearer"]},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"}},"title":"EntityModelCustomerDidWebHookInformation"}}}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"},"page":{"type":"object","properties":{"size":{"type":"integer","format":"int64"},"totalElements":{"type":"integer","format":"int64"},"totalPages":{"type":"integer","format":"int64"},"number":{"type":"integer","format":"int64"}},"title":"PageMetadata"}},"description":"List of customer DIDs Fax Event notification webhooks configuration","title":"PagedModelEntityModelCustomerDidWebHookInformation"}},"description":"Fax Event Webhooks Notifications configurations for Customer DIDs","title":"CustomerDidWebHookInformationPageResponse"}}}},"400":{"description":"Invalid request parameters","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

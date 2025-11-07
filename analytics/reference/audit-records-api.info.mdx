@@ -1,0 +1,112 @@
+---
+id: audit-records-api
+title: "Audit Records API"
+description: "This API allows administrators to retrieve audit records in JSON format."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Audit Records API"}
+>
+</Heading>
+
+
+
+This API allows administrators to retrieve audit records in JSON format.
+
+It retrieves audit records with **create**, **delete** and **update** events on following entities in Platform.
+* Call forwarding rules
+* Call queue
+* Phone Number
+* Extension
+* Ring group
+* User basic information
+* Auto attendant basic information
+
+_**For step-by-step instructions on using the Audit API refer to the [Audit API Summary Guide ](https://docs.google.com/document/d/1rtGbpvCHKtR19fqPYbPh-CA6YTQkeubKgDl6r-b9N4M/edit?usp=sharing)**_.
+
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"API Key: ApiKeyAuth"}
+      value={"ApiKeyAuth"}
+    >
+      
+      
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                apiKey
+              </td>
+            </tr><tr>
+              <th>
+                Header parameter name:
+              </th><td>
+                x-api-key
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    [api@8x8.com](mailto:api@8x8.com)
+  </span><span>
+    URL: [https://www.8x8.com/](https://www.8x8.com/)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://www.8x8.com/terms-and-conditions"}
+  >
+    {'https://www.8x8.com/terms-and-conditions'}
+  </a>
+</div>
+      

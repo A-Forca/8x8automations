@@ -1,0 +1,71 @@
+---
+id: batch-upload-contacts
+title: "Batch create contacts"
+description: "Batch create contacts using file. The file can be either CSV or Excel. The CSV file can contain a header row (the mapping of the columns will be automatic in this case), or not. For files without a header, the `fileColumns` property should be specified for a columns mapping."
+sidebar_label: "Batch create contacts"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: connect/reference/contacts-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Batch create contacts"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/v1/accounts/{accountId}/contacts/batches/createContacts"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Batch create contacts using file. The file can be either CSV or Excel. The CSV file can contain a header row (the mapping of the columns will be automatic in this case), or not. For files without a header, the `fileColumns` property should be specified for a columns mapping.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountId","in":"path","description":"You must replace *{accountId}* with the accountid that you want to use.","required":true,"schema":{"maxLength":36,"minLength":32,"pattern":"^[0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}$","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"multipart/form-data":{"schema":{"title":"batch-upload-contacts","type":"object","properties":{"file":{"type":"object","description":"Binary content of the file.\n\n**The file size is limited to 30 Mb.**"},"groups":{"type":"string","description":"Comma-separated list of group id (integer) to add contacts to. \n\n**You can add contacts to 10 groups max.**","example":"11566,88996"},"fileHasHeader":{"type":"boolean","default":true,"description":"Set this property to `true` if provided file has a header row. \n\nThe header row will be parsed automatically, you don't need to provide a list of columns in this case.\n\nDefault value is `true`"},"fileColumns":{"type":"string","description":"Comma-separated list of columns. \n\nThis field is **mandatory** is `fileHasHeader` is `false`","example":"msisdn, firstName, lastName"}},"required":["file"]},"examples":{"Upload a csv file with header and add contacts to groups":{"value":{"file":{},"groups":"11566,88996","fileHasHeader":true}},"Upload a file":{"value":{"file":{}}},"Upload a csv file without a header with specified columns":{"value":{"file":{},"fileHasHeader":false,"fileColumns":"msisdn, firstName, lastName"}}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"202":{"description":"Accepted","content":{"application/json":{"schema":{"description":"Batch upload contacts job information","type":"object","x-examples":{"example-1":{"fileName":"1_Contacts.csv","fileType":"csv","fileLocation":"https://8x8.com/contacts/1_Contacts.csv","id":"1da76ae9-5f8d-40c1-ba71-ae7b00abb23e","type":"createContacts","status":"queued","createdAt":"2022-04-18T10:25:07.95Z"}},"properties":{"fileName":{"type":"string","description":"Name of the uploaded file"},"fileType":{"type":"string","description":"Type of the uploaded file","enum":["csv","xls"]},"fileLocation":{"type":"string","description":"URL of the uploaded file"},"id":{"type":"string","description":"Batch id. Use this value to request batch status.","format":"uuid"},"type":{"type":"string","title":"Batch type","description":"The type of the batch job","enum":["createContacts","deleteContacts","copyContacts","moveContacts","deleteGroups"]},"status":{"type":"string","title":"Batch Status","enum":["queued","inProgress","failed","completed","stopped","timeout"],"description":"The status of the batch job"},"createdAt":{"type":"string","minLength":1,"description":"Created time"}},"title":"Batch upload contacts job"}}}},"400":{"description":"Bad request error response","content":{"application/json":{"schema":{"title":"ErrorResponse","required":["code","errorId","timestamp"],"type":"object","properties":{"code":{"type":"integer","description":"Error code"},"message":{"type":"string","description":"Error description"},"errorId":{"type":"string","description":"Unique id of error. You can use it as reference when sending enquiries to 8x8 support","format":"uuid"},"timestamp":{"type":"string","description":"Data and time of the error occurence","format":"date-time"}},"description":"Response in case of error","example":{"code":1001,"message":"Provided subAccountId doesn't belongs to your account","errorId":"91b106f0-c0da-4aba-a43a-7af9c5893a80","timestamp":"2017-04-19T02:31:19.4297387+00:00"}},"example":{"code":1002,"message":"Invalid MSISDN format (not E.164 international number)","errorId":"b4478860-b76c-e811-814e-022a35cc1c71","timestamp":"2018-08-04T09:25:40.9235752+00:00"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: createpostagentassignment
+title: "Creates a post agent assignment for a conversation."
+description: "Creates a post-agent assignment for a conversation. This endpoint allows the conversation to be handed back to the bot after an agent finishes their interaction, to ensure seamless continuation of the customer's digital journey after agent interactions, allowing for tasks such as surveys or further automated assistance. The flexible assignment mechanism supports various post-conversation workflows and is designed to be extensible for different use cases after the agent engagement has concluded."
+sidebar_label: "Creates a post agent assignment for a conversation."
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: actions-events/reference/contact-center-chat-gateway
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Creates a post agent assignment for a conversation."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/chat-gateway/v1/conversations/{conversationId}/post-agent-assignment"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Creates a post-agent assignment for a conversation. This endpoint allows the conversation to be handed back to the bot after an agent finishes their interaction, to ensure seamless continuation of the customer's digital journey after agent interactions, allowing for tasks such as surveys or further automated assistance. The flexible assignment mechanism supports various post-conversation workflows and is designed to be extensible for different use cases after the agent engagement has concluded.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"conversationId","in":"path","required":true,"description":"Conversation identifier.","schema":{"type":"string","format":"string","example":"125"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Defines the post agent assignment request payload.","required":true,"content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"id":{"type":"string","format":"string","description":"The Webhook ID to which the post agent assignment will be done.","example":"NSCIiFrvSHeI7q5apOriDQ"}},"required":["type","id"]},{"properties":{"type":{"type":"string","format":"string","x-extensible-enum":["webhook"],"default":"webhook"}},"title":"PostAgentAssignmentType"},{"type":"object","properties":{"configuration":{"type":"object","description":"","properties":{"notifyChannelWebhookIfExists":{"type":"string","format":"string","description":"Sets the Contact Center user’s name. The Contact Center agent views this name in the chat conversation. For example: John Doe","example":"false"},"maxTotalMinutes":{"type":"integer","format":"int32","description":"conversation finishes when this duration passes - not mandatory","example":300,"minimum":20,"maximum":600},"userTimeoutInMinutes":{"type":"integer","format":"int32","description":"conversation finishes if user doesn't reply in x minutes from bot's last message","example":150,"minimum":10,"maximum":300}}}},"title":"PostAgentAssignmentConfigurationRequest"}],"title":"PostAgentAssignmentRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"CREATED"},"400":{"description":"Contains a descriptive response for a bad request that is due to data validation.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Post agent assignment already exists for conversation x and tenant y"},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_parameter"},"message":{"type":"string","description":"Free text error description.","example":"Post agent assignment already exists for conversation x and tenant y"}}}},"referenceId":{"type":"string","example":"dacd0dd252723a2"}},"title":"InvalidParameterExceptionPayload"}}}},"401":{"description":"Contains a descriptive response.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Access is denied."},"errors":{"type":"array","items":{"type":"object","properties":{"message":{"type":"string","example":"Access is denied"},"code":{"type":"string","example":"access_denied"}}}},"referenceId":{"type":"string","example":"dacd0dd252723a2"}},"title":"ForbiddenViolationProblem"}}}},"404":{"description":"Contains a descriptive information.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Resource not found"},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"resource_not_found"},"message":{"type":"string","description":"Free text error description.","example":"Entity of type Conversation with id aaa was not found."}}}}},"title":"ResourceNotFoundExceptionPayload"}}}},"500":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}},"default":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: sendfax
+title: "Send a fax using the provided parameters"
+description: "Queues a fax to be sent using the provided parameters, immediately returning the fax operational details."
+sidebar_label: "Send a fax using the provided parameters"
+hide_title: true
+hide_table_of_contents: true
+api: eJztmE1v4zYQhv8KMacWUOJkdwsEuqX5AIIWrZtkgQKBD2NxbHFLkVpy6Ng1/N+LoexYSZRgdw892Rdbw+EMyXlG1qs1MM4jlA9wjUuK6sI7Dt5aCjApQFOsgmnZeAcl/JUoUVSoZrhU7NWUVCTHKkXj5oprUm3wC6NJqxYDNsQUYqFM05A2yGRXKhCn4HbuEse3FFASoFWaGI2Nx1DAk/lGQwmRnJ7hEgoI9DVR5F+9XkG5hso7JsfyE9vWmirPGX2JsuA1xKqmBuUXr1qCEvz0C1UMBbRBMrChKKOz4JtLo3uOkYNxc9gUwP6tkZi6aENjznMX+tVI5ZsW3Wo4IjlN4Q9saHA4UGVaQ47f9JgZ+ywthoArKMAwNQPLKWDmQ4MMJUyNw7CCzUa2bNiK1x05fY3L296Zb7JDoNh6F7tUH05O5es5KzJVXeNSbQumqkDIpFVMVUUxzpK1srDvLeBuq3kZn05OXme+cQu0Rj8lnnq96vH4AznfgIZNQ5Gxad89V41MR+KaWcpe73inYDIHjJz69TKOaU6h72ocf/wA+2oN0ND10+CQcZHRVd+0msr6pM+GDgS1Nl3vjp8fzTM/KVWFKdLA0KtD/cEMPWov8nKvQvDhdsvpOPippeayO48dPAPYfnaYuPbB/Ev6QMqBlC0pn16TcpEi+4aCury5VM6zmvnkDswcmOmY+WX4r4kpyINOpLCgoEiiHJA5ILNF5uPQc1RYmIpUcrhAY3FqSSHnp+fGNwLNAZ8DPtm/Ia69qKXWx1xd5BpKGC1ORzPRdiD6Qu47IvfWkIKFEmrmNpajEbbm+Gx5dlz5RryxNfBS/o2D16mSC3VhU2QK6nffsQabiQSvUjC8uhPeul2dt+Y3Wp0nWchek2QjFOCyioG/j87HN0edyUiimlBTyMcsDPfkx9USm7aD40my7eu8VWp7w5NA25u2umxveJJjvWk9Fba3vhBfPbw6zfWws0wyjjPf9VRXQ1FCKNJ5188/XSPe/azOxzevzvm+NlGZmHtcvMRJPdamqnf6OirMIkpEeOf1InprkYV6NSPkFCiqhUF1e3V3L8FEXwsGXbrT45OMrY/cYL5hbOuSJVwn9t9V+C830FPl/+srgy1eTEsetRaNk21lytfbXniAxakULHfDpIBaGqV8gPV6ipE+B7vZiPlrorCC8mFSwAKDkXuuXG2KHZnSPv+QMHPR7fToXnKLu00d4i9uw5tiN+O8qqjld30nvV4e/3l3DwVMt+87Gq9lTsBHIRIfoYT8skRm547LtjVYdPOEc/HtYsrnPw1QNpU=
+sidebar_class_name: "post api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Send a fax using the provided parameters"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/faxes"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Queues a fax to be sent using the provided parameters, immediately returning the fax operational details.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"fromDid":{"type":"string"},"toDid":{"type":"string"},"subject":{"type":"string"},"notes":{"type":"string"},"company":{"type":"string"},"senderName":{"type":"string"},"recipientName":{"type":"string"},"files":{"type":"array","items":{"type":"string","format":"binary"}}},"title":"SendFaxRequestBody"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Send Fax request created successfully","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Invalid request body parameters","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Customer DID not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

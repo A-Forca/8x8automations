@@ -1,0 +1,109 @@
+---
+id: configuration-api
+title: "Configuration API"
+description: "The configuration API allows to manage account-wide and subaccount configurations such as the webhooks used for SMS and Chat-Apps inbound messages, delivery and read receipts and various events."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Configuration API"}
+>
+</Heading>
+
+
+
+The configuration API allows to manage account-wide and subaccount configurations such as the webhooks used for SMS and Chat-Apps inbound messages, delivery and read receipts and various events.
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"apiKey"}
+    >
+      
+      
+      * 8x8 SMS API accepts an **ApiKey Bearer Token** authentication method.
+      
+      * You can generate  tokens from your customer portal  [https://connect.8x8.com/](https://connect.8x8.com/)
+      
+      * You need to include the following header in your requests: `Authorization: Bearer {apiKey}`
+      
+      > **Note**: Replace the `{apiKey}` placeholder with the key generated from the customer portal.
+      ---
+      If you haven't created your account yet, please go to 8x8 website [https://connect.8x8.com](https://connect.8x8.com) to sign up.
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    8x8 Inc: [support@8x8.com](mailto:support@8x8.com)
+  </span><span>
+    URL: [https://www.8x8.com](https://www.8x8.com)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://www.8x8.com/terms-and-conditions"}
+  >
+    {'https://www.8x8.com/terms-and-conditions'}
+  </a>
+</div>
+      

@@ -1,0 +1,71 @@
+---
+id: get-webhooks-information-1
+title: "Get webhook information for your account"
+description: "Get webhook information for your account"
+sidebar_label: "Get webhook information for your account"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVm1v2zYQ/iuHw7C1hmw5awtk/jDMLYYuWLsVTbdli72Vps4WG4lUyZMT19B/H46SFbt2UOzbPlnmvT93fI5bZLUKOLnGP2iRO3cTYPrmAucJuoq8YuPsRYYTXBHD7U7D2KXzZRTCGSZYKa9KYvLiaItWlYQTDPViqrWrLV9kmKCxOMFKcY4JZhS0N5U4wAn+6Woo68DgqSqUJtjumzZwazgHzglCvVDtscmAc8WwcTXcKsvADupAI3i+gYyWqi4YODcBTIAVWamEMnBWUzTJ1ZpAu7IqSM7F99oZTeDswimfGbsaYYKePtbGU4YT9jUlGHROpcLJFkt194rsinOcPBsnWBq7+/tE4GAmL5X9fT0d/qWGn8bD72az4eifr+fbJ8mzcfMVJsibKqLE3tgVNs1c4oXK2UBBQnw7HsvPIVRv6WNNgSHUWhNlJMBqZ5ksi7KqqsLo2Jj0QxCL7V7SXUS3+ECapW1eesymjXfQrnvtXX4Sp26jdBJjmVbkRbSbjD2p8l5tpO1MZfhy9FZ6Imrti5PnZNWioP1MF84VpKwIc+ZqWnP+E6mM/HStTCHap5SbpkkwsOI6vHAZna6vlb+mENTqVJqSz52ScTpGEq+urq6wh+9sH63r3tPvL6bYFRuzD5M0DdHjSLsyZQqCWV90O48PliliGaj9usZHZaC7ifU3CT4dnx0P2/TNBdzQBqxjWLraZuA8GLtWhckwGj05NaHB1V5TtFJaUwhGcor6T7+gH6OI6rNTw39Jfk0eyHvnI+aBdO0NbyKQqjI/k3zOpfJDy5f37HVAXkvnhQ88dLSCCZbEuesYL1KbXGpMVWXS9Vl6z0AhPWSptO+q5CWJtv09bGlkmdH53bl0FWOLuhou5Zq2d2FXST8cYo0d/cThJeXJH/HoAM7vzuHy9aVQeMS+4gDKwmAwjS7heTSEd+6G7GAAquacLHeMAW3po5md2QEIKWtle/YEYLEKsPSubEHTdWBXkofKeVYFwPWuTO2sJc27QtP5o4ckj++jWRIqdmCsLuqMIisvXVG4W2NXkMcZB2Pb2L4lwjCB93IDnDefYhGTXY3bFsXmvQT4HgaDXxzTYDCBt92SEffvey2Ih7krJEi/cGT679dHrFyOPyt8NLPD4XBmL5b9crHfMGhP0Wx/wGBDnEBVkAoEKyflSs9uaREM04MAPojfY/EQzMpCXY1mNt4KGfA4PIaLSC1xs8lWT1DGsh2Ws9H4aIB6TcicrkuyHDHtdozSkf277S5pX1h9RFq6Uir0E54glcqIPJ4PQ10JZj/0NyBBJl+GX5dyuY2mhzylYZVGzaGy2VA7mxlJLaTionKBS2X3svsPF/4Agv7KMd1xWhXK2L0l1JLBtVxQwVKePnuEgAlOPnvz9JwwTzB3gcV4u12oQL/5omnk+GNNPrJWgmvlTcvf11vMTOi4fqmKQEd59lsfH73tnimP4X/7kjqJ6u6lYOWdsFZFLf8wwRshv8Mt2sxlq0cKiOi0KtNIcXvGR+8fYdie0V/++A4TFNLbfwjsuLT72NvJh4ltt61GJM+m6fOMtCgJNs2/nc/qnQ==
+sidebar_class_name: "get api-method"
+info_path: connect/reference/voice-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get webhook information for your account"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/subaccounts/{subAccountId}/webhooks"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get webhook information for your account
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"subAccountId","in":"path","description":"You must replace {subAccountId} with the subaccountid that you want to use. By default this is generated once you have completed the voice onboarding.","required":true,"schema":{"maxLength":50,"minLength":3,"pattern":"^[A-Za-z0-9\\-._&]{3,50}$","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Request succeeded","content":{"application/json":{"schema":{"type":"object","properties":{"subAccountId":{"type":"string"},"count":{"type":"integer"},"webhooks":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string"},"url":{"type":"string"},"enabled":{"type":"boolean"},"httpAuthHeaderAvailable":{"type":"boolean"}}}},"statusCode":{"type":"integer"},"statusMessage":{"type":"string"}},"example":{"subAccountId":"XXXX","count":1,"webhooks":[{"type":"VCA","url":"https://sample.com/test","enabled":true,"httpAuthHeaderAvailable":true}],"statusCode":0,"statusMessage":"ok"}}}}},"401":{"description":"API key not found or invalid"},"403":{"description":"Resource not accessible"},"404":{"description":"Resource not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

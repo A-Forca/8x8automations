@@ -1,0 +1,71 @@
+---
+id: call-detail
+title: "Detail call"
+description: "This API endpoint enables information retrieval related to a specific past call. You need to use the Token API first to create an Authorization Token. You can retrieve all information related to a specific call using the CallId."
+sidebar_label: "Detail call"
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVk1v4zYQ/SvEnFqAtiQ7imWdGmTbbYACLbJugW2Qw6w0ttilSC5JGUkN/fdiKHuT5qPYLnqrLybImXnDN2+GOoB15DEqa65aqKFBrWctRVQaJETcBahv4Jqc9VGZnbj45QpuJXgKzppAAeoDLPKc/1oKjVeOQ0ENIKGxJpKJfIbOadUkmOyPwAYHoDvsnZ5CnOLxeo96SItLTxipvYhQwyIv1rO8mOXlJl/Vi1W9KOfFOv8dJPygjArdy3ZVvTyf5+fJ7s0w3RPqRSnhXcQ4BKjhEiRc7MjEa+QbQg0lSHg7UPj7zk+2ObofQGOEusjny2K1LtdnErRlu2KxnK/z1aKoRgmX1uzJh6PPzQGsVzvF1CCjMbuqpxCxd1AXZbnIi6pc52flWkKLEaGGH5XYdOQJRvnIfcepveJeFVX54E5a2y/1Pc/X69WDbxaW2eC0xTZkwaALnY0hY3azRVZl7HRWVuf5qioWs5PB3JndF+Mt8rPl8t/g5VV5XlR5vnyCdztOP/lEgZtOBdarINM6q0wUZPCDpiCU2Vrfp8oIT9Er2qMWnjTLTUQrUARHjdqqRjgMUXBXzMV7OwhDk8UQSMSOxMZ+JJNQtsqHyEdNkq1AIy6G2Fmv/pyQkukUpcHPwCRQ6ycZvZQHpyCGwD3IuJeo9VU7FyDBoceeIvmQZJZ4dxg7kGCwJ6hBtcAt+2lQnlqoox9IQmg66pHVHO8dW4XoWe1M4xYHzd2UUN7AyDVNcTvClvxD5MupxWcbDvF1GM9Gw+tod7PIHH4l0OG9HTyXJBVihHG8ldBT7CwPvh3FxGXsWI3oVLYvMiY9ZAfVjiAhkN+fSB685vxidKHOsr1qyc5SW8+ru2re2D4Djs5lTSONfJhEWczz1A5Rc5a/saO4MpE8Nqn4PF9fFLIKqe6stGiFMpF2nmVW3VXieRjnbTs0cX6cwtikKXykkV2uTAPyyTUahxhOFwAJ1PMrUEPan4XB8SPw3el8lBDJ9+Hn7Tvye9XQa5GysMuS5QxNO2usaRXnGDIO4WyIPZpH2b1Jj0/S+1MmDg9Pyv+mu496jnQXM6dRGWYt1e1wVOsNoFMgYV9wtVmxIKFWLb/TnQ2RLQ6HDxjoV6/Hkbc/DeTvob65lbBHr5i3JOtWBV63UG9RB/oH+r+5Pnbgt68medxEc8/JTY86fxZ8pPtpJo23ozz1+H+OPqE8TIzPCfB0mQ4vmoZcfHT2fBQ9nhBvv9/AOP4FKFQJ7Q==
+sidebar_class_name: "get api-method"
+info_path: connect/reference/video-interaction-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Detail call"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/calls/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint enables information retrieval related to a specific past call. You need to use the Token API first to create an Authorization Token. You can retrieve all information related to a specific call using the CallId. 
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"id","required":true,"schema":{"type":"string","default":"CallID"}},{"in":"header","name":"Content-Type","required":true,"schema":{"type":"string","default":"application/json"}},{"in":"header","name":"x-token","required":true,"schema":{"type":"string","default":"{YourAuthToken}"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"","content":{"application/json":{"examples":{"response":{"value":{"CreatedAt":"2019-01-05T07:27:25.190Z","FinishedAt":"2019-01-05T07:28:36.060Z","Duration":25,"Status":"C","AgentRating":"5","GuestRating":"5","Location":{"lat":10.3179594,"long":123.907218},"Conversation":[{"origin":"agent","timestamp":1552018590459,"data":"Hi There"},{"origin":"guest","timestamp":1552018598185,"data":"Hello"},{"origin":"guest","timestamp":1552018609975,"data":"/s3/uploads/snapshots/2019/2/8/1552458607812-snapshot.png"},{"origin":"guest","timestamp":1552018620433,"data":"/s3/uploads/snapshots/2019/2/8/1552085618003-snapshot.png"}]}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

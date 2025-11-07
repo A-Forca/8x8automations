@@ -1,0 +1,71 @@
+---
+id: getwebhookbyid-1
+title: "Get webhook by Id."
+description: "Retrieves the webhook by the provided Id."
+sidebar_label: "Get webhook by Id."
+hide_title: true
+hide_table_of_contents: true
+api: eJztWFFv2zYQ/ivEPbWYbMdOsxpGUCxwk8xosWZZ0g0IjIIWzxZbiVRIyrVn6L8PR0q27DiZAxRFH/qSSCLv+N19dyQ/r8DxmYXBHfyNk9+1/mJhHIFAGxuZO6kVDOAanZE4R8tcguwrThKtv7DJ0r/mRs+lQMFGog0R6BwNJ7uRgAHM0FXTJ0spWl2IwGJcGOmWMLhbQX/RP8vlO6Q3GGrleOzYEJVDw4YJd+ySO/zKlzAuxxHk3PAMHRrrjRXPEAZQLTASEIEkuDl3CURg8L6QBgUMnClwN6YqWiYFKienEg2ht3GCGYfBCtwyJ+fWGalmEMFUm4y75hdc8CxPaVIPyjJa4/mn1V/0WzeouHI1pAS5QLMFaspT+wBVsGKjtxGTjknLZlqqGXOaTZBlXAnutFkyOWVxYZ3O0LCEW5Zpg8wlXDGtkA2HzAU/UrFEWqbNjCtpPS3Pi7JshnmTYBUVkWHQ5lpZtOSnd3RE/7aD+fAOIoi1cqgcjfI8T2XsUXQSnv7y2dK0VQMOT9MPU89tBUxPPmNMWcwNFZaTYTkpDqPoEMo38XV7FG9g8RDvGV+8RzVzCQx6JydlBIWRT1rS+C6os4nVaeGQ3V6P2lD6Qno6+DkaK0PmdldCVWS+kxqtw+bd9tHDnj6fo3Ls7GrEKn9tD23Ki5SgPvQQgZPO58mbfqxQlOX+gdE6yRcSU+FLpp5XEfGxd42WlispbHh11H1YQ35PkMoyzhoDTE/93oPGaE/iI1WWGz1JMdtTaU+nOENr+WxvGWzKZaTmPJWCDQ36WHlqqX5iLf7H8N3ZoNs7fnXy6+ut7N0qXrhEG/kviqsAfJ2Z48MyM0dWt+X3zcpObREtrJq+3WNncYzW0s4mUEkUbb/F0Hzb8MuN4UvaOx1m9hvRtbvyYVxxb/WpNvF0GJyiQRXjaO82tDEWPBZHQvROeq97x7y3xfaFNhMpBKqPUqeel13OXx3MuVRhi6m6+Aek/RqtLkyMvnGXObLTU1N9ulnm+OYN+ypdwqRoDIwEfeaWKe3YVBfqmcWyh5DqeD09DeejX0FoDEtMMNXhrF2fraen9SNNDdvzmsE6pj+0uyB02/yd7DsRf7jd7GACR3QlUzytQX6Drn2s+bYx3Sp5X1S5YWSyjUuGTfjTfYEFEqqDg70wiMzhwlW+G6PbS/xJrtnoLet2e7R9VEv6amjWwyUqNDI+X8TovVzxZap5vWmsj9afNfGzJuppGbpEVzqJckHCZQCdOOGuNQuXr86826kUju2s1lqn9ErKzGstVJiUZIZzuR10OjyX7f6i34515i9eteb6i6ojZLqhvDZkhQ/1HRgWLZ7L1hf/qSljCDqdOd60ivQp8RZt7qzQbR/5y2Qc5pMLzLgk9HHcitPicys2Wmn72zqAXZao7mZBZIZjgxqlv+izHQwvhsOXAcjZ1Yjc5Nq6jPs+qSK8RNfUs0HCbq222nTes3RwlVIqpk6ecqnAC4SUPAae76DJMyWJ5HHNNUQw2CjbcQSJto6MVqsJt3hr0rKkz/cFGlLP4wjm3Eg+ITbuViCkpedHhGYzqhfXlSZ9yfYrpL2h1CWjPHKeFvQGEVC1NDV5OS6jum6eh+v7aOG9wYUgdoT8OkiSaGEG3Snz5theiUsduO70y/MbiIBu+tuNF7qsemgo4O0ENzsyQKC/Dc24PX21Ci1dluv5YehRi/UPFWE2pWNcluV/zkU7NQ==
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/contact-center-chat-gateway
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get webhook by Id."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/chat-gateway/v1/webhooks/{webhookId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the webhook by the provided Id.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"webhookId","in":"path","required":true,"description":"WebHook identifier.","schema":{"type":"string","format":"string","example":"2"}},{"name":"X-8x8-Tenant","in":"header","required":false,"description":"Tenant ID, it is going to be mandatory if customer has more than one CC tenant in his organisation.","schema":{"type":"string","format":"string"},"example":"TheTenant"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK","content":{"application/hal+json":{"schema":{"allOf":[{"type":"object","properties":{"id":{"type":"string","format":"string","description":"WebHook identifier.","example":"12"},"name":{"type":"string","format":"string","maxLength":255},"uri":{"type":"string","format":"uri","description":"Absolute URI."}}},{"type":"object","properties":{"version":{"type":"string","enum":["Chat Gateway v1.0"],"description":"Event API version.","default":"Chat Gateway v1.0","title":"EventVersion"}},"title":"EventVersionIdentifierField"}],"title":"WebHookV2Result"}}}},"401":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Invalid Credentials"},"code":{"type":"string","example":"KA:1234567"}},"title":"UnauthorizedProblem"}}}},"403":{"description":"Contains a descriptive response.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Access is denied."},"errors":{"type":"array","items":{"type":"object","properties":{"message":{"type":"string","example":"Access is denied"},"code":{"type":"string","example":"access_denied"}}}},"referenceId":{"type":"string","example":"dacd0dd252723a2"}},"title":"ForbiddenViolationProblem"}}}},"404":{"description":"Contains a descriptive information.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Resource of type <<resourceType>> with id <<resourceId>> was not found."},"errors":{"type":"array","items":{"type":"string","example":"Tenant <<tenantId>> does not belong to customer <<customerId>>."}}},"title":"ResourceNotFoundProblem"}}}},"500":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}},"default":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

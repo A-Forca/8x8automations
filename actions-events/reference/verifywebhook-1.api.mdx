@@ -1,0 +1,71 @@
+---
+id: verifywebhook-1
+title: "The endpoint used to validate that the webhook is working and reachable."
+description: "Validates the webhook URL endpoint from the connectivity point-of-view by sending a hello message and a 2xx success status code."
+sidebar_label: "The endpoint used to validate that the webhook is working and reachable."
+hide_title: true
+hide_table_of_contents: true
+api: eJztWNtu3DYQ/ZUBn1pUe43TLPap7uZSIwHiOrZTwDCCWXG0YiyRMkntpQv9ezGUtKv1JfFDUaSAX2wtL8PDM2dGM9oKjwsnplfiM83/MObGietISHKxVYVXRoupuMRMSfTkwKcEK5qnxtzAxdkHIC0Lo7SHxJo8zMZGa4q9Wiq/gTDXM0lvqWgF8w040lLpBSCklGUGcnIOFwSoJSCM12twZRyTc+A8+tJBbCT1RSRMQRYZzokUU7Ekq5JNA6Q3EpGwdFuS878buRHTrYiN9qQ9P2JRZCoOewdfHd9nK1ycUo5hNss+JmJ6tRV+U5CYCjP/SrFvLCpLkqlZknVMRSRKq5ifwjIgr8ixkXZ6urPivFV6ISKRGJuj747QGvMi40XLcX8o7nJ9nhJo41XSYIbGOJSOJCTGgifnmUNm++Lsg6hqVN86nOe7J6feF246YEv9yXrSj03+IBB2sTfhxL6oquo6El75YKJRy+X4MvjirOafF1WRcBSXVvlNIHaynhwX6j3xLzEz2mPsYUbak4VZih7eoacVbsQ12y/QYk6erAubNeZ82l+9yXrSOyeNmn2jGGBKKMkeeCrBzNG9i4RdcPI6AuVBOViYQJ+BOUGOWqI3dgMqgbh03uRkIUUHubEEPkUNRhPMZuBrO0pDqhwYu0CtXPARC3Qvqe9JoOp64jyl5lZ8eUuuMNrVqhoPj/jf4WU+N8G3bEJStgGTlFm26bPxo+Hw/r7Au9IOEDoTYJIgI7LWWL7FI3FTWDPPKP/lfvzcjZrDwGjC+yFWDuG9YQBtNugfaPWEhaIxa0EyffzkOlbRWtywLjzl7vuwOKl8H9OFVrdlw80uD+1xKR188OW2pJIY1ZMv+9YSgae1b2x3Zg+P+JNNw8lrGI3GLNzmyBCKHGZtLL4jTVbFb9YxBSunuMkMyiYYj4aj/4Eeug4Pt4SZJUnaK8wc0/uY0/Yb3x9PR+MXRy9/fSW67FxoLH1qrPqb5GkNfMfMi6cxsyRoQ/MHjZLj+q2pHEjSiuS/EidPctfdk5/mKwy7vrRbgjssJWRJx8Tv+G9tlhjLoZTjl+NX4xc4PvD2W2PnSkrSl8pkwS+HPn/5nB2fs2MnO0pKsMz8syaeNdFoIgDzqeFGozAukIE+FVMxiFP0vUVdrg6Wo0HTgbhB3ZBwGUh22daupc32tfYAC7WrtbnWa2vkT6yMmuVOpbx3VD0QtZXwuoeF6t2EoW4ZzLBZbGf7RuhNS0unQ2mbjtAxPNgHVGw3MQFCw9a3ivaoY3vUHwbjcb2eTVCOilmI416clV97sTXauN86hx16mrW7qDs9WCmfhmCbrCdwB8NPs9nPNZDj0xM2w57KMcRawxQ3MLv+NHRP3uzqZq7s/UE7qxysjL0J3amWYAnjFOdZ0PABxk53+SN0xo1OODoGRYZK1w1hxkBr3V6Jrm7ZY9wxt9qtPcjqvY5EynqfXontdo6OLmxWVTx8W5Ll9u06Eku0imnhX1XUqo/lLpXjiUfasC5r/01H9iAxHDj32sklZiUvFVW0bVbMarC9czayX3HvY8J+B9dBhX9k7cHrgKN/l2FOP346F5GYNx8u8pBohcUVN7a4YlT89YOthBwRxrYiQ70oQ+4UtU2Of65zD1NHnSeah85XDtSbDtJuTqkvw3/5ag8u327rpFRVu/X11KM7dq16vZpdcV1V1T+bumLp
+sidebar_class_name: "post api-method"
+info_path: actions-events/reference/contact-center-chat-gateway
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"The endpoint used to validate that the webhook is working and reachable."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/chat-gateway/v1/webhooks/verify"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Validates the webhook URL endpoint from the connectivity point-of-view by sending a hello message and a 2xx success status code.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"X-8x8-Tenant","in":"header","required":false,"description":"Tenant ID, it is going to be mandatory if customer has more than one CC tenant in his organisation.","schema":{"type":"string","format":"string"},"example":"TheTenant"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"allOf":[{"type":"object","required":["version","uri"],"properties":{"version":{"type":"string","format":"string","example":"v2.0","description":"The notification version used for testing the URL"},"uri":{"type":"string","format":"uri","example":"https:/test.8x8.com","description":"The URL to test."}}}],"title":"WebHookV2VerifyRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Webhook validated successfully."},"400":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}},"401":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","example":"Invalid Credentials"},"code":{"type":"string","example":"KA:1234567"}},"title":"UnauthorizedProblem"}}}},"403":{"description":"Contains a descriptive response.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Access is denied."},"errors":{"type":"array","items":{"type":"object","properties":{"message":{"type":"string","example":"Access is denied"},"code":{"type":"string","example":"access_denied"}}}},"referenceId":{"type":"string","example":"dacd0dd252723a2"}},"title":"ForbiddenViolationProblem"}}}},"500":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}},"default":{"description":"Contains a description of the error.","content":{"application/problem+json":{"schema":{"type":"object","properties":{"message":{"type":"string","description":"Error message.","example":"Internal error."},"errors":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string","description":"Unique error code.","example":"invalid_queue"},"message":{"type":"string","description":"Free text error description.","example":"Queue ID 112 is invalid."}}}}},"title":"GenericExceptionPayload"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

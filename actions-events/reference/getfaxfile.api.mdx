@@ -1,0 +1,71 @@
+---
+id: getfaxfile
+title: "Get the fax pdf file by ID"
+description: "Retrieve the customer's fax pdf file specified by ID"
+sidebar_label: "Get the fax pdf file by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztl01v2zgQhv8KMZdtASVO2i4Q6GbkozDag5GkQIEgh7E0itilSIUcqvYa+u+LoeSsHbtB0bNPssmXw5nRQ0nvGhifAuQPcINLCurSWfbOGPLwmEFJofC6Ze0s5HBL7DV1pLgmVcTAriH/V1AVLlVbVqrShlRoqdCVplItVmp2BRm4ljxKiFkJOTwRV7gUKWTQoseGmLxksAaLDUEOFS5nJWSgZdMWuYYMPD1H7amEnH2kDEJRU4OQr4FXrSwK7LV9gr5/FHFonQ0UZP7D2Zlcdku5waW6kXT9WFOpQiwKCqGKxqwgg8JZJsuyFNvW6CKVMGnLSob2tneLH1SwlOSlXtbD5ltRdvPMoHK+QYYcFtqiX0Hfv+73mOBQi6qcVy9p39JzpCD7sWYjcedlJTO3FFz0hVzTMuh7CfzpUBNmtkOjyxQ13alf1PwjiPz3i2bdUGBs2jfLLpHpRKTQZ6PqDXX0WnSBkWPYUmrL9ER+W6otf/yQgg6t2UNE+syozcEpbQOjLX4rm8K4WF4cagiWpZbeoZnvtmZHJ3emwBjowNReU/9wh//7AJcp3Wvvnd/gMfduYai5GvqxYeV8n5VvFiPXzut/qTySciRlJOXT4UfrT8311ptgdqWsY1W5aI/wHOEZ4Pn78CuJyVs0KpDvyCuSKEdkjsiMyHzcR+aOfKcLUtFih9rgwpBCTt+ojWsEmiM+R3ySviGu3WhCkvvgGnKYdOeTSszPZJ2cRz8Z3cnwDBqsSfQGcqiZ25BPJtjq04vlxWnhGlmKrYbXH+9z78pYyB91aWJg8uqrG7gD8SiBiug1r+6EvaHCaau/0GoaJauXejENQrYxR99PpvPZyTCUDFJNWJJPLde2cgOnQ1/kVYxBodqckXc3iHfv1XQ+28v3vtZB6ZDOjahEpH7WuqhV612nSwoKk0NS7EbVq+itQRaSVEXI0VNQnUZ1e313L8FOIQNp57Dd+elZQsEFbjAdwrG+zzSc3R1TubGSOylvuas/taZjj5mWPGkNais5pVu9Hul4gO5cDojwARnkG2+aEHnMoHaBRbVeLzDQN2/6XoafI/kV5A+PGXTotTyUEkalDvK7lEAm0BsVvbsdHe979atEN4RYYaFDE+UfZPAPrV5cdP/YZxtEJIFhbloU1PLWqtcWVwh9OS2fr++h7/8DNlWR4A==
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get the fax pdf file by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/faxes/{faxId}/file"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve the customer's fax pdf file specified by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"faxId","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Fax File retrieved successfully","content":{"application/pdf":{"schema":{"type":"object","properties":{"content":{"type":"string","format":"binary"}},"description":"File response for Fax File Request","title":"PdfFileResourceResponse"}}}},"400":{"description":"Invalid Fax ID","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Fax with specified ID not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

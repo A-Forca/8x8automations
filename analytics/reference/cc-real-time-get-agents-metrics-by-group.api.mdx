@@ -1,0 +1,71 @@
+---
+id: cc-real-time-get-agents-metrics-by-group
+title: "Agent Statistics by Group"
+description: "This method retrieves real-time metrics for a list of agents in a selected group.  By default, all agents from the given group will be returned. The response can be further filtered and is paginated."
+sidebar_label: "Agent Statistics by Group"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: analytics/reference/8-x-8-analytics-for-contact-center-real-time-metrics-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Agent Statistics by Group"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/groups/{groupId}/agents"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This method retrieves real-time metrics for a list of agents in a selected group.  By default, all agents from the given group will be returned. The response can be further filtered and is paginated.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"groupId","in":"path","required":true,"schema":{"type":"string"}},{"name":"agent-ids","in":"query","required":false,"schema":{"uniqueItems":true,"type":"array","items":{"type":"string"}}},{"name":"summary","in":"query","required":false,"description":"Returns a summary (id, name) of agents for a specific group. If this parameter is set as TRUE, agent-ids and metrics parameters will be ignored.","schema":{"type":"boolean"}},{"name":"metrics","in":"query","description":"The set of metric identifiers to be returned.","required":false,"explode":true,"schema":{"type":"array","items":{"type":"string"}},"example":["alerting.rt","lastLogin.rt","lastLogout.rt","line1Status.rt","line1TimeOnStatus.rt","line2Status.rt","line2TimeOnStatus.rt","loggedInTime.rt","status.rt","statusCode.rt","timeOnStatus.rt","accepted.today","availableTime.today","availableTimePercentage.today","averageHandlingTime.today","averageOfferingTime.today","averageWrapUpTime.today","blindTransfers.today","busyTime.today","busyTimePercentage.today","conferenceTime.today","conferences.today","consultations.today","directInboundTime.today","directInbounds.today","directOutboundTime.today","directOutbounds.today","handlingTime.today","handlingTimePercentage.today","hold.today","internalCalls.today","internalCallsInitiated.today","internalCallsReceived.today","internalCallsTime.today","loggedInTime.today","longestHold.today","longestOffering.today","offered.today","offeringTime.today","onBreakTime.today","onBreakTimePercentage.today","onHoldTime.today","rejectTimeout.today","rejected.today","transfersReceived.today","warmTransfers.today","workingOfflineTime.today","workingOfflineTimePercentage.today","wrapUpTime.today","wrapUpTimePercentage.today","accepted.int-15m","availableTime.int-15m","availableTimePercentage.int-15m","averageHandlingTime.int-15m","averageOfferingTime.int-15m","averageWrapUpTime.int-15m","blindTransfers.int-15m","busyTime.int-15m","busyTimePercentage.int-15m","conferenceTime.int-15m","conferences.int-15m","consultations.int-15m","directInboundTime.int-15m","directInbounds.int-15m","directOutboundTime.int-15m","directOutbounds.int-15m","handlingTime.int-15m","handlingTimePercentage.int-15m","hold.int-15m","internalCalls.int-15m","internalCallsInitiated.int-15m","internalCallsReceived.int-15m","internalCallsTime.int-15m","loggedInTime.int-15m","longestHold.int-15m","longestOffering.int-15m","offered.int-15m","offeringTime.int-15m","onBreakTime.int-15m","onBreakTimePercentage.int-15m","onHoldTime.int-15m","rejectTimeout.int-15m","rejected.int-15m","transfersReceived.int-15m","warmTransfers.int-15m","workingOfflineTime.int-15m","workingOfflineTimePercentage.int-15m","wrapUpTime.int-15m","wrapUpTimePercentage.int-15m","accepted.int-30m","availableTime.int-30m","availableTimePercentage.int-30m","averageHandlingTime.int-30m","averageOfferingTime.int-30m","averageWrapUpTime.int-30m","blindTransfers.int-30m","busyTime.int-30m","busyTimePercentage.int-30m","conferenceTime.int-30m","conferences.int-30m","consultations.int-30m","directInboundTime.int-30m","directInbounds.int-30m","directOutboundTime.int-30m","directOutbounds.int-30m","handlingTime.int-30m","handlingTimePercentage.int-30m","hold.int-30m","internalCalls.int-30m","internalCallsInitiated.int-30m","internalCallsReceived.int-30m","internalCallsTime.int-30m","loggedInTime.int-30m","longestHold.int-30m","longestOffering.int-30m","offered.int-30m","offeringTime.int-30m","onBreakTime.int-30m","onBreakTimePercentage.int-30m","onHoldTime.int-30m","rejectTimeout.int-30m","rejected.int-30m","transfersReceived.int-30m","warmTransfers.int-30m","workingOfflineTime.int-30m","workingOfflineTimePercentage.int-30m","wrapUpTime.int-30m","wrapUpTimePercentage.int-30m"]},{"name":"timezone","in":"query","description":"The specific timezone (applicable for TODAY metrics only)","required":false,"schema":{"type":"string"},"example":"Europe/Helsinki"},{"name":"page","in":"query","required":false,"schema":{"minimum":0,"type":"integer","format":"int32","default":0}},{"name":"size","in":"query","required":false,"schema":{"maximum":1000,"minimum":1,"type":"integer","format":"int32","default":100}},{"name":"includeTotals","in":"query","description":"Add totals for time, percentage, average and count metric.","required":false,"allowEmptyValue":false,"schema":{"type":"boolean"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Success/OK","content":{"application/xml":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"123"},"name":{"type":"string","example":"Agent Group 1"},"metrics":{"type":"array","items":{"type":"object","title":"MetricItem","properties":{"key":{"type":"string","example":"abandoned.int-15m"},"value":{"type":"number","example":5}}}}},"title":"SingleGroupResponseXML","xml":{"name":"MetricsResponse","attribute":true}}},"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"123"},"name":{"type":"string","example":"Agent Group 1"},"metrics":{"type":"array","items":{"type":"object","title":"MetricItem","properties":{"key":{"type":"string","example":"abandoned.int-15m"},"value":{"type":"number","example":5}}}}},"title":"SingleGroupResponse","xml":{"name":"item","attribute":true}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

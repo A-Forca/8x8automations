@@ -1,0 +1,123 @@
+---
+id: contact-center-agent-status-api
+title: "Contact Center Agent Status API"
+description: "The 8x8 Contact Center Get/Set Agent Status API enables you to set an agent's status or availability in your contact center. You can set the status for a specific contact center agent or perform a bulk operation for setting the status for multiple agents. (e.g., ON_BREAK, WORK_OFFLINE). The available agent"
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Contact Center Agent Status API"}
+>
+</Heading>
+
+
+
+The 8x8 Contact Center Get/Set Agent Status API enables you to set an agent's status or availability in your contact center. You can set the status for a specific contact center agent or perform a bulk operation for setting the status for multiple agents. (e.g., ON_BREAK, WORK_OFFLINE). The available agent
+  status codes and types include the following -
+
+  * 0 UNKNOWN
+
+  * 1 LOGGED_OUT
+
+  * 2 LOGGED_IN
+
+  * 3 ON_BREAK
+
+  * 4 WAIT_TRANSACT
+
+  * 5 WORK_OFFLINE
+
+  * 6 TRANSACT_OFFERED
+
+  * 7 PROCESS_TRANSACT
+
+  * 8 POST_PROCESS
+
+  * 9 BUSY
+
+  * 10 DIRECT_CALL
+
+  * 11 ON_EMAIL 
+
+
+The Get/Set Agent Status API enables you to:
+* Obtain the query status for an agent or agents
+
+* Set the status for an agent or multiple agents
+
+The data obtained from the Get/Set Agent Status API can be filtered by agent group.
+
+Note that pagination is currently not supported.
+
+This API is not enabled by default. If you do not have access contact your 8x8 representative.
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Basic Auth"}
+      value={"BasicAuth"}
+    >
+      
+      
+      The username is the tenantId and the password is the VCC action-token. These values are used for the Agent Status API.
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                basic
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    VCC Engineering Team: [vcc-dev@8x8.com](mailto:vcc-dev@8x8.com)
+  </span>
+</div>
+      

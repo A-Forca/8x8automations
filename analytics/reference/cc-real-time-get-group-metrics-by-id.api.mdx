@@ -1,0 +1,71 @@
+---
+id: cc-real-time-get-group-metrics-by-id
+title: "Individual Group Statistics"
+description: "This method retrieves real-time metrics for a specific group. The response returns an object which contains the group ID, group name and a list of metric objects. The metric contains a key field with a label or description as well as a value field."
+sidebar_label: "Individual Group Statistics"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: analytics/reference/8-x-8-analytics-for-contact-center-real-time-metrics-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Individual Group Statistics"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/groups/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This method retrieves real-time metrics for a specific group. The response returns an object which contains the group ID, group name and a list of metric objects. The metric contains a key field with a label or description as well as a value field.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"metrics","in":"query","description":"The set of metric identifiers to be returned.","required":false,"explode":true,"schema":{"type":"array","items":{"type":"string"}},"example":["availableIdle.rt","eligible.rt","enabled.rt","handling.rt","onBreak.rt","workingOffline.rt","wrapUp.rt"]},{"name":"id","in":"path","required":true,"schema":{"type":"string"}},{"name":"timezone","in":"query","description":"The specified timezone (applicable for TODAY metrics only).","required":false,"schema":{"type":"string"},"example":"Europe/Helsinki"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Success/OK","content":{"application/xml":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"123"},"name":{"type":"string","example":"Agent Group 1"},"metrics":{"type":"array","items":{"type":"object","title":"MetricItem","properties":{"key":{"type":"string","example":"abandoned.int-15m"},"value":{"type":"number","example":5}}}}},"title":"SingleGroupResponseXML","xml":{"name":"MetricsResponse","attribute":true}}},"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"123"},"name":{"type":"string","example":"Agent Group 1"},"metrics":{"type":"array","items":{"type":"object","title":"MetricItem","properties":{"key":{"type":"string","example":"abandoned.int-15m"},"value":{"type":"number","example":5}}}}},"title":"SingleGroupResponse","xml":{"name":"item","attribute":true}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

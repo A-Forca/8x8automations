@@ -1,0 +1,71 @@
+---
+id: getcustomerwebhooks
+title: "Get all webhooks information"
+description: "Retrieves all of the customer webhooks information details."
+sidebar_label: "Get all webhooks information"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWN1v20YM/1cOfGoBJU7abgj0ZmRpFyzFgiRFBwRBQUu0dc3pTrmjnLiG/veB+kjlWHa9ro9+Mnz8PPJHHsUlMM4CxLfwmSaZc/fq1Fn2zhjycBdBSiHxumDtLMRwRew1zSkoNEa5qeKMVFIGdjl59dhoCErbqfM5ipBKiVGbcAgRuIJ8fXieQgwz4k6yE4QICvSYE5MXn5ZgMSeIocAZ4cQQRKDFj4eS/AIi8PRQak8pxOxLiiAkGeUI8RJ4UYigm3ylhEWvF+usKQhV9Mlvrq3Oyxzio6iT0JZpRh4iaO7QHL19A1UEQX9bFTveTcx5vtCBe36h9ygXePSa6W9rFt0NNFMeeoyBvbYzqFo1Ayo2SlQRsGYjZ5dd/KrqTqIWCmdDE4o3R0fys5rnDgv9RPo296kKZZJQCNPSGHEgcZbJ1q5hURid1Pyjr0FULXfOSU/NdsYvlE8oTSXrP9TZAuwzTf507v78+3U25ONlMDfo1X3bw6n//Z2kHhPWc+oxT5wzhFZoiSdkSse8nryeqhSZDljnJCKl11uZhd5oTsmyRnNTc65LkBX43sIEg04gggmhl4KvIvhitL0fjAGmqZbYoblcicb2WGWepgPwjGqCQTsbJLbIHaIMXqmSVlV4asA3SC+8m+oNSps+M2SN8sJImoZy2KuwC23v4cX/sMJxZlnz4qNLyZxuhKWU7T4HvzYH0XO73x6krrvvUNbsGM2ZoZwsh/8iI414VwFb5hPyOzG/aPUfiTFFxpqw2tml78nDvfXRhlV1aQ3aXfH70uIlzrSV7Knu3VFT92y3Nht6BjfrvmrF2xp5N/Rwnds5Gi2mHkoKrHrjxC97qKQZB8a82L1vD9fLeuMOjFz+GB/NWLG5PJuZa5CkbWC0yU7eJMaV6cnPdyHJUoJlGKi9ai2oP2mhh/zT2t0z753voHLp3cRQ/kcTjw43x+u4+WSx5Mx5/Y3SPVL2SKnZfxvuMEzeolGB/Jy8ItGyh8weMi1k3q5D5pr8XCekSotz1EY+xBRy/e2cOxkh9vDZw6fBT06cuXY7Um9DOIMYRvPjkXWspy0swqidniCCpg0125LSG4ghYy5CPBphoQ9Pnk4OE5ePpviEhYa12cy7tEzqz/tTUwYmry5cO77LpiBQUnrNi2uBX3PJcaH/osW4FMe+fz7Xh9DN8PDPwfjy/KA5qhc2GWFKvo66DHwNVJvQvMcnhUGh6srk1XvE69dqfHm+5u9NpoPSoS4d4RIm9ZjpJFOFd3OdymaqXk4odi3XC+3yJSFgUlNCLj0FNdeors6ub0SZrKkknI2548OjGg0ucI51Hbb3+0Bcb8A2DM8rTvc2G/9zf9YGm+mJR4VBbZuVgGk2WpKQW5gfSxb6WJEtU4uWuwgyJ3uPW1guJxjokzdVJcfNQk0wlOogDSqFeIom0JbLvLpqt2+v1Sbn7mmxur2boymFrUbXHL2uz+NbWTy0GBEnGrlxklDBPam1zihankvmw9kNVNW/NPY33Q==
+sidebar_class_name: "get api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get all webhooks information"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v1/notifications/webhook"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves all of the customer webhooks information details.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"pageable","in":"query","required":true,"schema":{"type":"object","properties":{"page":{"minimum":0,"type":"integer","format":"int32"},"size":{"minimum":1,"type":"integer","format":"int32"},"sortList":{"type":"array","writeOnly":true,"items":{"type":"string"}},"sort":{"type":"array","items":{"type":"string"}}},"title":"Pageable"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Webhook information retrieved successfully","content":{"application/json":{"schema":{"type":"object","properties":{"content":{"type":"object","properties":{"_embedded":{"type":"object","properties":{"customerWebHookInformationList":{"type":"array","items":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"active":{"type":"boolean"},"createdAt":{"type":"string","format":"date-time"},"uri":{"type":"string","format":"uri"},"credentialType":{"type":"string","enum":["basic","bearer"]},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"}},"title":"EntityModelCustomerWebHookInformation"}}}},"_links":{"type":"object","additionalProperties":{"type":"object","properties":{"href":{"type":"string"},"hreflang":{"type":"string"},"title":{"type":"string"},"type":{"type":"string"},"deprecation":{"type":"string"},"profile":{"type":"string"},"name":{"type":"string"},"templated":{"type":"boolean"}},"title":"Link"},"title":"Links"},"page":{"type":"object","properties":{"size":{"type":"integer","format":"int64"},"totalElements":{"type":"integer","format":"int64"},"totalPages":{"type":"integer","format":"int64"},"number":{"type":"integer","format":"int64"}},"title":"PageMetadata"}},"description":"List of customer webhooks information","title":"PagedModelEntityModelCustomerWebHookInformation"}},"description":"Paginated response for webhook infos","title":"CustomerWebHookInformationResponse"}}}},"400":{"description":"Invalid request parameters","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

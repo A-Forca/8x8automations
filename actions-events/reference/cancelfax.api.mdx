@@ -1,0 +1,71 @@
+---
+id: cancelfax
+title: "Cancel a currently ongoing outbound fax by ID"
+description: "Cancel a customer's currently ongoing outbound fax by ID."
+sidebar_label: "Cancel a currently ongoing outbound fax by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztl1Fv2zYQx78KcS9rASVO2g4I9GYkDWBswIw4BQYEfjhTZ4sdRbLkUbVn6LsPJ9lpEnvZkL0NfrJFHo93px9P/G+BcZWgfIBbXFNS195x9NZShHkBFSUdTWDjHZRwjU6TVah0Tuwbij8lpXOM5NhulHcrb9xK+cwLn12llrhWi42a3JxDAT5QRPEzqaAE3Xta4hoKCBixIaYoUWzBYUNQwhLXkwoKMLJxQK6hgEjfsolUQckxUwFJ19QglFvgTZBFiaNxK+i6uRin4F2iJPMfLj7Jz/N0ZoG0WRqq1C2u1TR6TSlJBkOelmR/7R2TY1mNIVij+yRGX5O42L4SQtcV8Oni4nDbiWvRmmHTyc0btvCLr6RZKhelqmyGHNk0lBibcBhNAUsfG2QooUKmMzGFrthZvWKdoxG7xMg5PbE0jmlF8ampcfzxQ+/UsD3itROaGI09OmVcYqn6v4lGW5+rq2MFwaoyUju00+eleWYnb0ZjTnRk6qCob9zhRx3gug/3c4w+3u2YnEa/sNTcDPXYs3J5yMoXh5lrH82fb4LxRMr/k5QjzUy6yXfDtUqPXW1yo5xntZRmfILnBE9v/vPxTxJTdGhVothSVCReTsickNkh8/HI5YliazSp7LBFY3FhSSErrkk1vhFoTvic8OntG+Lay60/+NS/XbnNlzBqL0dL0RyjbX/Z70aDKoAChjY06IEcLZRQM4dUjkYYzPnV+upc+0YWYzDwUqVMo6+ylgd1bXNiiupXP6AHIgwS6RwNb2aC35DkOJhfaDPOEtdjytgPQrFXJL+fjaeTs2GoVyU1YUWxr7pxSz+gOpRGvsaYFKr9MXl3izh7r8bTyUG897VJyqT+6IiVGKnvtdG1CtG3pqKkUIs2Uex3Vi+8B4ssMKklIedISbUG1d3n2b04E/kl5Ry2uzy/6GnwiRvsz+Euvyfq7p8l3csstj8O+3+SibvaM615FCwaJ7H2CGx33DxAeylnR8iBAsq9UNzBMy+gFszKB9huF5joS7RdJ8PfMsUNlA/zAlqMRjpWD1hlkvyvxJVN9Epi7+52AvS9+rtQ9+w4oaRFm+UJCviDNo+itpt3xR4eCWCYG2tNgZ+sOmiZAu/jWZr+NruHrvsLVBZuBg==
+sidebar_class_name: "post api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Cancel a currently ongoing outbound fax by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/faxes/{faxId}/cancel"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Cancel a customer's currently ongoing outbound fax by ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"faxId","in":"path","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Specified Fax Processing Cancelled","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Invalid Fax ID","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Fax with specified ID not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: updateconfigurationforfaxeventdidwebhook
+title: "Update an existent customer's DID fax event webhook configuration by customer's webhook ID and DID"
+description: "Update an existent customer's customer's DID fax event webhook configuration using provided parameters and the customer's webhook ID and DID"
+sidebar_label: "Update an existent customer's DID fax event webhook configuration by customer's webhook ID and DID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztmEtv4zYQgP8KMZfuAnKc7KZFoJsbJ6jRogjyQAsEPozFscVdidTy4dg19N+LIeVXnE1291D0YJ9kcjjDmfmG0nAFHmcO8kf4iyalMZ/FNS7E1Zy0F38ar6aqQK+MFpdGe2uqiiyMM5DkCqsanoEcHhqJngRqQQvlPK8tgvOmJvuT230cjoZiigtBUf9TZ7EweqpmwSZDwSk9E401cyVJigYt1uTJOoFaCl/SrsK1itEwzg5HQ8jANJR0jSTkEOLm9mxMjZ3iIm5CKtnpgAy2tiB/XIHGmiAHqSRkoNjRBn0JGVj6EpQlCbm3gTJwRUk1Qr4Cv2x4ifNW6Rm0bbbR0lkZfbcupT3NyEIGU2Nr9Gnol3No23FaTs7/auSS1xRGc/j5EZum6pLX/+Q4T6tD5WbyiQrPrluOmlfkeFYqS0VK7nOfMiAdagZG6YkJmv0xwa8fJ6q3WYwVjNs2A698xRqucRHB6ki73E0JtCy5H4w44BqjXdrVh9PzuLk99i47GCJbW3bXNO8x/Ay0CIYULhQFOTcNVbWE7LtDuMk1O3B+enq4xZGeY6Wk6HK1g/QPmPtKxryqyXmsm5cytgGHHe6xKHBaotQr0sEqlnMefXBvEvnxA2xzfRAdPjI8qurFKaWdR118026KygR58VJAUEqVsLvZD82eHGepwODohamDoP6ghR3mL+N2r6w19rZj+caaSUX1MMVjzc3ZITcPGoMvjVX/kDySciSlI+WtQ9DYzek3GgptvJh2h/ORoCNBGfz88jvKk9VYCUd2TlYQazkic0SmQ+bjITJ3ZOeqIBE0zlFVOKlIoI9f6LWpGZojPkd8onxNvjQyNT1FGTstX0IO/flZX+98obv+FBe92Jj1u4ap5xJm/aY0mlx/JZVs+6tNO9VCBunMSk1bsBXkUHrfuLzfx0adXCwuTgpTs2psFDxvXm+skaFIPW4VnCcr/jBF15SMWXkRrPLLO2Y1RWTQqN9pOQjswyY+GAchWzd8f/cGN6NeGooNX0koycYUMf+3287taoF1k8Da6bw2DVZkaGpSIWxaKYFOoFgX4btrxLv3YnAzOnDwvlROKBcLk6VYSDyVqijXXbYTGFsg4U0n9Ux7U6FnVMWU0AdLTswVituru3tWdgIZcPyTubOT08iacb7GWOVdQF6/JfiWq4HJ8s3ef8/1nX74/3ZH0UHjaeH7TYVKc8wiu6uuOB5hfsY07ZYHnxjrAoEMnpUI11UsEsggT7cW+fbaYZxBaZxnxavVBB092KptefhLILuE/HGcwRyt4oM8lpJUjp8l5FOsHL0S3He3XeP+XnzNt3WVaK6HOVaB/0EGn2nZ3bHwZcl/aHIbmXbcZuvqZL/T/GUy1btnLdv1B68x3nZaMSgKavyrsuOds/BmcH/5G1+ZdHc3tZG8yOITXwvhU9qsaVLm81UaW0GFehZwxrJJKf/+Bdn6364=
+sidebar_class_name: "patch api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update an existent customer's DID fax event webhook configuration by customer's webhook ID and DID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/v1/notifications/fax-event/webhook-service/phones/{did}/{webhookId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an existent customer's customer's DID fax event webhook configuration using provided parameters and the customer's webhook ID and DID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"did","in":"path","required":true,"schema":{"type":"string"}},{"name":"webhookId","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"direction":{"type":"string","enum":["inbound","outbound","bi-directional"]}},"title":"FaxEventWebhookConfiguration"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Customer DID Fax Event Webhook Notification configuration updated successfully","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Invalid request parameters","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Customer DID or Webhook ID not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

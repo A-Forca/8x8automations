@@ -1,0 +1,71 @@
+---
+id: deletecustomer
+title: "This method deletes customers from an existing campaign."
+description: "This method deletes a customer from an existing campaign. You can delete new, queued, or scheduled customers. You should not delete customers that have received, completed, or already deleted offers. If the customer has been offered the delete method it will fail and if the agent rejects the call it be re-queued again. The delete method can then be called again. **Note: the campaign must be have dynamic campaign enabled to leverage this feature**"
+sidebar_label: "This method deletes customers from an existing campaign."
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "delete api-method"
+info_path: actions-events/reference/8-x-8-contact-center-dynamic-campaigns
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"This method deletes customers from an existing campaign."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/{campaign-id}/customers/{customer-id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This method deletes a customer from an existing campaign. You can delete new, queued, or scheduled customers. You should not delete customers that have received, completed, or already deleted offers. If the customer has been offered the delete method it will fail and if the agent rejects the call it be re-queued again. The delete method can then be called again. **Note: the campaign must be have dynamic campaign enabled to leverage this feature**
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"campaign-id","in":"path","description":"The campaign ID is the unique Campaign ID of the campaign as listed in CC Configuration Manager under Campaigns (column can be added if not visible)","required":true,"style":"simple","explode":false,"schema":{"type":"integer","format":"int32"},"example":1},{"name":"customer-id","in":"path","description":"The customer ID is the id of the record in the 8x8 Local CRM. This is also known as the `ACCOUNTNUM` or Account Number","required":true,"style":"simple","explode":false,"schema":{"type":"string","format":"int32"},"example":1000000}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"the customer has been deleted."},"400":{"description":"The customer is not available for deletion.","content":{"application/json":{"schema":{"type":"object","required":["message"],"properties":{"message":{"type":"string","format":"string"}},"title":"internalServerError"},"examples":{"CampaignStopped":{"value":{"message":"The campaign has stopped. No customers can be deleted."}},"NotDynamicCampaign":{"value":{"message":"This is not a dynamic campaign."}},"CampaignNotEnabled":{"value":{"message":"This campaign is not enabled."}}}}}},"404":{"description":"The customer has not been located."},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","required":["message"],"properties":{"message":{"type":"string","format":"string"}},"title":"internalServerError"},"examples":{"CampaignStopped":{"value":{"message":"Internal server error"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

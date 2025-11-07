@@ -1,0 +1,135 @@
+---
+id: 8-x-8-contact-center-dynamic-campaigns
+title: "8x8 Contact Center Dynamic Campaigns"
+description: "The 8x8 Contact Center Dynamic Campaigns API:"
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"8x8 Contact Center Dynamic Campaigns"}
+>
+</Heading>
+
+
+
+The 8x8 Contact Center Dynamic Campaigns API:
+* Adds and removes records from an active campaign
+* Sends records to a specified campaign via the API
+* Adds records to a live campaign
+* Removes records from a campaign so they are not dialed again
+* Schedules a callback with a possible maximum of 7 days in advance
+* Schedules uploads for a maximum of 5 million records
+
+## Campaign form
+
+Your campaign with associated tenant is of the form:
+
+**`https://{your tenant url}/api/tstats/campaigns/{campaign-id}`**
+
+For example:
+
+**`https://vcc-eu5.8x8.com/api/tstats/campaigns/101/`**
+## Add a customer to a campaign
+To add a customer to a campaign:
+
+**`https://{your tenant url}/api/tstats/campaigns/{campaign-id}/customers`**
+
+For example:
+
+**`https://vcc-eu5.8x8.com/api/tstats/campaigns/101/customers`**
+
+## Delete a customer from a campaign
+To delete a customer from a campaign take the following form:
+
+**`https://{your tenant url}/api/tstats/campaigns/{campaign-id}/customers/{customer-id}`**
+
+For example:
+
+**`https://vcc-eu5.8x8.com/api/tstats/campaigns/101/customers/10000111`**
+
+The complete list of platform URLs is available on the [8x8 Contact Center - Platform URL Guide.](https://files.mtstatic.com/site_12249/2500/3?Expires=1601933655&Signature=ebyMEramVyRMGdgkVXwJH~2~-ovb7XLq5zV4Q3oWfsRa8l-6ZZq~sK64tHhRPU-GW7W~lYw22~gBmPbCop9l~uy10KC6skH0xvMqrIbBCQGwitAc-83vP8Lu6vBIQxWP5sGqS6JXekSgqcq7stTw-RMLsFDT8fXK4~qyGoMlqNs_&Key-Pair-Id=APKAJ5Y6AV4GI7A555NA) 
+
+For further configuration information refer to [8x8 Contact Center Dynamic Campaign API Configuration.](https://support.8x8.com/cloud-contact-center/virtual-contact-center/developers/8x8-contact-center-dynamic-campaign-api-configuration) 
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Basic Auth"}
+      value={"ccActionBasicAuth"}
+    >
+      
+      
+      The username is the tenantId and the password is the CC action-token.
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                basic
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    Dynamic Campaigns Team: [ro-rec@8x8.com](mailto:ro-rec@8x8.com)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"http://www.8x8.com/terms-and-conditions"}
+  >
+    {'http://www.8x8.com/terms-and-conditions'}
+  </a>
+</div>
+      

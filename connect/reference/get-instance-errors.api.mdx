@@ -1,0 +1,71 @@
+---
+id: get-instance-errors
+title: "Retrieve a list of errors for a workflow instance"
+description: "Use this resource to retrieve a list of runtime errors for a workflow instance. If the workflow definition is not working as expected, workflow errors help you figure out what went wrong."
+sidebar_label: "Retrieve a list of errors for a workflow instance"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV9tu4zYQ/RVinlpAsiRfFT01wC4KAy12kc0iQINgQZMjm7sSqZBULjD07wVpWZc42XRT9KFF/WJbJGcOz5w5IvegKtTUCiXXHDLYog2FNJZKhiFqrbSBACzdGsiu4Urpb3mh7sm6nUJ+p5JusURp4SYAjoZpUblokMFng8TuhCEajao1Q2IV0Wi1wDsklBTCWKJyomtpRYnkkI7kShNK7o+pjmgmZJ0Tu8N+hGMupHDJiDBEKuuHhNwSagg+VMgs8qCf38bfYVGRR1WTXGxrjUTVltzvqCX3KC2510puJxCARlMpadBAtodpHLuv8f5+a/GfQG0zuShMSevIyfZAq6oQzFMdfTUuwh4M22FJ3S/7WCFkQLWmjxCAsFiawXO1+YrMeli3tdDIXTmOidccAjAWKwigRGPoFiEAD+JSlOgqU2lXZysO2xks7FMYq4XcwkkVpbitkQjutjriv9uuVeR+J9jOD/u0ZIOFkltDrJpA04J7NdW6y+HmE+uKktO6sMh9lOPeXg10gdQo6ZWUU1HUGv36npHXoXz6QNJlnLgYJbUWOXEaNZaW1RGkF22/ZcVYrbWH2gRghS1c/CNb7w+95IbwgZZVMa6EH3YP7mhR49MawTLG5WY6zdkiWbF4lS44zhidTo91z/xXMqh/Bmt5RwvBiak3lDFVS0sEn4yEkcE0niZhvAxn8WU8y6ZJNl1M0tkf0PhPAPPnhH+BtzUa67pOHJK8ReqdpMfBPRPk2H0u8Fi7TPFh/YS0uEX9Qhg3+cek867/d6yz56sX0A80zUEY4qDeTj+vL7/spHa/Q/mixoZe4Gk5aX/vDH3im16XfhieqBFPVHhgO4nj+DlpDR24l5ZX7HSxSPM8nYUs5Ztwnp7FYRovMKR8OY/jJF2saDLCdtTiKkxml3GSTdNstposl0Mtzk+1eHXiRko/82bIVS3/V+l/XKWzsUrf9SqYUno2Xy4w5MhW4ZzNMExzugw3PFmmND9DyuhYJ/+gkpsAKqppiRa1O1btQVJvxq1NezqEY7iidndC+3ln5qPjgNU1Bqf67WrXMggZWDT2S5vri+CuSB2EvnNeQXH13CmMT94IaZGu4vl8moczznk4Xy5W4WY1Z+ESk9UsTvPFdBaPcI6OPn8BZecOb8e4jPkGZ/Eqx8WCn53lLE5nfLNMoGlunOzsTrUnaOcGDk0GEa1EdJdELdsm2nc1bqKeORPth8Q30XF7Jtr3O22i7kBuUN8dxVPrAjLYWVuZLIpobVXpPW2SPqQTpkpw8AyyWgv76FdskGrU57WDeH0zHP7keDh02XBSR4vLAi1d7v9hkm9zIXPlZ7ate94BIecf1xCAA3yoSjKJT1X9ce3Pa6W7ULgzfEcBUZKkDynpA7Y2Tpm38VYRbspaMgieEMIqSk3HRQBYUuHG/fPQ1FWltP2l4yoAi7o0H/JPqO8Ew5ciRWYb+ZkhlTxkSvK2ki5EpYwtqRyguzi99nz/uvOUoH3/5vqXX6xaKVl8sFFVUCEdY75m+7ZtroFWwinG+eqxdSCAbGiQg+5xQ0+Mq1OPGxuZRdtDNwHslLEu2X6/oQY/66Jp3OPbGrXrk5sA7qgWdOPkfL0HLoz7zSHLaWHwO/X56aK1l5/JyKyf3fnx4ifdta99owEE8A0fR68EZ35vgvCyU78Bz4jmvw/piS2/AdCgts1NE8AOKUftC3aYcM4YVnaw9OTYN7LvX99fQtP8CTsc1vw=
+sidebar_class_name: "get api-method"
+info_path: connect/reference/automation-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve a list of errors for a workflow instance"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/accounts/{accountId}/definitions/{definitionId}/workflows/{workflowId}/errors"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Use this resource to retrieve a list of runtime errors for a workflow instance. If the workflow definition is not working as expected, workflow errors help you figure out what went wrong.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountId","in":"path","description":"Account id","required":true,"schema":{"type":"string","example":"test_account_id"}},{"name":"definitionId","in":"path","description":"Workflow definition id.","required":true,"schema":{"type":"string","example":"5870442f-3ddd-4657-b74c-6e17308f5230"}},{"name":"workflowId","in":"path","description":"Workflow instance id.","required":true,"schema":{"type":"string","example":"60dbe307fe55d99fc083db61"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of workflow instance errors.","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","required":["workflowId","step","message","errorTime"],"properties":{"workflowId":{"type":"string","description":"Unique id of the workflow instance to which the error belongs to."},"step":{"type":"string","description":"Id of the step that faulted."},"message":{"type":"string","description":"Reason for failure."},"errorTime":{"type":"string","description":"ISO 8601 formatted timestamp of the time the error occurred."}},"title":"workflowErrors"}},"examples":{"workflowError":{"value":{"workflowId":"60e6b22fc517c0785de3ca22","step":"step1","message":"Invalid subaccount id.","errorTime":"2021-06-30T03:21:25.83Z"}}}}}},"400":{"description":"Request is invalid.","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1000,"message":"Invalid definition id.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}},"404":{"description":"Workflow instance or definition is not found.","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1300,"message":"Definition 2aa9465e-dec7-4c3e-8fa6-bd168af9eaca not found.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

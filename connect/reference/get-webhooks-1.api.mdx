@@ -1,0 +1,71 @@
+---
+id: get-webhooks-1
+title: "Get all Webhooks for Account"
+description: "Sending a GET request on this endpoint allows to **retrieve a list of all the webhooks or a specific webhook configured for an account**."
+sidebar_label: "Get all Webhooks for Account"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: connect/reference/business-messaging-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get all Webhooks for Account"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/accounts/{accountId}/webhooks"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Sending a GET request on this endpoint allows to **retrieve a list of all the webhooks or a specific webhook configured for an account**.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountId","in":"path","description":"You must replace *{accountId}* with the accountid that you want to use.","required":true,"schema":{"maxLength":36,"minLength":32,"pattern":"^[0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}$","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","title":"Webhook","description":"The webhook model","properties":{"subAccountId":{"type":"string","description":"- Sets the subaccount scope of the webhook.\n- Use `*` to receive events across all subAccounts.\n- Use the `subAccountId` to receive events for a specific subaccount.","example":"Onion_Marketing"},"url":{"type":"string","format":"uri","example":"http://example.com","description":"The `url` to use for the webhook (8x8 platform will send events to this URL)."},"enabled":{"type":"boolean","example":false,"description":"Use this flag to enable or disable a Webhook.","default":true}},"required":["subAccountId","url"]}},"examples":{"response":{"value":[{"type":"CADR","subAccountId":"Onion_Marketing","url":"http://example.com/dr/marketing","enabled":true},{"type":"MSG","subAccountId":"*","url":"http://example.com/dr/general","enabled":true},{"type":"CABM","subAccountId":"*","url":"http://example.com/mo/general","enabled":false}]}}}}},"400":{"description":"Bad request error response","content":{"application/json":{"schema":{"title":"ErrorResponse","required":["code","errorId","timestamp"],"type":"object","properties":{"code":{"type":"integer","description":"Error code"},"message":{"type":"string","description":"Error description"},"errorId":{"type":"string","description":"Unique id of error. You can use it as reference when sending enquiries to 8x8 support","format":"uuid"},"timestamp":{"type":"string","description":"Data and time of the error occurence","format":"date-time"}},"description":"Response in case of error","example":{"code":1001,"message":"Provided subAccountId doesn't belongs to your account","errorId":"91b106f0-c0da-4aba-a43a-7af9c5893a80","timestamp":"2017-04-19T02:31:19.4297387+00:00"}},"example":{"code":1002,"message":"Invalid MSISDN format (not E.164 international number)","errorId":"b4478860-b76c-e811-814e-022a35cc1c71","timestamp":"2018-08-04T09:25:40.9235752+00:00"}}}},"401":{"description":"Request was not authenticated response","content":{"application/json":{"schema":{"title":"ErrorResponse","required":["code","errorId","timestamp"],"type":"object","properties":{"code":{"type":"integer","description":"Error code"},"message":{"type":"string","description":"Error description"},"errorId":{"type":"string","description":"Unique id of error. You can use it as reference when sending enquiries to 8x8 support","format":"uuid"},"timestamp":{"type":"string","description":"Data and time of the error occurence","format":"date-time"}},"description":"Response in case of error","example":{"code":1001,"message":"Provided subAccountId doesn't belongs to your account","errorId":"91b106f0-c0da-4aba-a43a-7af9c5893a80","timestamp":"2017-04-19T02:31:19.4297387+00:00"}},"example":{"code":1200,"message":"Request was not authenticated properly","errorId":"db9dced4-3534-4d86-9d18-6b448af0d621","timestamp":"2018-08-02T09:42:38.8988997+00:00"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"title":"ErrorResponse","required":["code","errorId","timestamp"],"type":"object","properties":{"code":{"type":"integer","description":"Error code"},"message":{"type":"string","description":"Error description"},"errorId":{"type":"string","description":"Unique id of error. You can use it as reference when sending enquiries to 8x8 support","format":"uuid"},"timestamp":{"type":"string","description":"Data and time of the error occurence","format":"date-time"}},"description":"Response in case of error","example":{"code":1001,"message":"Provided subAccountId doesn't belongs to your account","errorId":"91b106f0-c0da-4aba-a43a-7af9c5893a80","timestamp":"2017-04-19T02:31:19.4297387+00:00"}},"example":{"code":2000,"message":"Internal server error","errorId":"db9dced4-3534-4d86-9d18-6b448af0d621","timestamp":"2018-07-02T09:42:38.8988997+00:00"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

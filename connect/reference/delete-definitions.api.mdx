@@ -1,0 +1,71 @@
+---
+id: delete-definitions
+title: "Delete workflow definition"
+description: "Use this resource to delete workflow definitions. Specify the version of the definition to delete in the query parameter. If no version is specified, all versions of the definition will be deleted. Deleting a definition cancels any active event subscriptions, terminates all active workflows, and deletes workflow execution logs that are based on the definition that is being deleted. Once a workflow is deleted, there is no way to reverse the operation."
+sidebar_label: "Delete workflow definition"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV01v2zgQ/SvEnFpAsuVvVacNkBwM7KLFtt0CGwQFTY5sthKpkpQTw9B/Xwwty3LsoLsF9lI0l5jkaObxzRtyuAdToeVeGb2UkIHEAj3GEnOlFc06iMDztYPsHj4Z+zUvzCO77ZbZH1zzNZaoPTxEINEJqypagQw+OmR+oxyz6ExtBTJv2CECezz66oUasPcVCpXvmN8g26J1FMHkYXiy63lROqx9q9HuWMUtL9GjHbBlzrTpPCjHXHCsUEaMF8VxxV1x/qiKgq2wjSAH7JZ+KL1mvG8muBZYOMb1jnHh1RYZblF75upVx4GLmEdbKs09uhC4NT3u3kWMa9nGcidS8AlFHeIUZu2Y33DPuEW24g4lM/qCETJQjq2QgHbQ32qBjJ/cKndci8iDRZrRhj3yHZFqkXjB4LyTxQAi6JglGexB8xIhg5ZEiEBRtkMS4LkG/jrP4pW0UwCL32plUUKW88JhBE5ssOSQ7cHvKgqmtMc1WoigVFqVdQnZKAJ84mVVIGSjpok6YFwIU2u/lEdoFfebC2Q3Byum5BkAb+tr8Z23Sq+hFxI8Ov+5jfVZSehDOG3vOyg+XRLClBz8IKRZukim03EeT6SU8XQ+W8SrxVTEcxwtJkmaz8aTBJrmgby7ymiHjhyOkzH9O0f2Z2vBlJZK8FACByEyz91XtuGkN9SMgMm6QNkrzBdz3UQwTZLLaLf97ZMsld7yQkn2ShsKeRjUtZKviRxhtKczJ9sDr6oi4DN6+MWRs/0lV2b1BYW/YP/OWmPZkYsgdUvK9+pAjDASr4rwmhsyDhss0Tm+xmuper7pbnQsECRXwUv4RYfy97x81Opb3X4ZtNNE4FWJzvOy+v7nH46m7HGD+gSCGSFqa5EcNn053h9oOe3zhLUf+IEGPsgyLIc9HZQauD1MZnvY8qLGE9ujJEl6HMKyFcJFgXQEwXg2S/M8ncQilat4mr5J4jSZYczlfJoko3S24KMzbBlJfhQni3g0+ZCMsnGaTRaD+fxvaMIfiXR6KdKrxUonqGe5qbX8pcyfW5mTc2X2zqwx52+m8xl1TmIRT8UE4zTn83glR/OU52+QC36uk/9RvSHRfmNODV24w/0GMhjySg23o2F7b7nhvrstm2GvFxvu+1dYAxE4tNtjB1DbAjLYeF+5bDjktTfloVlIn9KBMCXQFeNQ1Fb5XfhihdyivakJxP1Df/k9VcSB+L5RJw6KAu31R+ODUci80rkJlm02bzog7ObdEqKuRclgNEguO4B3S5Yby0rqYel669oyarHSp5SdHLaVzUWo7PaWJ5OlFhA9I0RUnLuOiwiw5IrWw3zs6qoy1v/WcRUBdYnubf4e7VYJfMnT0K2HwTLmWsbCaNnmilxUxvmS6x662xc77edM7E+n1q+m/Wdp2tvy8fjkh1XBlSaVBJ3u28PgHnilqEroeDkeCBBB1m+gz5+C2Vlj+xDBxjhPnvZ72uZHWzQNTR8eA1T4Ujm+Knqt/YvK+3dPhavb+oq7swdJe3BDOIe23CqC8B/hvPqzvVdes7OnwlUA7STXu370I7ATn/RE+CEIL78TfgDPWRKbhyaCDXKJNjB0MLkRAivf+/iimSFqu2vm9u73uw930DT/AGQEoZU=
+sidebar_class_name: "delete api-method"
+info_path: connect/reference/automation-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete workflow definition"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/api/v1/accounts/{accountId}/definitions/{definitionId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Use this resource to delete workflow definitions. Specify the version of the definition to delete in the query parameter. If no version is specified, all versions of the definition will be deleted. Deleting a definition cancels any active event subscriptions, terminates all active workflows, and deletes workflow execution logs that are based on the definition that is being deleted. Once a workflow is deleted, there is no way to reverse the operation.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"version","in":"query","description":"Version of the workflow definition.","required":false,"schema":{"type":"integer","minimum":1,"example":1}},{"name":"accountId","in":"path","description":"Account id","required":true,"schema":{"type":"string","example":"test_account_id"}},{"name":"definitionId","in":"path","description":"Workflow definition id.","required":true,"schema":{"type":"string","example":"5870442f-3ddd-4657-b74c-6e17308f5230"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"202":{"description":"Response indicating that a task has been scheduled to delete the workflow definition."},"400":{"description":"Definition id is invalid (not a valid uuid).","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1000,"message":"Invalid definition id.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}},"404":{"description":"Workflow definition is not found.","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1300,"message":"Definition 2aa9465e-dec7-4c3e-8fa6-bd168af9eaca not found.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

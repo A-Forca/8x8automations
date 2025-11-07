@@ -1,0 +1,71 @@
+---
+id: sendmessageusingpost
+title: "Send a message to a public chat room."
+description: "This will send a message to a room. If the room does not exist Chapi will create the room, then send the message to it. This endpoint is unable to send messages if the room is private."
+sidebar_label: "Send a message to a public chat room."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVU1T2zAQ/SvqHhklBsoh41vKlCnDtDAE2kMmB8VeYoEsCUkOSTP+752VbDAkh/bYXKJon/bj7dvNDoJYecjnUFQiwIJDib5w0gZpNORwV0nPXqRSzKMumWA1ei9WyIJhgjlj6jG7fGChwviDlQY90yYw3Egf2HklrEzvC4ci4CuS00knr3Q38CvDmMW4qEtrpA5MetZosVTRHJ90cM/kILj0zDq5FgHHwMFYdILKuCwhB3rVPWq81CtrfAAODp8b9OGLKbeQ76AwOqAOdBTWKllEB9mjJzJ24IsKa0GnsLUIOZjlIxbkxzoKFyR6snaBbsXLAOuDk3oFLQdK9oCh5RBkUHQ1Q11+T05+XkNLpvd96SJ0FUiHJeTBNUje0Vujfcrk9PiYvt4/vr4CPiz1KDv6l+qscJ7i/WUBt10+sRB+kFfciNqq5L1Pn85roRochoRvqJRhv4xT5SfiJVJzenyyX+R51FtJfJ8dst9r0YTKOPm7B33eB10Yt5RliTohzvYRP0xgF6bRJaQmWYdFjJs/COWRQ42hMpR6pzgrQgU5ZMLKjGYuW59kvZoz4ODRrdHRSO6gcYqghB1PNpNxYer4BtoFAYvGybCNyKmVV7idNuR7vhiaZ9TVRO0Q9No8ES+Bg6RyKhQlOuCgRU3WzUhYOXrCbSyP+nX7NjFfU9s+Kr7XQy/0gfKlfjD7HE42E2rpE62LwKY3l8CBOEjW4/EJvAkrbZTRG7TlkdlaRCV1ac8OLCvbLJUsGPGXFhd8GKrB+P/Pe6/ra8BNyKwSMmo3KmnXiW9OTacVQFLisCZ+e8fAgf4FKhJrPofdbik83jvVtnT93KAjwS04rIWTlFrUG++FQ1okteRwnrgc3VE6vB/l/fFvef9iWhRowwBLe4mk/DpCN9ezO+Cw7LZ1bUqCOfFCWovSi3ufnKddkhawEnrV0LbMIYWkzx8smGGz
+sidebar_class_name: "post api-method"
+info_path: actions-events/reference/chapi-chat-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Send a message to a public chat room."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/chat/v1/messages/"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This will send a message to a room. If the room does not exist Chapi will create the room, then send the message to it. This endpoint is unable to send messages if the room is private.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"messageRaw":{"type":"string"},"room":{"type":"string"}},"title":"SendMessageVO"}}},"description":"message","required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"object","properties":{"parsed":{"type":"string"}},"title":"SendMessageResponseVO"}},"application/json":{"examples":{"response":{"value":{"parsed":"Hello World!"}}}}}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}
+>
+  
+</StatusCodes>
+
+
+      

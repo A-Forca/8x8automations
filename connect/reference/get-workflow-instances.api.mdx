@@ -1,0 +1,71 @@
+---
+id: get-workflow-instances
+title: "Retrieve a list of workflow instances"
+description: "Use this resource to explore workflows created based on a specific workflow definition. If the definition version is not specified, workflows for the latest version are returned. Results are ordered in descending order of their creation time. Use parameters `limit` and `offset` to paginate through the list."
+sidebar_label: "Retrieve a list of workflow instances"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: connect/reference/automation-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve a list of workflow instances"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/accounts/{accountId}/definitions/{definitionId}/workflows"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Use this resource to explore workflows created based on a specific workflow definition. If the definition version is not specified, workflows for the latest version are returned. Results are ordered in descending order of their creation time. Use parameters `limit` and `offset` to paginate through the list.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"limit","in":"query","description":"Number of items to include in the response.","required":false,"schema":{"type":"integer","minimum":1,"maximum":500,"default":100}},{"name":"offset","in":"query","description":"Page offset. Setting limit to 10 and offset to 0 returns the first 10 items. Increment offset to retrieve more items.","required":false,"schema":{"type":"integer","minimum":0,"default":0}},{"name":"version","in":"query","description":"Version of the workflow definition.","required":false,"schema":{"type":"integer","minimum":1,"example":1}},{"schema":{"type":"string","enum":["Runnable","Suspended","Complete","Terminated"],"description":"Workflow instance status. Supported statuses are\n  * Runnable (workflows that are in progress)\n  * Complete (workflows that have completed without errors)\n  * Suspended (workflows that have been suspended)\n  * Terminated (workflows that have been manually terminated or faulted)"},"in":"query","name":"status"},{"schema":{"type":"string","example":"2021-06-24T09:33:06.60Z"},"in":"query","name":"startTimeFrom","description":"Minimum workflow instance start time in ISO 8601 format"},{"schema":{"type":"string","example":"2021-06-24T09:33:06.60Z"},"in":"query","name":"startTimeTo","description":"Maximum workflow instance start time in ISO 8601 format"},{"name":"accountId","in":"path","description":"Account id","required":true,"schema":{"type":"string","example":"test_account_id"}},{"name":"definitionId","in":"path","description":"Workflow definition id.","required":true,"schema":{"type":"string","example":"5870442f-3ddd-4657-b74c-6e17308f5230"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"List of workflow instances. If there are no workflows by the specified definition id, an empty list is returned.","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","description":"Workflow instance","required":["workflowId","data","definitionId","version","status","startedAt","completedAt"],"properties":{"workflowId":{"type":"string","description":"Unique id of the workflow instance."},"data":{"type":"object","description":"Workflow context.","required":["accountId","triggeredAt"],"properties":{"accountId":{"type":"string","description":"Id of the account to which the workflow definition belongs."},"triggeredAt":{"type":"string","description":"ISO 8601 formatted timestamp when the trigger that started the workflow was raised."},"subAccountId":{"type":"string","description":"Subaccount id under which the workflow is running. Subaccount id is only available if the trigger was raised with the subaccount id. For inbound SMS and chat apps triggers subaccount id is usually available."}}},"definitionId":{"type":"string","description":"Id of the workflow definition to which the workflow instance belongs to."},"version":{"type":"integer","minimum":1,"description":"Version of the workflow definition to which the workflow instance belongs to."},"status":{"type":"string","description":"Last known status of the workflow instance. Supported statuses are\n  * Runnable (Workflow is either currently running, waiting for an event, or pausing for a duration).\n  * Suspended (Workflow is suspended (usually by issuing the suspend command). A suspended workflow can be resumed by issuing the resume command).\n  * Complete (Workflow has run to completion without errors).\n  * Terminated (Workflow has either been terminated manually or faulted).\nIf the workflow has faulted, you can use the workflow error resource to figure out what caused the error."},"startedAt":{"type":"string","description":"ISO 8601 formatted timestamp of the workflow start time."},"completedAt":{"type":"string","description":"If the workflow has been completed, ISO 8601 formatted timestamp of the completion time. Otherwise, null.","default":null}},"title":"workflowInstance"}},"examples":{"workflowInstances":{"value":[{"workflowId":"60dbe307fe55d99fc083db61","data":{"payload":{"umid":"9e09ac86-bd74-5465-851d-1eb5a5fdbb9a","user":{"channelUserId":"test_user_id","name":"test_user_name"},"content":{"text":"Hello, world!"}},"accountId":"test_account_id","subAccountId":"test_subaccount_id","triggeredAt":"2021-06-30T03:20:39.3857479Z"},"definitionId":"5870442f-3ddd-4657-b74c-6e17308f5230","version":1,"status":"Complete","startedAt":"2021-06-30T03:20:39.49Z","completedAt":"2021-06-30T03:21:25.83Z"},{"workflowId":"60dbe307fe55d99fc083db62","data":{"payload":{"umid":"9e09ac86-bd74-5465-851d-1eb5a5fdbb9a","user":{"channelUserId":"test_user_id","name":"test_user_name"},"content":{"text":"Hello, world!"}},"accountId":"test_account_id","subAccountId":"test_subaccount_id","triggeredAt":"2021-06-30T03:20:39.3857479Z"},"definitionId":"5870442f-3ddd-4657-b74c-6e17308f5230","version":1,"status":"Complete","startedAt":"2021-06-30T03:20:39.49Z","completedAt":"2021-06-30T03:21:25.83Z"}]}}}}},"400":{"description":"Definition id is invalid (not a valid uuid).","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1000,"message":"Invalid definition id.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}},"404":{"description":"Workflow definition is not found.","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1300,"message":"Definition 2aa9465e-dec7-4c3e-8fa6-bd168af9eaca not found.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

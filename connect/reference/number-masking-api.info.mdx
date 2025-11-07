@@ -1,0 +1,116 @@
+---
+id: number-masking-api
+title: "Number Masking API"
+description: "Welcome to our Number Masking documentation!"
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: v1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Number Masking API"}
+>
+</Heading>
+
+
+
+Welcome to our Number Masking documentation!
+
+**Overview**
+
+The Number masking service enables your users to connect in a phone call, while keeping their phone numbers private. By implementing Wavecell's Number Masking service, you can track all conversation metadata in your system while maintaining your customers' privacy. 
+ 
+
+The main advantages of number masking solutions are:
+* Customer privacy
+* In platform transactions
+* Cost efficiency 
+
+This solution is ideal for the ridesharing, delivery or ecommerce industries where you want to  connect your users without revealing any personal data. 8x8 Number Masking API allows you to configure a virtual or proxy number from your pool of numbers to receive call events, status call backs and respond with your preferred call flow function.
+
+**Prerequisites**
+
+Before you get started, please contact your account manager to ensure that your account has access to this product and that the following points have been managed:
+
+* You will need a new sub-account id to enable and set up 8x8's Number Masking service
+* In order to use our Number Masking API you require a Virtual Number that will be allocated to your sub-account by the 8x8 team
+* You will need to provide an endpoint where the call handles will be sent to
+Once this is done, you can use our Number Masking product and start building your call flow.
+
+If you haven't created your account yet, please go to the 8x8 website https://connect.8x8.com to sign up.
+
+**Number Masking flow**
+
+On the diagram below a simple number masking call diagram is shown:
+
+![Flow](https://s3.amazonaws.com/user-content.stoplight.io/22897/1595241587422)
+
+
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"apiKey"}
+    >
+      
+      
+      * 8x8 SMS API accepts an **ApiKey Bearer Token** authentication method.
+      
+      * You can generate  tokens from your customer portal  [https://connect.8x8.com/](https://connect.8x8.com/)
+      
+      * You need to include the following header in your requests: `Authorization: Bearer {apiKey}`
+      
+      > **Note**: Replace the `{apiKey}` placeholder with the key generated from the customer portal.
+      ---
+      If you haven't created your account yet, please go to 8x8 website [https://connect.8x8.com](https://connect.8x8.com) to sign up.
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div>
+      

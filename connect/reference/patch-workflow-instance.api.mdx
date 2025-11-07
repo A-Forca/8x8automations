@@ -1,0 +1,71 @@
+---
+id: patch-workflow-instance
+title: "Update workflow instance status"
+description: "Use this resource to control the state of a workflow instance. For example, you can suspend a workflow to be resumed later or terminate a workflow due to an error."
+sidebar_label: "Update workflow instance status"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV99v2zYQ/leIe0oHyZZ/K3pa1nZYgA0r2gQD1gUFTZ5sthKpkpQTw9D/PpwkS3LcpkOGPWxYXiKLx+N33313PB3AFGi5V0ZfS0ig4F5sw3tjP6WZuQ+Vdp5rgRCA5xsHyXv4rV1j1+0a+4VrvsEctYe7ACQ6YVVBHiGBW4fMb5VjFp0prUDmDRNGe2sy5rfInOcemUkZZ8dT2fHUEfvRWIYPPC8yDNjelExwzVzpCtRyuMMbtkY6o8xRsox7tMxY5tHmStMBA1tZ1iC4ZmitsSMIwOLnEp3/wcg9JAcgfBRNcgBeFJkSNT/jj45COoATW8w5Pfl9gZCAWX9E4SGAwhKbXqGr7Tz3pRvYOW+V3kAAqMucuGwjqREQdKL5CPmcy5+V88SUMHnOtXSM77jK+DrDEXtXFoWxHuVg1eIfmrHvOr4u2gd3wtyWe6YcE6W1qH22Z0qzwpqNRedeNA4acOyi+U/be+vWJ8rOZbup5/6ie3R1yo+GI3bVW/X7Kcfa+EFCX0BVVQG0QhhS2zFY1RYWXWG0a+ifRhH9O+WwU2/jgblSCHQuLbNsz8pCEpIRVAHMv7T7baMT4kvpHc+UJPU8Wy6nzl+TGtkxhNGZnISROPCitMcN2q+4IeM6jhyd4xv8kgpP973qf5HIKFFtfRD19EQN4ltebrX6XLY7mWqo9CpH53lefHv7zdGU3W9R9yCYEbXkyGHV1KuyKKmGalr6OHusw4Pv6Icn7TTL0Mup5rZ5mRxgx7MSe7YnURQNOITrJutMYqq0qrlqNNARBNPFIk7TeBaKWK7DeXwZhXG0wJDL5TyKJvFixScn2BKYRtNJGK3CyewmmiTTOJmtRsvl77Woq1qL8yeUfOyW1PCGuByjKkpNqf9X6X9cpbNTlb7qVTDl/HK+XGAoUazCuZhhGKd8Ga7lZBnz9BK54Kc6+QeVXAVQcMtz9GhpljiA5jkB5kKYUvuaDqWbMWR7RvtVY8WUhCG53pYYnOu3v2yP1wZ4dP5De9YHRZdG0EHoK+cbKLq6O+sBz4G0iFfRfD5Nw5mUMpwvF6twvZqLcImT1SyK08V0Fp3gPN6SfxVl1x2ej3EZyTXOolWKi4W8vExFFM/kejmBqroj2fmt6UZH6geEJ4ExL9R4Nxm3fLvxoctyNe65c+PDkPpqfAzQjQ99rBUE4NDujropbQYJbL0vXDIe89KbvG5no/ghHgmTAyFzKEqr/L7esUZu0V6VhO393XD5HVHQFNjQqGOEToGWKfrdGNUVTs3zbT87vn5qQKFspab229b4VQebXb25hgAovCZ9k1F0Lv831yw1luU0biu96QYmx4xm8UPMeodtv+ei7vetdMjkWgsIHtEnCs5dx1wAmHNF6/X70DWT5fcds82M6n5N36HdKYFf8zR2m3FtGXItQ2G0bBNOLgrjfM71AN1tPXydfwS0k9pjOgZT+r/kI6OVk8cHPy4yrjTxUGfi0NbMe+CFIh1QWz3WDQSQDPvjoHRo6VHf6jRBa4NecRfA1jhPZxwOa+7w1mZVRa8/l2ipRO4C2HGr6HOiLhipHD1LSFKeOXyC/ou3bVN5wU5a9BcDbl9yvadAm3sMIIBPuD+5CKjlPQvC1/vzM/CcsPv3IT1qxs8ANEhpdVcFsEUu0dYJawxeNgDCG3LTOzgb+SiYZseVEFj4J22Hbf7N1c3LnyCAdfuxnNcjCFh+T9cLv2/QmqJRaHJo3h0g43pTNvNJ45T+/gTYS6ks
+sidebar_class_name: "patch api-method"
+info_path: connect/reference/automation-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update workflow instance status"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/api/v1/accounts/{accountId}/definitions/{definitionId}/workflows/{workflowId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Use this resource to control the state of a workflow instance. For example, you can suspend a workflow to be resumed later or terminate a workflow due to an error.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountId","in":"path","description":"Account id","required":true,"schema":{"type":"string","example":"test_account_id"}},{"name":"definitionId","in":"path","description":"Workflow definition id.","required":true,"schema":{"type":"string","example":"5870442f-3ddd-4657-b74c-6e17308f5230"}},{"name":"workflowId","in":"path","description":"Workflow instance id.","required":true,"schema":{"type":"string","example":"60dbe307fe55d99fc083db61"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["suspend","resume","terminate"],"description":"List of commands available. Supported commands are\n  * suspend (suspends a workflow that is currently in progress)\n  * resume (resumes a currently suspended workflow)\n  * terminate (terminates the workflow. A terminated workflow cannot be resumed)"}}},"example":{"status":"suspend"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Workflow status successfully updated."},"400":{"description":"Request is invalid.","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1000,"message":"Invalid definition id.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}},"404":{"description":"Workflow instance or definition is not found.","content":{"application/json":{"schema":{"type":"object","description":"Error response.","properties":{"code":{"type":"integer","description":"Error code."},"message":{"type":"string","description":"Description of the error."},"errorId":{"type":"string","description":"Unique error id."},"timestamp":{"type":"string","description":"Timestamp when the error occurred."}},"required":["code","message","errorId","timestamp"],"title":"error"},"examples":{"error":{"value":{"code":1300,"message":"Definition 2aa9465e-dec7-4c3e-8fa6-bd168af9eaca not found.","errorId":"2558ff83-c8db-4890-805e-ad64001857a1","timestamp":"2021-07-13T01:28:37.66Z"}}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

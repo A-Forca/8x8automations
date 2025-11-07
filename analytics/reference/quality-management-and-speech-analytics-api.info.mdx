@@ -1,0 +1,150 @@
+---
+id: quality-management-and-speech-analytics-api
+title: "Quality Management and Speech Analytics API"
+description: "The Quality Management and Speech Analytics (QMSA) API enables you to access raw resources such as interaction metadata, evaluation results, and users."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.21"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Quality Management and Speech Analytics API"}
+>
+</Heading>
+
+<ApiLogo
+  logo={{"url":"https://www.8x8.com/wp-content/uploads/2016/06/8x8-Logo-Tagline-bottom.png"}}
+  darkLogo={undefined}
+>
+  
+</ApiLogo>
+
+The Quality Management and Speech Analytics (QMSA) API enables you to access raw resources such as interaction metadata, evaluation results, and users.
+## **Authentication**
+You can try out this API through request authentication using your client credentials. Refer to [Client Credentials](https://8x8gateway-8x8apis.apigee.io/getting-started#client-credentials) on the [Getting Started](https://8x8gateway-8x8apis.apigee.io/getting-started) page for more information.
+All requests must be made over HTTPS - calls made over HTTP will fail.
+## **Regions**
+The API resources are available distinctly for each geographical region in which the customer is located or provisioned. The base URLs for regions are as follows:
+<table> <tr> <td><b>URL</b></td> <td><b>Region</b></td> </tr> <tr> <td><b><a href='https://api.8x8.com/qm/us-west/v1'>https://api.8x8.com/qm/us-west/v1</a></b></td><td>Western US</td></tr><tr> <td><b><a href='https://api.8x8.com/qm/us-east/v1'>https://api.8x8.com/qm/us-east/v1</a></b></td><td>Eastern US</td></tr><tr> <td><b><a href='https://api.8x8.com/qm/uk/v1'>https://api.8x8.com/qm/uk/v1</a></b></td><td>United Kingdom</td></tr><tr> <td><b><a href='https://api.8x8.com/qm/ap/v1'>https://api.8x8.com/qm/ap/v1</a></b></td><td>Australia</td> </tr> <tr> <td><b><a href='https://api.8x8.com/qm/ca/v1'>https://api.8x8.com/qm/ca/v1</a></b></td><td>Canada</td> </tr> </table>
+
+## **Headers**
+With every API call, the header should contain the **`pbx`** name from which the data is to be derived.
+The header key is **`pbx`**.
+## **Resource IDs**
+The QMSA API uses short non-sequential unique **`ids`**. Every resource **`id`** **must** consist of URL friendly characters such as:
+* Uppercase or lowercase letters of the alphabet (**`A-Z`** or **`a-z`**)
+* Numbers (**`0-9`**)
+* Underscores (**`_`**) or hyphens (**`-`**)
+The QMSA API uses the following resoruce **`ids`**:
+* **`userReference`** (e.g., `283`) - The unique identifier of the system registered user.
+
+* **`interactionGuid`** (e.g.,`int-15bd0b19d21-KKx2fSQPPTD3DRpOS8UfhmgALh-phone-03-sample`) - The interaction object's globally unique identifier for a single interaction.
+* **`customField`** (e.g., `customField1`) - One of 25 custom field identifiers.
+* **`evaluationId`** (e.g., `45`) - The unique identifier for a system evaluation.
+## **Representation of Date and Time**
+All exchange of date and time-related data **must** be completed according to the ISO 8601 standard and stored in UTC. When returning date and time-related data **`YYYY-MM-DDThh:mm:ss`** format **must** be used.
+
+## **Payload Media Type**
+Where applicable the QMSA API requires the use pf the JSON media-type. Requests that contain a message-body use plain JSON to set or update resource states. `Content-type: application/json` and `Accept: application/json` headers **must** be set on all requests if not stated otherwise.
+
+## **Ordering**
+By default, all resources returned in collections are ordered by their creation time in ascending order.
+## **Pagination**
+The QMSA API uses URI query pagination to retrieve resource collections. When a resource collection is obtained, the method used to obtain the total count of the type resourced is also returned. The pages **must** be zero (0) based, and the page size **must** be a value between 1 and 100. The default value is 100. The answer can contain links to the either the **`nextPage`** or **`previousPage`**.
+## **HATEOAS**
+The QMSA API uses the Spring HATEOAS model for retrieving links to related resources within responses.
+## **Filtering**
+The QMSA API is designed with limited filtering capiblities. The filtering that is available in each method is possible only for important key/value pairs. More information on what is avaiable for filtering can be found with each method description.
+## **Error response**
+The QMSA API returns both machine-readable error codes and human-readable error messages in the response body when an error occurs.
+## **Versioning**
+This API uses URI versioning. Subsequent versions may introduce breaking changes.
+## **Example**
+Second version of method: `https://api.8x8.com/qm/us-west/V2/method`
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                access_token
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    QM/SA Team: [qm-team@8x8.com](mailto:qm-team@8x8.com)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://www.8x8.com/terms-and-conditions"}
+  >
+    {'https://www.8x8.com/terms-and-conditions'}
+  </a>
+</div>
+      

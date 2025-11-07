@@ -1,0 +1,71 @@
+---
+id: get-voice-profile-information
+title: "Get speech profiles for your account"
+description: "Get speech profiles for your account"
+sidebar_label: "Get speech profiles for your account"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVm1vGzcM/isEMWytcWcnawtk92GYu3ZF0LUrmnbAlnirrKN9au+ki0Q5cY377wN1tuM4ztZ+2yf7JL6ID8mHXCGrecDiHH93RhO88W5maoLxm1OcZOha8oqNs6clFjgnhkUSa9dixs6cb5IEZtgqrxpi8mJwhVY1hAWGOB1r7aLl0xIzNBYLbBVXmGFJQXvTJvUC/3ARmhgYPLW10gSrXdUOrgxXwBVBiFPVH5sSuFIMSxfhSlkGdhADDeHpEkqaqVgzcGUCmABzshIMleCspqRSqQWBdk1bk5yL7T4+Z6dO+dLY+RAz9HQZjacSC/aRMgy6okZhscJGXf9Kds4VFk+OMmyM3Xw+EjiYyUtkf52P8z9V/vko/+HiIh/+/e1k9Sh7ctR9gxnysk0osTd2jl03EX+hdTZQEBffHx3Jz22o3tJlpMAQotZEJQmw2lkmyyKs2rY2OqVl9DGIxmrn0WuPbvqRNEvavKSZTe8vtES6WtdB2JFX3qulJJCpCV9p52dX0o7KOtj9AnhXEURrLqMkpSSYOd/nO5naFN0Quwxrp9XXmO3lv9Dss131r7C+c/FvTuZkS/JfZrmXBTfbKc4bW13XZRhYcQx7UBjLNCeP2/tXFIKaH0BLTNC1kh44lP7zg5lEsvn7s/yMlS2VL/Mx3k5Jf48HAcXndl6bUKX7DRb4C3bZYVelyp+9zF+rj2rfSbq5x8kzZU2o9jxMuh6yx0fHd3tq/OYUPtESrGOYuWhLcB6MXajalJiUHh1qxOCi15S0lNYUgpnW1Ms//g/55EVEnxzq8TPyC/JA3jufsnT7+gXxXnGFVHRLFz2s6REzbIgrtybvRNFCTjhSrRktjkc3TBpGt9l21NvON7Yxw5Ae1NdE9DUWWDG3oRiNUl0OT65Phto1KBQWSEdveJmEVWtekvyd7F6dCSH1XLER2NamGMY10cr3lJQnf6dDBnByfQJnr85kXiX4Ww6gLAwG42QSniZFeOc+kR0MQEWuyPKaG6EHZ3hhL+wAZPxoZbdzAoBFK8DMu6aHVcfAriEPrfOsaoDzDQLaWUuaNxiMJg/uu3l4482SDB0Hxuo6lpRafObq2l0ZO4eKlLS+sb1v31N+KODDOHLlvPmcgig2Ma56FLsP4uBHGAxeO6bBoIC363Eq5j9spSAdVq4WJ9vRKg1wMyhT5HK8F/jwwuZ5fmFPZ9sxar9j0J6S2m4JwpI4g7YmFQjmTsKVnF3RNBimewG8F7+HYiGYuYXYDi9sagzZQlLxGBYSW68yssJkKBXbF8vx8OhOAW0loXQ6NmR5s8vINFU6TdP1HiPPPrUas73i161SYVv8GVKjjNyn8zzEVjD7adscGTL5Jvw2k/42mu6zNArzUZLMlS1z7Wxp5GlhJCZaF7hRdud1X0gH5cHRxnTNo7ZWxorxFN5qTRXn0pyC47H04w1dYIbF3ma3zxiTDCsXWGysVlMV6L2vu06OLyP5xAcZLpQ3ShhTiKI0Qf6XWMxUHejOc7crDj54u97JHsL/dm08CO5mmbKySi1UHeULM/wk/Hd7V+4mXYY9CyR0epFxYrkd5TvLnpDslvZfPH+HXfcP/bIh2Q==
+sidebar_class_name: "get api-method"
+info_path: connect/reference/voice-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get speech profiles for your account"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v1/subaccounts/{subAccountId}/speech-profiles"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get speech profiles for your account
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"subAccountId","in":"path","description":"You must replace {subAccountId} with the subaccountid that you want to use. By default this is generated once you have completed the voice onboarding.","required":true,"schema":{"maxLength":50,"minLength":3,"pattern":"^[A-Za-z0-9\\-._&]{3,50}$","type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Request succeeded","content":{"application/json":{"schema":{"type":"object","properties":{"speechProfiles":{"type":"array","items":{"type":"object","properties":{"speechProfileCode":{"type":"string","description":"The unique code for the speech profile."},"localeCode":{"type":"string","description":"The locale code for the speech profile."},"localeDescription":{"type":"string","description":"The locale description for the speech profile."},"gender":{"type":"string","description":"The gender of the voice profile."}}}},"statusCode":{"type":"integer"},"statusMessage":{"type":"string"}},"example":{"speechProfiles":[{"speechProfileCode":"en-US-Standard-A","localeCode":"en-US","localeDescription":"EnglishUS","gender":"F"},{"speechProfileCode":"da-DK-Naja","localeCode":"da-DK","localeDescription":"Danish","gender":"F"}]}}}}},"401":{"description":"API key not found or invalid"},"403":{"description":"Resource not accessible"},"404":{"description":"Resource not found"},"500":{"description":"Server error"}}}
+>
+  
+</StatusCodes>
+
+
+      

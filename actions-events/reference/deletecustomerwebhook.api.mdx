@@ -1,0 +1,71 @@
+---
+id: deletecustomerwebhook
+title: "Deletes a webhook by ID"
+description: "Updates a customer webhook details from the provided parameters by ID"
+sidebar_label: "Deletes a webhook by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJztl01v2zgQhv8KMacWUKKkzS4C3YzEBYztwcgHtkDgw1gaR2wpUiWHaryG/vti9BHHtTfbFnta+GSbmhkOXz6k9W6A8TFA9gB/0rJ07ou6cpa9M4Y8LBIoKORe16ydhQzu6wKZgkKVx8CuIq++DWkFMWoT1Mq7SnFJqvau0QUVqkaPFTH5oJZrNbuGBFxNHqXmrIAMCjLENFYcCkIC20TIHjZgsSLIYHg+KyABLU3VyCUk4Olr1J4KyNhHSiDkJVUI2QZ4XUuitkyP5CGBlfMVcj/0+wW07ULSQ+1soCAZ784u5GN38aNAIeY5hbCKxqxV37v0kjvLZFnysK6NzrsFpp+DJG/22wnstX2Etm3bBC7OzvYnnNkGjS6eJe6k+9lp3PIz5SxqelGddb9C1hUFxqre7+iFPrLbJxIKbTJEvRIdvZa4wMgx/Kvw7991RTWbA1VbIU+AOvhI28Bo8x/qJjcuFpeHBMGi0KIdmvmuNDtxsjs5xkAHHu2J+oszbHWAq67dqffO3wxEzr1bGqquez1GXs73ebm3GLl0Xv/1S0AeSfl/kvLKVWYdq5WL9ojLEZcel98O/xExeYtGBfINeUVS5YjMEZkBmff7yNySb3ROKlpsUBtcGlLI3Yth5SqB5ojPEZ8uviIu3dYHdC/+XEIGaXOeWsd6NZAR0uFNON08m4AWEuhvpd4kRG8gg5K5DlmaYq1PL58uT3NXpSt8wlrD95Zm7l0Rc/mhrkwMTF59dP18IL4gUB695vWt0NiveVLrP2g9idLkswLYDUIy2pRPJ5P57KQf6mxKSViQ7zZB25Xrye2V+oBPCsVVjafmzQfE27dqMp/t9XtX6qB06E6SREmQ+lbqvBwdV1DYGRTFboj6rnptkIUttSLk6CmoRqO6md7eSbFTSEDk7Kc7Pz3r4HCBK+yO5bC+626zpOxoT0Zzt9PvZnvK/zP3OCjO9MRpbVBb6bDb+M2AzgM057IVL+GBBLbWMtu6yEUCpQssSZvNEgPde9O2Mvw1kl9D9rBIoEGv5Q7rGCt0kO8FZCs0gV5Z8ZubwZS+Vf/U94iPFVAaNFF+QQJfaL1jdttFm4wMSRP980meU80vMvcuUmH4+YRdTz9O76bQtn8Dm5KGEg==
+sidebar_class_name: "delete api-method"
+info_path: actions-events/reference/fax-as-a-service-faas-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes a webhook by ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/v1/notifications/webhook/{webhookId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Updates a customer webhook details from the provided parameters by ID
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"webhookId","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"Webhook successfully deleted","content":{"application/json":{"schema":{"type":"string"}}}},"400":{"description":"Invalid webhook ID","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"401":{"description":"Unauthorized","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"404":{"description":"Webhook not found","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"500":{"description":"Internal server error","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}},"503":{"description":"Service unavailable at the moment","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"date-time"},"type":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"cloud8":{"type":"object","additionalProperties":{"type":"object"}},"cause":{"type":"object"},"properties":{"type":"object","additionalProperties":{"type":"object"}}},"title":"Cloud8ErrorResponseProblemDetail"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
