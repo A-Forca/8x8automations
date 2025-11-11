@@ -4,6 +4,62 @@ const { listExistingRows, appendRows } = require('./googleSheets');
 const DEFAULT_AGENT_FILTER = ['Dayna Pierre', 'Kizzy Abraham'];
 const EASTERN_TZ = 'America/New_York';
 const MAX_REASONABLE_CALL_SECONDS = 24 * 60 * 60; // 24 hours
+const PHONE_KEY_PATTERN = /(phone|customer|caller|callee|ani|address|number|dnis|destination|remote|contact|party)/i;
+const PHONE_TAG_KEYS = [
+  'customerPhone',
+  'customer',
+  'customerNumber',
+  'caller',
+  'callerId',
+  'callerNumber',
+  'callee',
+  'calleeNumber',
+  'calledNumber',
+  'destination',
+  'destinationNumber',
+  'dnis',
+  'ani',
+  'address',
+  'phone',
+  'phoneNumber',
+  'remoteNumber',
+  'otherParty',
+  'otherNumber',
+];
+const PHONE_FIELD_PATHS = [
+  'customer',
+  'customerPhone',
+  'customerNumber',
+  'customerInfo.phone',
+  'customerInfo.number',
+  'caller',
+  'callerId',
+  'callerNumber',
+  'callerPhone',
+  'caller.phone',
+  'caller.number',
+  'callee',
+  'calleeId',
+  'calleeNumber',
+  'calleePhone',
+  'calledNumber',
+  'destination',
+  'destinationNumber',
+  'destinationPhone',
+  'dnis',
+  'ani',
+  'aniNumber',
+  'address',
+  'phone',
+  'phoneNumber',
+  'remoteNumber',
+  'remoteParty',
+  'remoteParty.number',
+  'contactNumber',
+  'contact.phone',
+  'otherParty',
+  'otherPartyNumber',
+];
 const easternFormatter = new Intl.DateTimeFormat('en-US', {
   timeZone: EASTERN_TZ,
   year: 'numeric',
@@ -56,39 +112,22 @@ function extractAgentName(recording) {
 }
 
 function extractCustomerPhone(recording) {
-  return (
-    getTagValue(recording, [
-      'customerPhone',
-      'customer',
-      'callerId',
-      'ani',
-      'address',
-      'phone',
-      'phoneNumber',
-      'calledNumber',
-      'calleeNumber',
-      'destination',
-    ]) ||
-    pickField(recording, [
-      'customerPhone',
-      'customer',
-      'callerId',
-      'phone',
-      'phoneNumber',
-      'calledNumber',
-      'calleeNumber',
-      'destination',
-      'metadata.callerId',
-      'metadata.customerPhone',
-      'metadata.phoneNumber',
-      'metadata.address',
-      'metadata.calledNumber',
-      'metadata.calleeNumber',
-      'metadata.destination',
-    ]) ||
-    String(recording?.address || recording?.phoneNumber || recording?.destination || '').trim() ||
-    null
+  const normalizedFromTags = normalizePhoneString(getTagValue(recording, PHONE_TAG_KEYS));
+  if (normalizedFromTags) return normalizedFromTags;
+
+  for (const path of PHONE_FIELD_PATHS) {
+    const paths = path.startsWith('metadata.') ? [path] : [path, `metadata.${path}`];
+    const direct = pickField(recording, paths);
+    const normalized = normalizePhoneString(direct);
+    if (normalized) return normalized;
+  }
+
+  const fallback = normalizePhoneString(
+    String(recording?.address || recording?.phoneNumber || recording?.destination || '').trim()
   );
+  if (fallback) return fallback;
+
+  return findPhoneByKey(recording);
 }
 
 function extractRecordingIdFromLink(link) {
@@ -117,6 +156,42 @@ function formatTimestampToEastern(source) {
   }, {});
   if (!parts.year || !parts.month || !parts.day) return '';
   return `${parts.year}-${parts.month}-${parts.day} ${parts.hour || '00'}:${parts.minute || '00'}:${parts.second || '00'}`;
+}
+
+function normalizePhoneString(value) {
+  if (value === undefined || value === null) return null;
+  const str = String(value).trim();
+  if (!str) return null;
+  const broadMatch = str.match(/(\+?\d[\d\s().-]{6,}\d)/);
+  const candidate = broadMatch ? broadMatch[1] : str;
+  const digitsOnly = candidate.replace(/[^\d]/g, '');
+  if (digitsOnly.length < 7) return null;
+  const hasPlus = candidate.trim().startsWith('+');
+  return hasPlus ? `+${digitsOnly}` : digitsOnly;
+}
+
+function findPhoneByKey(source, depth = 0) {
+  if (!source || depth > 5) return null;
+  if (Array.isArray(source)) {
+    for (const item of source) {
+      const nested = findPhoneByKey(item, depth + 1);
+      if (nested) return nested;
+    }
+    return null;
+  }
+  if (typeof source === 'object') {
+    for (const [key, value] of Object.entries(source)) {
+      if (PHONE_KEY_PATTERN.test(key) && typeof value !== 'object') {
+        const normalized = normalizePhoneString(value);
+        if (normalized) return normalized;
+      }
+      if (value && typeof value === 'object') {
+        const nested = findPhoneByKey(value, depth + 1);
+        if (nested) return nested;
+      }
+    }
+  }
+  return null;
 }
 
 function parseClockDuration(value) {
