@@ -63,3 +63,6 @@ Thumbs.db
 
 # Fly.io
 .fly/
+
+# Local service account credentials
+service-account.json
