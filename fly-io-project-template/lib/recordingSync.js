@@ -367,6 +367,8 @@ async function syncRecordings(options = {}) {
     if (parsedId) existingIds.add(parsedId);
   });
 
+  logger.info(`[recording-sync] loaded ${existingIds.size} existing recording IDs from sheet`);
+
   const { recordings, region, token } = await fetchAllRecordings({
     clientId,
     clientSecret,
@@ -377,19 +379,38 @@ async function syncRecordings(options = {}) {
     region: process.env.EIGHT_BY_EIGHT_REGION,
   });
 
+  logger.info(`[recording-sync] fetched ${recordings.length} recordings from API`);
+
   const rowsToAppend = [];
   let considered = 0;
+  let skippedOldRecordings = 0;
+  let skippedWrongAgent = 0;
+  let skippedDuplicates = 0;
 
   for (const recording of recordings) {
     if (!recording?.id) continue;
-    if (isOlderThanLookback(recording, lookbackThreshold)) continue;
+    
+    if (isOlderThanLookback(recording, lookbackThreshold)) {
+      skippedOldRecordings += 1;
+      continue;
+    }
 
     const rawAgentName = extractAgentName(recording);
-    if (!rawAgentName) continue;
+    if (!rawAgentName) {
+      skippedWrongAgent += 1;
+      continue;
+    }
     const agentName = rawAgentName.trim();
-    if (!agentName) continue;
+    if (!agentName) {
+      skippedWrongAgent += 1;
+      continue;
+    }
     const normalizedAgent = normalize(agentName);
-    if (!agentFilter.has(normalizedAgent)) continue;
+    if (!agentFilter.has(normalizedAgent)) {
+      skippedWrongAgent += 1;
+      logger.debug(`[recording-sync] skipped agent="${agentName}" id=${recording.id}`);
+      continue;
+    }
 
     considered += 1;
     const customerPhone = (extractCustomerPhone(recording) || '').trim();
@@ -416,9 +437,15 @@ async function syncRecordings(options = {}) {
         error: presignErr.message,
       });
     }
-    if (existingIds.has(recording.id)) continue;
+    if (existingIds.has(recording.id)) {
+      skippedDuplicates += 1;
+      logger.debug(`[recording-sync] skipped duplicate id=${recording.id} agent="${agentName}" phone=${customerPhone}`);
+      continue;
+    }
     existingIds.add(recording.id);
 
+    logger.info(`[recording-sync] ✓ appending: agent="${agentName}" phone=${customerPhone} time=${callTimeEst} duration=${durationFormatted} id=${recording.id}`);
+    
     rowsToAppend.push([
       agentName,
       customerPhone,
@@ -429,12 +456,22 @@ async function syncRecordings(options = {}) {
     ]);
   }
 
+  logger.info(
+    `[recording-sync] filter summary: total=${recordings.length} ` +
+    `skipped_old=${skippedOldRecordings} skipped_wrong_agent=${skippedWrongAgent} ` +
+    `skipped_duplicate=${skippedDuplicates} matched=${considered} new=${rowsToAppend.length}`
+  );
+
   if (rowsToAppend.length > 0) {
+    logger.info(`[recording-sync] appending ${rowsToAppend.length} new rows to sheet...`);
     await appendRows(rowsToAppend);
+    logger.info(`[recording-sync] ✓ successfully appended ${rowsToAppend.length} rows`);
+  } else {
+    logger.info('[recording-sync] no new recordings to append');
   }
 
   logger.info(
-    `[recording-sync] fetched=${recordings.length} matched=${considered} appended=${rowsToAppend.length} lookback=${lookbackMinutes}m`
+    `[recording-sync] COMPLETE: fetched=${recordings.length} matched=${considered} appended=${rowsToAppend.length} lookback=${lookbackMinutes}m`
   );
 
   return {
