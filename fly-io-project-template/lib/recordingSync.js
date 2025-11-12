@@ -12,6 +12,8 @@ const DEFAULT_AGENT_FILTER = [
   'Jade Beharry',
   'Esther Francois',
   'Mauricia Springer',
+  'Shanice Seetan',
+  'Sinead Lutchman',
 ];
 const EASTERN_TZ = 'America/New_York';
 const MAX_REASONABLE_CALL_SECONDS = 24 * 60 * 60; // 24 hours
