@@ -46,7 +46,7 @@ function getSheetConfig() {
   return {
     spreadsheetId,
     sheetName,
-    valueRange: `${sheetName}!A:F`,
+    valueRange: `${sheetName}!A:H`,
   };
 }
 
@@ -76,8 +76,53 @@ async function appendRows(rows) {
   });
 }
 
+async function updateCell(rowIndex, columnIndex, value) {
+  const sheets = await getSheetsClient();
+  const { spreadsheetId, sheetName } = getSheetConfig();
+  // Convert 0-based column index to letter (A=0, B=1, etc.)
+  const columnLetter = String.fromCharCode(65 + columnIndex); // A=65
+  const range = `${sheetName}!${columnLetter}${rowIndex + 1}`; // +1 because sheets are 1-indexed
+  
+  await sheets.spreadsheets.values.update({
+    spreadsheetId,
+    range,
+    valueInputOption: 'RAW',
+    requestBody: {
+      values: [[value]],
+    },
+  });
+}
+
+async function updateCells(updates) {
+  // updates is an array of {rowIndex, columnIndex, value}
+  if (!Array.isArray(updates) || updates.length === 0) return;
+  
+  const sheets = await getSheetsClient();
+  const { spreadsheetId, sheetName } = getSheetConfig();
+  
+  // Group updates by column for batch updates
+  const data = updates.map(({ rowIndex, columnIndex, value }) => {
+    const columnLetter = String.fromCharCode(65 + columnIndex);
+    const range = `${sheetName}!${columnLetter}${rowIndex + 1}`;
+    return {
+      range,
+      values: [[value]],
+    };
+  });
+  
+  await sheets.spreadsheets.values.batchUpdate({
+    spreadsheetId,
+    requestBody: {
+      valueInputOption: 'RAW',
+      data,
+    },
+  });
+}
+
 module.exports = {
   getSheetConfig,
   listExistingRows,
   appendRows,
+  updateCell,
+  updateCells,
 };

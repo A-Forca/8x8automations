@@ -300,6 +300,81 @@ app.get(
   }
 );
 
+app.post(
+  '/recordings/test-transcription',
+  requireSharedSecret,
+  asyncHandler(async (req, res) => {
+    const { transcribeRecording } = require('./lib/transcription');
+    const { summarizeCall } = require('./lib/summarization');
+    const { listExistingRows } = require('./lib/googleSheets');
+    
+    const { audioUrl, rowIndex, testSummary } = req.body || {};
+    
+    let recordingUrl = audioUrl;
+    let recordingId = 'test';
+    let existingTranscription = null;
+    
+    // If no URL provided, get first row from sheet
+    if (!recordingUrl) {
+      const rows = await listExistingRows();
+      const targetRowIndex = Number.isFinite(Number(rowIndex)) ? Number(rowIndex) : 1;
+      
+      if (rows.length <= targetRowIndex) {
+        return res.status(400).json({ error: `Row index ${targetRowIndex} not found. Sheet has ${rows.length} rows.` });
+      }
+      
+      const row = rows[targetRowIndex];
+      recordingUrl = row?.[2]; // Column C (index 2) is the recording URL
+      recordingId = row?.[5] || `row-${targetRowIndex}`; // Column F (index 5) is the recording ID
+      existingTranscription = row?.[6]; // Column G (index 6) is the transcription
+      
+      if (!recordingUrl) {
+        return res.status(400).json({ error: 'No recording URL found in the specified row (column C).' });
+      }
+    }
+    
+    console.log(`[test-transcription] Testing transcription for: ${recordingId}`);
+    console.log(`[test-transcription] URL: ${recordingUrl}`);
+    
+    try {
+      let transcription = existingTranscription;
+      if (!transcription || testSummary) {
+        // Transcribe if we don't have it or if testing summary
+        transcription = await transcribeRecording(recordingUrl, {
+          logger: console,
+          recordingId,
+        });
+      }
+      
+      let summary = null;
+      if (testSummary && transcription) {
+        console.log(`[test-summarization] Testing summarization for: ${recordingId}`);
+        summary = await summarizeCall(transcription, {
+          logger: console,
+          recordingId,
+        });
+      }
+      
+      return res.json({
+        ok: true,
+        recordingId,
+        transcription,
+        transcriptionLength: transcription?.length || 0,
+        summary,
+        summaryLength: summary?.length || 0,
+      });
+    } catch (err) {
+      console.error('[test-transcription] Failed:', err.message);
+      return res.status(500).json({
+        ok: false,
+        error: err.message,
+        status: err.status,
+        details: err.details,
+      });
+    }
+  })
+);
+
 // --- Trello helpers (optional) ---
 function getBoardsConfig() {
   try {

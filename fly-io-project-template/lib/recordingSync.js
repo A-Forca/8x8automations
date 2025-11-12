@@ -1,7 +1,18 @@
 const { fetchAllRecordings, buildRecordingDownloadUrl, getPresignedRecordingUrl } = require('./recordings');
 const { listExistingRows, appendRows } = require('./googleSheets');
+const { transcribeRecording, TranscriptionError } = require('./transcription');
+const { summarizeCall, SummarizationError } = require('./summarization');
 
-const DEFAULT_AGENT_FILTER = ['Dayna Pierre', 'Kizzy Abraham'];
+const DEFAULT_AGENT_FILTER = [
+  'Dayna Pierre',
+  'Kizzy Abraham',
+  'Shirnelle Alexander',
+  'Samuel Conliffe',
+  'Kimlyn Laurie-Charles',
+  'Jade Beharry',
+  'Esther Francois',
+  'Mauricia Springer',
+];
 const EASTERN_TZ = 'America/New_York';
 const MAX_REASONABLE_CALL_SECONDS = 24 * 60 * 60; // 24 hours
 const PHONE_KEY_PATTERN = /(phone|customer|caller|callee|ani|address|number|dnis|destination|remote|contact|party)/i;
@@ -386,6 +397,10 @@ async function syncRecordings(options = {}) {
   let skippedOldRecordings = 0;
   let skippedWrongAgent = 0;
   let skippedDuplicates = 0;
+  let transcriptionsSucceeded = 0;
+  let transcriptionsFailed = 0;
+  let summariesSucceeded = 0;
+  let summariesFailed = 0;
 
   for (const recording of recordings) {
     if (!recording?.id) continue;
@@ -444,7 +459,47 @@ async function syncRecordings(options = {}) {
     }
     existingIds.add(recording.id);
 
-    logger.info(`[recording-sync] ✓ appending: agent="${agentName}" phone=${customerPhone} time=${callTimeEst} duration=${durationFormatted} id=${recording.id}`);
+    logger.info(`[recording-sync] ✓ processing: agent="${agentName}" phone=${customerPhone} time=${callTimeEst} duration=${durationFormatted} id=${recording.id}`);
+    
+    // Transcribe the recording
+    let transcription = '';
+    const transcriptionEnabled = String(process.env.ENABLE_TRANSCRIPTION || 'true').toLowerCase() === 'true';
+    if (transcriptionEnabled) {
+      try {
+        transcription = await transcribeRecording(publicUrl, {
+          logger,
+          recordingId: recording.id,
+        });
+        transcriptionsSucceeded += 1;
+        logger.info(`[recording-sync] ✓ transcription complete for ${recording.id}`);
+      } catch (transErr) {
+        transcriptionsFailed += 1;
+        logger.warn(`[recording-sync] transcription failed for ${recording.id}, continuing without transcription`, {
+          error: transErr.message,
+        });
+        transcription = ''; // Leave empty if transcription fails
+      }
+    }
+    
+    // Summarize the call using xAI
+    let summary = '';
+    const summarizationEnabled = String(process.env.ENABLE_SUMMARIZATION || 'true').toLowerCase() === 'true';
+    if (summarizationEnabled && transcription) {
+      try {
+        summary = await summarizeCall(transcription, {
+          logger,
+          recordingId: recording.id,
+        });
+        summariesSucceeded += 1;
+        logger.info(`[recording-sync] ✓ summary complete for ${recording.id}`);
+      } catch (sumErr) {
+        summariesFailed += 1;
+        logger.warn(`[recording-sync] summarization failed for ${recording.id}, continuing without summary`, {
+          error: sumErr.message,
+        });
+        summary = ''; // Leave empty if summarization fails
+      }
+    }
     
     rowsToAppend.push([
       agentName,
@@ -453,13 +508,17 @@ async function syncRecordings(options = {}) {
       callTimeEst,
       durationFormatted,
       String(recording.id),
+      transcription,
+      summary,
     ]);
   }
 
   logger.info(
     `[recording-sync] filter summary: total=${recordings.length} ` +
     `skipped_old=${skippedOldRecordings} skipped_wrong_agent=${skippedWrongAgent} ` +
-    `skipped_duplicate=${skippedDuplicates} matched=${considered} new=${rowsToAppend.length}`
+    `skipped_duplicate=${skippedDuplicates} matched=${considered} new=${rowsToAppend.length} ` +
+    `transcriptions_succeeded=${transcriptionsSucceeded} transcriptions_failed=${transcriptionsFailed} ` +
+    `summaries_succeeded=${summariesSucceeded} summaries_failed=${summariesFailed}`
   );
 
   if (rowsToAppend.length > 0) {
