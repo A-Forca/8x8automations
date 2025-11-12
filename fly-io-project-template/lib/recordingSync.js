@@ -70,8 +70,6 @@ const easternFormatter = new Intl.DateTimeFormat('en-US', {
   second: '2-digit',
   hour12: false,
 });
-let lastProcessedTimestamp;
-
 function normalize(value) {
   return (value || '').trim().toLowerCase();
 }
@@ -315,27 +313,10 @@ function buildAgentFilter(customAgents) {
   return agentSet;
 }
 
-function shouldSkipByTimestamp(recording) {
-  if (!lastProcessedTimestamp) return false;
-  const ts = toTimestamp(recording?.createdTime);
-  return ts && ts <= lastProcessedTimestamp;
-}
-
 function isOlderThanLookback(recording, lookbackThresholdMs) {
   if (!lookbackThresholdMs) return false;
   const ts = toTimestamp(recording?.createdTime);
   return ts ? ts < lookbackThresholdMs : false;
-}
-
-function updateLastProcessed(recordings) {
-  const newest = recordings.reduce((acc, recording) => {
-    const ts = toTimestamp(recording?.createdTime);
-    if (ts && ts > acc) return ts;
-    return acc;
-  }, lastProcessedTimestamp || 0);
-  if (newest) {
-    lastProcessedTimestamp = newest;
-  }
 }
 
 async function syncRecordings(options = {}) {
@@ -371,9 +352,17 @@ async function syncRecordings(options = {}) {
   const existingRows = await listExistingRows();
   const existingIds = new Set();
   existingRows.forEach((row, index) => {
-    const link = (row?.[2] || '').trim();
-    const headerMatch = String(link).toLowerCase() === 'call recording';
-    if (index === 0 && headerMatch) return;
+    if (!row) return;
+    const headerRow = index === 0;
+    const candidateId = String(row?.[5] || '').trim();
+    if (candidateId && (!headerRow || candidateId.toLowerCase() !== 'recording id')) {
+      existingIds.add(candidateId);
+      return;
+    }
+    const link = String(row?.[2] || '').trim();
+    if (!link) return;
+    const headerLink = headerRow && link.toLowerCase() === 'call recording';
+    if (headerLink) return;
     const parsedId = extractRecordingIdFromLink(link);
     if (parsedId) existingIds.add(parsedId);
   });
@@ -393,7 +382,6 @@ async function syncRecordings(options = {}) {
 
   for (const recording of recordings) {
     if (!recording?.id) continue;
-    if (shouldSkipByTimestamp(recording)) continue;
     if (isOlderThanLookback(recording, lookbackThreshold)) continue;
 
     const rawAgentName = extractAgentName(recording);
@@ -431,14 +419,20 @@ async function syncRecordings(options = {}) {
     if (existingIds.has(recording.id)) continue;
     existingIds.add(recording.id);
 
-    rowsToAppend.push([agentName, customerPhone, publicUrl, callTimeEst, durationFormatted]);
+    rowsToAppend.push([
+      agentName,
+      customerPhone,
+      publicUrl,
+      callTimeEst,
+      durationFormatted,
+      String(recording.id),
+    ]);
   }
 
   if (rowsToAppend.length > 0) {
     await appendRows(rowsToAppend);
   }
 
-  updateLastProcessed(recordings);
   logger.info(
     `[recording-sync] fetched=${recordings.length} matched=${considered} appended=${rowsToAppend.length} lookback=${lookbackMinutes}m`
   );
