@@ -439,7 +439,6 @@ async function syncRecordings(options = {}) {
 
   for (const recording of recordings) {
     if (!recording?.id) continue;
-RECORDING_BACKFILL_MINUTES
     const rawAgentName = extractAgentName(recording);
     if (!rawAgentName) {
       skippedWrongAgent += 1;
