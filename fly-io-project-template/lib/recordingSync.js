@@ -1,7 +1,8 @@
 const { fetchAllRecordings, buildRecordingDownloadUrl, getPresignedRecordingUrl } = require('./recordings');
-const { listExistingRows, appendRows } = require('./googleSheets');
+const { listExistingRows, appendRows, updateCell, updateCells } = require('./googleSheets');
 const { transcribeRecording, TranscriptionError } = require('./transcription');
 const { summarizeCall, SummarizationError } = require('./summarization');
+const { gradeCall } = require('./grading');
 
 const DEFAULT_AGENT_FILTER = [
   'Dayna Pierre',
@@ -18,6 +19,7 @@ const DEFAULT_AGENT_FILTER = [
 ];
 const EASTERN_TZ = 'America/New_York';
 const MAX_REASONABLE_CALL_SECONDS = 24 * 60 * 60; // 24 hours
+const GRADE_COLUMN_INDEX = 8; // column I (0-based index)
 const PHONE_KEY_PATTERN = /(phone|customer|caller|callee|ani|address|number|dnis|destination|remote|contact|party)/i;
 const PHONE_TAG_KEYS = [
   'customerPhone',
@@ -318,6 +320,7 @@ function formatDuration(seconds) {
 }
 
 function buildAgentFilter(customAgents) {
+  if (customAgents === null) return null;
   const source = Array.isArray(customAgents) && customAgents.length > 0 ? customAgents : DEFAULT_AGENT_FILTER;
   const agentSet = new Set();
   source.forEach((agent) => {
@@ -333,14 +336,29 @@ function isOlderThanLookback(recording, lookbackThresholdMs) {
   return ts ? ts < lookbackThresholdMs : false;
 }
 
+async function ensureGradeHeader(existingRows, logger) {
+  const headerRow = existingRows?.[0];
+  if (!Array.isArray(headerRow)) return;
+  const current = String(headerRow[GRADE_COLUMN_INDEX] || '').trim();
+  if (current) return;
+  try {
+    await updateCell(0, GRADE_COLUMN_INDEX, 'Grade');
+    headerRow[GRADE_COLUMN_INDEX] = 'Grade';
+    logger.info('[recording-sync] set Grade header in column I');
+  } catch (err) {
+    logger.warn('[recording-sync] unable to set Grade header in column I', { error: err.message });
+  }
+}
+
 async function syncRecordings(options = {}) {
   const {
     agentNames,
     logger = console,
     discoveryRegion = process.env.EIGHT_BY_EIGHT_DISCOVERY_REGION || 'us-east',
-    maxPages = Number(process.env.RECORDING_MAX_PAGES) || 10,
+    maxPages = Number(process.env.RECORDING_MAX_PAGES) || 1,
     pageSize = Number(process.env.RECORDING_PAGE_SIZE) || 100,
     lookbackMinutes: providedLookbackMinutes,
+    backfillMinutes: providedBackfillMinutes,
   } = options;
 
   const envLookback = Number(process.env.RECORDING_LOOKBACK_MINUTES);
@@ -351,6 +369,14 @@ async function syncRecordings(options = {}) {
       : 60;
   const lookbackThreshold =
     lookbackMinutes > 0 ? Date.now() - lookbackMinutes * 60 * 1000 : null;
+  const envBackfillMinutes = Number(process.env.RECORDING_BACKFILL_MINUTES);
+  const backfillMinutes = Number.isFinite(providedBackfillMinutes)
+    ? providedBackfillMinutes
+    : Number.isFinite(envBackfillMinutes)
+      ? envBackfillMinutes
+      : 60;
+  const backfillThreshold =
+    backfillMinutes > 0 ? Date.now() - backfillMinutes * 60 * 1000 : null;
 
   const clientId = process.env.EIGHT_BY_EIGHT_CLIENT_ID;
   const clientSecret = process.env.EIGHT_BY_EIGHT_CLIENT_SECRET;
@@ -359,18 +385,21 @@ async function syncRecordings(options = {}) {
   }
 
   const agentFilter = buildAgentFilter(agentNames);
-  if (agentFilter.size === 0) {
+  if (agentFilter && agentFilter.size === 0) {
     throw new Error('No agent names configured for recording sync.');
   }
 
   const existingRows = await listExistingRows();
+  await ensureGradeHeader(existingRows, logger);
   const existingIds = new Set();
+  const existingRowById = new Map();
   existingRows.forEach((row, index) => {
     if (!row) return;
     const headerRow = index === 0;
     const candidateId = String(row?.[5] || '').trim();
     if (candidateId && (!headerRow || candidateId.toLowerCase() !== 'recording id')) {
       existingIds.add(candidateId);
+      existingRowById.set(candidateId, { rowIndex: index, row });
       return;
     }
     const link = String(row?.[2] || '').trim();
@@ -404,15 +433,13 @@ async function syncRecordings(options = {}) {
   let transcriptionsFailed = 0;
   let summariesSucceeded = 0;
   let summariesFailed = 0;
+  let gradesSucceeded = 0;
+  let gradesFailed = 0;
+  const updatesToApply = [];
 
   for (const recording of recordings) {
     if (!recording?.id) continue;
-    
-    if (isOlderThanLookback(recording, lookbackThreshold)) {
-      skippedOldRecordings += 1;
-      continue;
-    }
-
+RECORDING_BACKFILL_MINUTES
     const rawAgentName = extractAgentName(recording);
     if (!rawAgentName) {
       skippedWrongAgent += 1;
@@ -424,16 +451,29 @@ async function syncRecordings(options = {}) {
       continue;
     }
     const normalizedAgent = normalize(agentName);
-    if (!agentFilter.has(normalizedAgent)) {
+    if (agentFilter && !agentFilter.has(normalizedAgent)) {
       skippedWrongAgent += 1;
       logger.debug(`[recording-sync] skipped agent="${agentName}" id=${recording.id}`);
       continue;
     }
 
+    const alreadyInSheet = existingIds.has(recording.id);
+    if (!alreadyInSheet && isOlderThanLookback(recording, lookbackThreshold)) {
+      skippedOldRecordings += 1;
+      continue;
+    }
+
     considered += 1;
+    const transcriptionOn = String(process.env.ENABLE_TRANSCRIPTION || 'true').toLowerCase() === 'true';
+    const summarizationOn = String(process.env.ENABLE_SUMMARIZATION || 'true').toLowerCase() === 'true';
+    const gradingOn = String(process.env.ENABLE_GRADING || 'true').toLowerCase() === 'true';
     const customerPhone = (extractCustomerPhone(recording) || '').trim();
-    const callTimestamp = extractCallTimestamp(recording);
-    const callTimeEst = formatTimestampToEastern(callTimestamp);
+    const callTimestampRaw = extractCallTimestamp(recording);
+    const callTimestampMs =
+      toTimestamp(callTimestampRaw) ??
+      toTimestamp(recording?.createdTime) ??
+      null;
+    const callTimeEst = formatTimestampToEastern(callTimestampRaw || recording?.createdTime);
     const durationSeconds = extractDurationSeconds(recording);
     const durationFormatted = formatDuration(durationSeconds);
     const recordingUrl = buildRecordingDownloadUrl({
@@ -455,9 +495,97 @@ async function syncRecordings(options = {}) {
         error: presignErr.message,
       });
     }
-    if (existingIds.has(recording.id)) {
+    if (alreadyInSheet) {
       skippedDuplicates += 1;
-      logger.debug(`[recording-sync] skipped duplicate id=${recording.id} agent="${agentName}" phone=${customerPhone}`);
+      const existing = existingRowById.get(recording.id);
+      const row = existing?.row || [];
+      const rowIndex = existing?.rowIndex;
+      const currentTranscription = String(row?.[6] || '').trim();
+      const currentSummary = String(row?.[7] || '').trim();
+      const currentGrade = String(row?.[8] || '').trim();
+      const needsSummary = summarizationOn && currentTranscription && !currentSummary;
+      const needsGrade = gradingOn && currentTranscription && !currentGrade;
+
+      if (!needsSummary && !needsGrade) {
+        logger.debug(
+          `[recording-sync] skipped duplicate id=${recording.id} agent="${agentName}" phone=${customerPhone}`
+        );
+        continue;
+      }
+
+      if (backfillThreshold && callTimestampMs && callTimestampMs < backfillThreshold) {
+        logger.debug(
+          `[recording-sync] skipped backfill (outside ${backfillMinutes}m window) id=${recording.id}`
+        );
+        continue;
+      }
+
+      let backfillTranscription = currentTranscription;
+      // If no transcription on the row but we want to fill, we can transcribe again
+      if (!backfillTranscription && transcriptionOn) {
+        try {
+          backfillTranscription = await transcribeRecording(publicUrl, {
+            logger,
+            recordingId: recording.id,
+          });
+          transcriptionsSucceeded += 1;
+          logger.info(`[recording-sync] ✓ transcription backfill complete for ${recording.id}`);
+        } catch (transErr) {
+          transcriptionsFailed += 1;
+          logger.warn(
+            `[recording-sync] transcription backfill failed for ${recording.id}, continuing without backfill`,
+            { error: transErr.message }
+          );
+          continue;
+        }
+      }
+
+      let updatedSummary = currentSummary;
+      if (needsSummary && backfillTranscription) {
+        try {
+          updatedSummary = await summarizeCall(backfillTranscription, {
+            logger,
+            recordingId: recording.id,
+          });
+          summariesSucceeded += 1;
+          logger.info(`[recording-sync] ✓ summary backfill complete for ${recording.id}`);
+          updatesToApply.push({
+            rowIndex,
+            columnIndex: 7,
+            value: updatedSummary,
+          });
+        } catch (sumErr) {
+          summariesFailed += 1;
+          logger.warn(
+            `[recording-sync] summarization backfill failed for ${recording.id}, leaving blank`,
+            { error: sumErr.message }
+          );
+        }
+      }
+
+      if (needsGrade && backfillTranscription) {
+        try {
+          const grade = await gradeCall(backfillTranscription, {
+            logger,
+            recordingId: recording.id,
+          });
+          const gradeSynopsis = grade?.synopsis || '';
+          gradesSucceeded += 1;
+          logger.info(`[recording-sync] ✓ grading backfill complete for ${recording.id}`);
+          updatesToApply.push({
+            rowIndex,
+            columnIndex: 8,
+            value: gradeSynopsis,
+          });
+        } catch (gradeErr) {
+          gradesFailed += 1;
+          logger.warn(
+            `[recording-sync] grading backfill failed for ${recording.id}, leaving blank`,
+            { error: gradeErr.message }
+          );
+        }
+      }
+
       continue;
     }
     existingIds.add(recording.id);
@@ -466,8 +594,7 @@ async function syncRecordings(options = {}) {
     
     // Transcribe the recording
     let transcription = '';
-    const transcriptionEnabled = String(process.env.ENABLE_TRANSCRIPTION || 'true').toLowerCase() === 'true';
-    if (transcriptionEnabled) {
+    if (transcriptionOn) {
       try {
         transcription = await transcribeRecording(publicUrl, {
           logger,
@@ -484,10 +611,9 @@ async function syncRecordings(options = {}) {
       }
     }
     
-    // Summarize the call using xAI
+    // Summarize the call using OpenAI
     let summary = '';
-    const summarizationEnabled = String(process.env.ENABLE_SUMMARIZATION || 'true').toLowerCase() === 'true';
-    if (summarizationEnabled && transcription) {
+    if (summarizationOn && transcription) {
       try {
         summary = await summarizeCall(transcription, {
           logger,
@@ -504,6 +630,26 @@ async function syncRecordings(options = {}) {
       }
     }
     
+    // Grade the call using the transcription
+    let gradeSynopsis = '';
+    if (gradingOn && transcription) {
+      try {
+        const grade = await gradeCall(transcription, {
+          logger,
+          recordingId: recording.id,
+        });
+        gradeSynopsis = grade?.synopsis || '';
+        gradesSucceeded += 1;
+        logger.info(`[recording-sync] ✓ grading complete for ${recording.id}`);
+      } catch (gradeErr) {
+        gradesFailed += 1;
+        logger.warn(`[recording-sync] grading failed for ${recording.id}, continuing without grade`, {
+          error: gradeErr.message,
+        });
+        gradeSynopsis = ''; // Leave empty if grading fails
+      }
+    }
+    
     rowsToAppend.push([
       agentName,
       customerPhone,
@@ -513,6 +659,7 @@ async function syncRecordings(options = {}) {
       String(recording.id),
       transcription,
       summary,
+      gradeSynopsis,
     ]);
   }
 
@@ -521,7 +668,8 @@ async function syncRecordings(options = {}) {
     `skipped_old=${skippedOldRecordings} skipped_wrong_agent=${skippedWrongAgent} ` +
     `skipped_duplicate=${skippedDuplicates} matched=${considered} new=${rowsToAppend.length} ` +
     `transcriptions_succeeded=${transcriptionsSucceeded} transcriptions_failed=${transcriptionsFailed} ` +
-    `summaries_succeeded=${summariesSucceeded} summaries_failed=${summariesFailed}`
+    `summaries_succeeded=${summariesSucceeded} summaries_failed=${summariesFailed} ` +
+    `grades_succeeded=${gradesSucceeded} grades_failed=${gradesFailed}`
   );
 
   if (rowsToAppend.length > 0) {
@@ -530,6 +678,12 @@ async function syncRecordings(options = {}) {
     logger.info(`[recording-sync] ✓ successfully appended ${rowsToAppend.length} rows`);
   } else {
     logger.info('[recording-sync] no new recordings to append');
+  }
+
+  if (updatesToApply.length > 0) {
+    logger.info(`[recording-sync] applying ${updatesToApply.length} backfill updates to sheet...`);
+    await updateCells(updatesToApply);
+    logger.info('[recording-sync] ✓ backfill updates applied');
   }
 
   logger.info(

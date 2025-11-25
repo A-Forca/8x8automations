@@ -47,7 +47,12 @@ const toPositiveNumber = (value, fallback) => {
 };
 
 function resolveAgentFilter() {
-  return (process.env.RECORDING_AGENT_FILTER || '')
+  const raw = process.env.RECORDING_AGENT_FILTER;
+  if (raw === undefined || raw === null) return undefined;
+  const trimmed = raw.trim();
+  if (!trimmed) return undefined;
+  if (trimmed === '*' || trimmed.toLowerCase() === 'all') return null;
+  return trimmed
     .split(',')
     .map((name) => name.trim())
     .filter(Boolean);
@@ -68,13 +73,19 @@ function computeLookbackMinutes() {
 
 async function executeSyncRun({ label, lookbackMinutes }) {
   const agents = resolveAgentFilter();
+  const agentNames =
+    agents === null
+      ? null
+      : Array.isArray(agents) && agents.length > 0
+        ? agents
+        : undefined;
   syncStatus.lastRunLabel = label;
   syncStatus.lastRunStartedAt = new Date().toISOString();
   syncStatus.lastRunError = null;
   syncStatus.lastRunResult = null;
   try {
     const result = await syncRecordings({
-      agentNames: agents.length > 0 ? agents : undefined,
+      agentNames,
       lookbackMinutes,
       logger: console,
     });

@@ -46,7 +46,7 @@ function getSheetConfig() {
   return {
     spreadsheetId,
     sheetName,
-    valueRange: `${sheetName}!A:H`,
+    valueRange: `${sheetName}!A:I`,
   };
 }
 
