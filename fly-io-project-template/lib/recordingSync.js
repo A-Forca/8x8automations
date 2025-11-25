@@ -14,6 +14,7 @@ const DEFAULT_AGENT_FILTER = [
   'Mauricia Springer',
   'Shanice Seetan',
   'Sinead Lutchman',
+  'Gerald Rodd',
 ];
 const EASTERN_TZ = 'America/New_York';
 const MAX_REASONABLE_CALL_SECONDS = 24 * 60 * 60; // 24 hours
