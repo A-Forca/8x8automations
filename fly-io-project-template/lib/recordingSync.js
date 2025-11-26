@@ -2,6 +2,7 @@ const { fetchAllRecordings, buildRecordingDownloadUrl, getPresignedRecordingUrl 
 const { transcribeRecording, TranscriptionError } = require('./transcription');
 const { summarizeCall, SummarizationError } = require('./summarization');
 const { gradeCall, parseGradeSynopsis } = require('./grading');
+const { evaluateCallEligibility } = require('./gradingEligibility');
 const { persistCallArtifacts, findCallByRecordingId } = require('./db/recordings');
 
 const DEFAULT_AGENT_FILTER = [
@@ -399,6 +400,7 @@ async function syncRecordings(options = {}) {
   let summariesSucceeded = 0;
   let summariesFailed = 0;
   let gradesSucceeded = 0;
+  let gradesSkipped = 0;
   let gradesFailed = 0;
   let insertedCalls = 0;
   let updatedCalls = 0;
@@ -542,21 +544,50 @@ async function syncRecordings(options = {}) {
       existingCall?.qa_payload ||
       (existingCall?.grade_synopsis ? parseGradeSynopsis(existingCall.grade_synopsis) : null);
 
-    if ((!gradeResult || !Number.isFinite(existingCall?.qa_total_score)) && gradingOn && transcription) {
-      try {
-        gradeResult = await gradeCall(transcription, {
-          logger,
-          recordingId: recording.id,
-        });
-        gradesSucceeded += 1;
-        logger.info(`[recording-sync] ✓ grading complete for ${recording.id}`);
-      } catch (gradeErr) {
-        gradesFailed += 1;
-        logger.warn(
-          `[recording-sync] grading failed for ${recording.id}, continuing without grade`,
-          { error: gradeErr.message }
+    const existingWasSkipped = gradeResult?.status === 'skipped';
+    const needsFreshGrade =
+      gradingOn && transcription && (!gradeResult || (!Number.isFinite(existingCall?.qa_total_score) && !existingWasSkipped));
+
+    if (needsFreshGrade) {
+      const eligibility = evaluateCallEligibility({
+        transcription,
+        durationSeconds,
+        metadata: { recording },
+      });
+
+      if (!eligibility.shouldGrade) {
+        gradesSkipped += 1;
+        const synopsisReason = eligibility.reason || 'eligibility-failed';
+        gradeResult = {
+          status: 'skipped',
+          synopsis: `Skipped (not gradable): ${synopsisReason}`,
+          reason: eligibility.reason,
+          reasons: eligibility.reasons,
+          signals: eligibility.signals,
+          total: null,
+          maxScore: 0,
+          scores: {},
+        };
+        logger.info(
+          `[recording-sync] grading skipped for ${recording.id} (${synopsisReason})`,
+          { reasons: eligibility.reasons, signals: eligibility.signals }
         );
-        gradeResult = gradeResult || null;
+      } else {
+        try {
+          gradeResult = await gradeCall(transcription, {
+            logger,
+            recordingId: recording.id,
+          });
+          gradesSucceeded += 1;
+          logger.info(`[recording-sync] ✓ grading complete for ${recording.id}`);
+        } catch (gradeErr) {
+          gradesFailed += 1;
+          logger.warn(
+            `[recording-sync] grading failed for ${recording.id}, continuing without grade`,
+            { error: gradeErr.message }
+          );
+          gradeResult = gradeResult || null;
+        }
       }
     }
 
@@ -586,7 +617,7 @@ async function syncRecordings(options = {}) {
       `skipped_duplicate=${skippedDuplicates} matched=${considered} inserted=${insertedCalls} updated=${updatedCalls} ` +
       `transcriptions_succeeded=${transcriptionsSucceeded} transcriptions_failed=${transcriptionsFailed} ` +
       `summaries_succeeded=${summariesSucceeded} summaries_failed=${summariesFailed} ` +
-      `grades_succeeded=${gradesSucceeded} grades_failed=${gradesFailed}`
+      `grades_succeeded=${gradesSucceeded} grades_failed=${gradesFailed} grades_skipped=${gradesSkipped}`
   );
 
   logger.info(

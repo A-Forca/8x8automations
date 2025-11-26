@@ -90,6 +90,41 @@ GOOGLE_SHEETS_ID=1DkX2Q6C3asl2ID8kPcRfp7gXQBPRTstTAd-778Q3bj8   # default alread
 > (`https://api.8x8.com/storage/<region>/v3/objects/<id>/content`), which requires a valid 8x8 access token
 > when you actually fetch the audio. This keeps duplicates easy to detect across sync runs.
 
+### QA grading eligibility guard
+
+The sync now skips grading calls that are clearly ungradable (voicemail, sub-8s duration, or transcripts under ~12 words). Configure the heuristics via:
+
+- `GRADING_MIN_DURATION_SECONDS` (default `8`)
+- `GRADING_MIN_TRANSCRIPT_WORDS` (default `12`)
+- `GRADING_VOICEMAIL_PHRASES` (comma-separated phrases, defaults cover common voicemail prompts)
+
+Whenever a call is skipped you’ll see `grades_skipped=...` in the sync summary, and the stored `qa_payload` carries `status: "skipped"` plus the reason so dashboards can surface “voicemail/no-contact” instead of `0/12`.
+
+Run `npm run test:eligibility` to execute the lightweight guard tests.
+
+### Historical backfill & regrade
+
+Use `npm run backfill:calls` to sweep older rows and regenerate any missing artifacts (transcript, summary, QA score). The CLI pulls batches directly from Postgres and reprocesses each call via the same OpenAI + eligibility guard pipeline.
+
+Common flags:
+
+- `--limit 200` / `--offset 200` — page through the `calls` table oldest-first
+- `--only-missing` — restrict to rows missing transcript/summary/grade
+- `--force-regrade` — overwrite existing QA payloads using the new voicemail skip guard
+- `--only-agent "Dayna Pierre"` — focus on a specific rep
+- `--dry-run` — inspect what would change without writing
+
+Example:
+
+```bash
+EIGHT_BY_EIGHT_CLIENT_ID=xxx \
+EIGHT_BY_EIGHT_CLIENT_SECRET=yyy \
+DATABASE_URL=postgres://... \
+npm run backfill:calls -- --limit 500 --only-missing --force-regrade
+```
+
+The script logs per-call actions (`transcribe|summarize|grade`) and exits with a summary, so you can rerun until all historical rows are backfilled. Run `npm run test:backfill` to sanity-check the selector logic before sweeping production data.
+
 ### Run a manual sync (CLI)
 
 After exporting the same env vars you plan to use in Fly, run:

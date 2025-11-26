@@ -13,7 +13,10 @@
     "migrate": "node lib/db/migrate.js",
     "backfill:sheets": "node scripts/backfillSheetsToPg.js",
     "metrics:recompute": "node scripts/recomputeDailyMetrics.js",
-    "insights:generate": "node scripts/generateAgentInsights.js"
+    "insights:generate": "node scripts/generateAgentInsights.js",
+    "test:eligibility": "node lib/gradingEligibility.test.js",
+    "test:backfill": "node lib/db/recordings.test.js",
+    "backfill:calls": "node scripts/backfillCalls.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

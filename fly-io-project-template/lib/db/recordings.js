@@ -192,8 +192,80 @@ async function persistCallArtifacts(payload = {}) {
   });
 }
 
+const DEFAULT_BACKFILL_LIMIT = 50;
+
+function buildBackfillWhereClause(options = {}) {
+  const clauses = [];
+  const params = [];
+
+  if (options.callId) {
+    clauses.push(`c.call_id = $${params.length + 1}`);
+    params.push(String(options.callId).trim());
+  }
+
+  if (options.onlyAgent) {
+    clauses.push(`LOWER(a.full_name) = $${params.length + 1}`);
+    params.push(String(options.onlyAgent).trim().toLowerCase());
+  }
+
+  if (options.onlyMissing) {
+    clauses.push(
+      `(
+        c.transcription IS NULL OR c.transcription = '' OR
+        c.summary IS NULL OR c.summary = '' OR
+        c.qa_payload IS NULL OR
+        c.qa_payload->>'status' = 'skipped' OR
+        c.qa_total_score IS NULL
+      )`
+    );
+  }
+
+  const clause = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : '';
+  return { clause, params };
+}
+
+async function listCallsForBackfill(options = {}) {
+  const { limit = DEFAULT_BACKFILL_LIMIT, offset = 0 } = options;
+  const safeLimit = Number.isFinite(Number(limit)) ? Math.max(1, Number(limit)) : DEFAULT_BACKFILL_LIMIT;
+  const safeOffset = Number.isFinite(Number(offset)) ? Math.max(0, Number(offset)) : 0;
+
+  const { clause, params } = buildBackfillWhereClause(options);
+  const limitParam = `$${params.length + 1}`;
+  const offsetParam = `$${params.length + 2}`;
+
+  const sql = `
+    SELECT
+      c.id,
+      c.call_id,
+      c.agent_id,
+      c.call_timestamp,
+      c.duration_seconds,
+      c.customer_phone,
+      c.recording_url,
+      c.transcription,
+      c.summary,
+      c.qa_total_score,
+      c.qa_max_score,
+      c.qa_payload,
+      c.grade_synopsis,
+      c.raw_payload,
+      a.full_name AS agent_name
+    FROM calls c
+    LEFT JOIN agents a ON a.id = c.agent_id
+    ${clause}
+    ORDER BY c.call_timestamp ASC NULLS FIRST, c.id ASC
+    LIMIT ${limitParam}
+    OFFSET ${offsetParam}
+  `;
+
+  const { rows } = await query(sql, [...params, safeLimit, safeOffset]);
+  return rows;
+}
+
 module.exports = {
   persistCallArtifacts,
   findCallByRecordingId,
+  listCallsForBackfill,
+  buildBackfillWhereClause,
 };
 

@@ -79,6 +79,23 @@ async function fetchRecordings({ token, region, objectType, limit, pageKey }) {
   });
 }
 
+async function fetchRecordingById({ token, region, objectId }) {
+  if (!token) {
+    throw new EightByEightError('Missing access token for recording lookup', 401);
+  }
+  if (!objectId) {
+    throw new EightByEightError('Missing objectId for recording lookup', 400);
+  }
+  const url = `${STORAGE_BASE(region)}/objects/${objectId}`;
+  return fetchJson(url, {
+    label: 'Fetch recording by id',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+    },
+  });
+}
+
 async function startBulkDownload({ token, region, objectIds }) {
   const url = `${STORAGE_BASE(region)}/bulk/download/start`;
   return fetchJson(url, {
@@ -238,6 +255,27 @@ async function fetchAllRecordings({
   };
 }
 
+async function createStorageSession({
+  clientId,
+  clientSecret,
+  region,
+  discoveryRegion = 'us-east',
+}) {
+  if (!clientId || !clientSecret) {
+    throw new EightByEightError('Missing 8x8 credentials', 401);
+  }
+  const tokenResponse = await getAccessToken(clientId, clientSecret);
+  const accessToken = tokenResponse?.access_token;
+  if (!accessToken) {
+    throw new EightByEightError('OAuth response missing access_token', 500, tokenResponse);
+  }
+  let finalRegion = region;
+  if (!finalRegion) {
+    finalRegion = await discoverRegion(accessToken, discoveryRegion);
+  }
+  return { token: accessToken, region: finalRegion };
+}
+
 function buildRecordingDownloadUrl({ region, objectId, presign = false }) {
   const base = `${STORAGE_BASE(region)}/objects/${objectId}/content`;
   if (presign) return `${base}?presignUrl=true`;
@@ -304,4 +342,6 @@ module.exports = {
   STORAGE_BASE,
   buildRecordingDownloadUrl,
   getPresignedRecordingUrl,
+  fetchRecordingById,
+  createStorageSession,
 };
