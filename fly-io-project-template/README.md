@@ -123,7 +123,12 @@ DATABASE_URL=postgres://... \
 npm run backfill:calls -- --limit 500 --only-missing --force-regrade
 ```
 
-The script logs per-call actions (`transcribe|summarize|grade`) and exits with a summary, so you can rerun until all historical rows are backfilled. Run `npm run test:backfill` to sanity-check the selector logic before sweeping production data.
+The script logs per-call actions (`transcribe|summarize|grade`) and exits with a summary, so you can rerun until all historical rows are backfilled. Built-in retry env vars if your DB disconnects intermittently:
+
+- `BACKFILL_BATCH_RETRIES` / `BACKFILL_BATCH_RETRY_DELAY_MS`
+- `BACKFILL_CALL_RETRIES`
+
+Run `npm run test:backfill` to sanity-check the selector logic before sweeping production data.
 
 ### Run a manual sync (CLI)
 

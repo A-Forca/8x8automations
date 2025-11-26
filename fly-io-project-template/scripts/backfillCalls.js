@@ -380,37 +380,51 @@ async function processCall(call, ctx) {
   );
 }
 
-async function main() {
-  const options = parseArgs(process.argv.slice(2));
-  if (options.help) {
-    printHelp();
-    process.exit(0);
+async function runWithRetries(task, { attempts = 5, minDelayMs = 5_000, label = 'task' } = {}) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await task(attempt);
+    } catch (err) {
+      lastError = err;
+      if (attempt >= attempts) break;
+      const delay = minDelayMs * attempt;
+      console.warn(`[backfill] ${label} attempt ${attempt} failed: ${err.message}; retrying in ${delay}ms`);
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
   }
+  throw lastError;
+}
 
-  if (!process.env.DATABASE_URL) {
-    throw new Error('DATABASE_URL must be configured to backfill calls.');
-  }
-
+async function runBatch(options) {
   const clientId = process.env.EIGHT_BY_EIGHT_CLIENT_ID;
   const clientSecret = process.env.EIGHT_BY_EIGHT_CLIENT_SECRET;
   if (!clientId || !clientSecret) {
     throw new Error('EIGHT_BY_EIGHT_CLIENT_ID/SECRET must be set to fetch recordings.');
   }
 
-  const session = await createStorageSession({
-    clientId,
-    clientSecret,
-    region: options.region,
-    discoveryRegion: options.discoveryRegion,
-  });
+  const session = await runWithRetries(
+    () =>
+      createStorageSession({
+        clientId,
+        clientSecret,
+        region: options.region,
+        discoveryRegion: options.discoveryRegion,
+      }),
+    { label: 'createStorageSession' }
+  );
 
-  const calls = await listCallsForBackfill({
-    limit: options.limit,
-    offset: options.offset,
-    onlyMissing: options.onlyMissing,
-    onlyAgent: options.onlyAgent,
-    callId: options.callId,
-  });
+  const calls = await runWithRetries(
+    () =>
+      listCallsForBackfill({
+        limit: options.limit,
+        offset: options.offset,
+        onlyMissing: options.onlyMissing,
+        onlyAgent: options.onlyAgent,
+        callId: options.callId,
+      }),
+    { label: 'listCallsForBackfill' }
+  );
 
   if (!calls.length) {
     console.log('[backfill] no calls matched selection criteria.');
@@ -438,7 +452,10 @@ async function main() {
 
   for (const call of calls) {
     // eslint-disable-next-line no-await-in-loop
-    await processCall(call, ctx);
+    await runWithRetries(
+      () => processCall(call, ctx),
+      { attempts: Number(process.env.BACKFILL_CALL_RETRIES) || 3, label: `processCall(${call.call_id})` }
+    );
     stats.processed += 1;
   }
 
@@ -447,6 +464,24 @@ async function main() {
       `transcribed=${stats.transcribed} summarized=${stats.summarized} graded=${stats.graded} ` +
       `grades_skipped=${stats.gradesSkipped} dryrun=${stats.dryRunTouched} skipped=${stats.skipped}`
   );
+}
+
+async function main() {
+  const options = parseArgs(process.argv.slice(2));
+  if (options.help) {
+    printHelp();
+    process.exit(0);
+  }
+
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL must be configured to backfill calls.');
+  }
+
+  await runWithRetries(() => runBatch(options), {
+    attempts: Number(process.env.BACKFILL_BATCH_RETRIES) || 5,
+    minDelayMs: Number(process.env.BACKFILL_BATCH_RETRY_DELAY_MS) || 10_000,
+    label: 'backfillBatch',
+  });
 }
 
 main()
