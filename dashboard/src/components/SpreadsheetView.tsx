@@ -6,7 +6,7 @@ import type { AgentCall } from '../api/types';
 export function SpreadsheetView() {
   const callsQuery = useQuery<AgentCall[]>({
     queryKey: ['all-calls'],
-    queryFn: () => fetchAllCalls({ limit: 2000, includeTranscript: false }),
+    queryFn: () => fetchAllCalls({ limit: 2000, includeTranscript: true }),
   });
 
   if (callsQuery.isLoading) {
@@ -52,8 +52,9 @@ export function SpreadsheetView() {
               'Duration',
               'Score',
               'Recording',
-              'Summary',
-              'Grade Notes',
+          'Summary',
+          'Transcript',
+          'Grade Notes',
             ].map((header) => (
               <th
                 key={header}
@@ -98,6 +99,18 @@ export function SpreadsheetView() {
                 )}
               </td>
               <td style={{ padding: '0.5rem', maxWidth: '320px' }}>{call.summary || '—'}</td>
+              <td style={{ padding: '0.5rem', maxWidth: '320px' }}>
+                {call.transcription ? (
+                  <details>
+                    <summary style={{ cursor: 'pointer', color: '#2563eb' }}>View</summary>
+                    <div style={{ marginTop: '0.35rem', whiteSpace: 'pre-wrap' }}>
+                      {call.transcription}
+                    </div>
+                  </details>
+                ) : (
+                  '—'
+                )}
+              </td>
               <td style={{ padding: '0.5rem', maxWidth: '320px' }}>
                 {call.gradeSynopsis || '—'}
               </td>
