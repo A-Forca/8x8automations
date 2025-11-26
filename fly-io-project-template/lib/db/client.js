@@ -20,6 +20,15 @@ const pool = connectionString
     })
   : null;
 
+if (pool) {
+  pool.on('error', (err) => {
+    console.error('[db] Unexpected PostgreSQL error (pool)', {
+      message: err?.message,
+      code: err?.code,
+    });
+  });
+}
+
 function requirePool() {
   if (!pool) {
     throw new Error('DATABASE_URL must be configured before using the database.');
