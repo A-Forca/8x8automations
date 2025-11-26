@@ -13,13 +13,48 @@ const DEFAULT_MAX_OUTPUT_TOKENS = 1600;
 const MAX_OUTPUT_TOKENS_CAP = Number(process.env.OPENAI_GRADING_MAX_OUTPUT_TOKENS_LIMIT) || 4096;
 
 const RUBRIC = [
-  { key: 'greeting', label: 'Greeting/identity', short: 'Greet', description: 'Clear greeting and states name/company.' },
-  { key: 'empathy', label: 'Empathy/tone', short: 'Emp', description: 'Acknowledges issue and stays polite/patient.' },
-  { key: 'listening', label: 'Listening/clarity', short: 'Listen', description: 'Lets customer speak, confirms understanding, communicates clearly.' },
-  { key: 'resolution', label: 'Resolution steps', short: 'Resolve', description: 'Provides accurate, actionable guidance and next steps.' },
-  { key: 'verification', label: 'Verification/summary', short: 'Verify', description: 'Summarizes resolution and confirms satisfaction.' },
-  { key: 'closing', label: 'Closing', short: 'Close', description: 'Thanks the customer and offers further help.' },
+  {
+    key: 'greeting',
+    label: 'Greeting/identity',
+    short: 'Greet',
+    description: 'Clear greeting and states name/company.',
+  },
+  {
+    key: 'empathy',
+    label: 'Empathy/tone',
+    short: 'Emp',
+    description: 'Acknowledges issue and stays polite/patient.',
+  },
+  {
+    key: 'listening',
+    label: 'Listening/clarity',
+    short: 'Listen',
+    description: 'Lets customer speak, confirms understanding, communicates clearly.',
+  },
+  {
+    key: 'resolution',
+    label: 'Resolution steps',
+    short: 'Resolve',
+    description: 'Provides accurate, actionable guidance and next steps.',
+  },
+  {
+    key: 'verification',
+    label: 'Verification/summary',
+    short: 'Verify',
+    description: 'Summarizes resolution and confirms satisfaction.',
+  },
+  {
+    key: 'closing',
+    label: 'Closing',
+    short: 'Close',
+    description: 'Thanks the customer and offers further help.',
+  },
 ];
+
+const SHORT_KEY_TO_SLUG = RUBRIC.reduce((acc, item) => {
+  acc[item.short.toLowerCase()] = item.key;
+  return acc;
+}, {});
 
 const MAX_SCORE_PER_CRITERION = 2;
 const MAX_TOTAL_SCORE = RUBRIC.length * MAX_SCORE_PER_CRITERION;
@@ -299,8 +334,39 @@ async function gradeCall(transcription, options = {}) {
   return gradeCallWithRetry(transcription, options);
 }
 
+function parseGradeSynopsis(synopsis) {
+  if (!synopsis || typeof synopsis !== 'string') return null;
+  const cleaned = synopsis.trim();
+  if (!cleaned) return null;
+
+  const totalMatch = cleaned.match(/Score\s+(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)/i);
+  const scores = {};
+
+  const categoryRegex = /([A-Za-z]+)\s*:\s*(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)/g;
+  let match = categoryRegex.exec(cleaned);
+  while (match) {
+    const label = match[1]?.toLowerCase();
+    const slug = SHORT_KEY_TO_SLUG[label];
+    if (slug) {
+      scores[slug] = Number(match[2]);
+    }
+    match = categoryRegex.exec(cleaned);
+  }
+
+  const notesMatch = cleaned.match(/Notes?:\s*(.+)$/i);
+
+  return normalizeResponse({
+    scores,
+    total: totalMatch ? Number(totalMatch[1]) : undefined,
+    rationale: notesMatch ? notesMatch[1].trim() : undefined,
+    synopsis: cleaned,
+  });
+}
+
 module.exports = {
   gradeCall,
   GradingError,
   MAX_TOTAL_SCORE,
+  MAX_SCORE_PER_CRITERION,
+  parseGradeSynopsis,
 };

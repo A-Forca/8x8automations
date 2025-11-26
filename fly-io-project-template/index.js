@@ -1,15 +1,46 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const {
   fetchLatestRecordings,
   downloadRecordingsZip,
   EightByEightError,
 } = require('./lib/recordings');
 const { syncRecordings } = require('./lib/recordingSync');
+const {
+  listAgentsWithKpis,
+  getAgentProfile,
+  getAgentSummary,
+  getAgentTimeSeries,
+  getAgentCategoryBreakdown,
+  getAgentInsights,
+  listAgentCalls,
+  listAllCalls,
+  normalizeRangeDays,
+} = require('./lib/db/analytics');
 
 const app = express();
 const port = Number(process.env.PORT) || 8080;
 
+const dashboardOrigins = (process.env.DASHBOARD_ORIGINS ||
+  'https://agent-insights-dashboard.fly.dev,https://agent-insights-dashboard.fly.dev/'
+)
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || dashboardOrigins.length === 0 || dashboardOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('Not allowed by CORS'));
+    },
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'x-shared-secret'],
+  })
+);
 app.use(express.json({ limit: '1mb' }));
 
 const syncStatus = {
@@ -187,6 +218,150 @@ function getSyncStatus() {
 app.get('/health', (req, res) => {
   res.json({ ok: true });
 });
+
+app.get('/', (req, res) => {
+  res.json({
+    ok: true,
+    message: 'Agent analytics API is running.',
+    docs: {
+      agents: '/agents',
+      agentMetrics: '/agents/:agentId/metrics',
+      agentInsights: '/agents/:agentId/insights',
+      status: '/recordings/sync/status',
+    },
+  });
+});
+
+app.get(
+  '/agents',
+  requireSharedSecret,
+  asyncHandler(async (req, res) => {
+    const rangeDays = normalizeRangeDays(req.query?.rangeDays, 7);
+    const agents = await listAgentsWithKpis(rangeDays);
+    res.json({
+      ok: true,
+      rangeDays,
+      agents,
+    });
+  })
+);
+
+app.get(
+  '/agents/:agentId/metrics',
+  requireSharedSecret,
+  asyncHandler(async (req, res) => {
+    const { agentId } = req.params;
+    const rangeDays = normalizeRangeDays(req.query?.rangeDays, 30);
+    const agent = await getAgentProfile(agentId);
+    if (!agent) {
+      return res.status(404).json({ error: 'Agent not found' });
+    }
+    const summary = await getAgentSummary(agentId, rangeDays);
+    const timeSeries = await getAgentTimeSeries(agentId, rangeDays);
+    const categories = await getAgentCategoryBreakdown(agentId, rangeDays);
+    return res.json({
+      ok: true,
+      agent,
+      range: {
+        start: summary.rangeStart,
+        end: summary.rangeEnd,
+        days: summary.rangeDays,
+      },
+      summary,
+      charts: {
+        dailyCalls: timeSeries.map((day) => ({
+          date: day.date,
+          callCount: day.callCount,
+        })),
+        dailyScores: timeSeries.map((day) => ({
+          date: day.date,
+          avgScore: day.avgScore,
+        })),
+        dailyHandleTime: timeSeries.map((day) => ({
+          date: day.date,
+          avgCallSeconds: day.avgCallSeconds,
+        })),
+      },
+      categories,
+    });
+  })
+);
+
+app.get(
+  '/agents/:agentId/insights',
+  requireSharedSecret,
+  asyncHandler(async (req, res) => {
+    const { agentId } = req.params;
+    const limit = Math.min(Math.max(1, Number(req.query?.limit) || 3), 20);
+    const agent = await getAgentProfile(agentId);
+    if (!agent) {
+      return res.status(404).json({ error: 'Agent not found' });
+    }
+    const insights = await getAgentInsights(agentId, limit);
+    return res.json({
+      ok: true,
+      agent: {
+        id: agent.id,
+        fullName: agent.fullName,
+      },
+      insights,
+    });
+  })
+);
+
+app.get(
+  '/agents/:agentId/calls',
+  requireSharedSecret,
+  asyncHandler(async (req, res) => {
+    const { agentId } = req.params;
+    const limit = Math.min(Math.max(Number(req.query?.limit) || 50, 1), 200);
+    const offset = Math.max(Number(req.query?.offset) || 0, 0);
+    const includeTranscript =
+      String(req.query?.includeTranscript || 'false').toLowerCase() === 'true';
+
+    const agent = await getAgentProfile(agentId);
+    if (!agent) {
+      return res.status(404).json({ error: 'Agent not found' });
+    }
+
+    const calls = await listAgentCalls(agentId, { limit, offset, includeTranscript });
+    return res.json({
+      ok: true,
+      agent: {
+        id: agent.id,
+        fullName: agent.fullName,
+      },
+      calls,
+      paging: {
+        limit,
+        offset,
+        returned: calls.length,
+      },
+    });
+  })
+);
+
+app.get(
+  '/calls',
+  requireSharedSecret,
+  asyncHandler(async (req, res) => {
+    const limit = Math.min(Math.max(Number(req.query?.limit) || 1000, 1), 5000);
+    const offset = Math.max(Number(req.query?.offset) || 0, 0);
+    const includeTranscript =
+      String(req.query?.includeTranscript || 'false').toLowerCase() === 'true';
+
+    const calls = await listAllCalls({ limit, offset, includeTranscript });
+    res.json({
+      ok: true,
+      calls,
+      paging: {
+        limit,
+        offset,
+        returned: calls.length,
+      },
+    });
+  })
+);
 
 // Generic webhook endpoint (no external integrations by default)
 app.post('/webhook', requireSharedSecret, async (req, res) => {

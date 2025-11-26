@@ -1,0 +1,20 @@
+app = "agent-insights-dashboard"
+primary_region = "iad"
+
+[build]
+[build.args]
+  VITE_API_BASE_URL = "https://8x8-call-analyzer.fly.dev"
+  VITE_SHARED_SECRET = "agent-dashboard-2025"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_start_machines = true
+  auto_stop_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1
+

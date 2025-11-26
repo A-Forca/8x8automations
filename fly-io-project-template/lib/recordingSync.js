@@ -1,8 +1,8 @@
 const { fetchAllRecordings, buildRecordingDownloadUrl, getPresignedRecordingUrl } = require('./recordings');
-const { listExistingRows, appendRows, updateCell, updateCells } = require('./googleSheets');
 const { transcribeRecording, TranscriptionError } = require('./transcription');
 const { summarizeCall, SummarizationError } = require('./summarization');
-const { gradeCall } = require('./grading');
+const { gradeCall, parseGradeSynopsis } = require('./grading');
+const { persistCallArtifacts, findCallByRecordingId } = require('./db/recordings');
 
 const DEFAULT_AGENT_FILTER = [
   'Dayna Pierre',
@@ -19,7 +19,6 @@ const DEFAULT_AGENT_FILTER = [
 ];
 const EASTERN_TZ = 'America/New_York';
 const MAX_REASONABLE_CALL_SECONDS = 24 * 60 * 60; // 24 hours
-const GRADE_COLUMN_INDEX = 8; // column I (0-based index)
 const PHONE_KEY_PATTERN = /(phone|customer|caller|callee|ani|address|number|dnis|destination|remote|contact|party)/i;
 const PHONE_TAG_KEYS = [
   'customerPhone',
@@ -336,20 +335,6 @@ function isOlderThanLookback(recording, lookbackThresholdMs) {
   return ts ? ts < lookbackThresholdMs : false;
 }
 
-async function ensureGradeHeader(existingRows, logger) {
-  const headerRow = existingRows?.[0];
-  if (!Array.isArray(headerRow)) return;
-  const current = String(headerRow[GRADE_COLUMN_INDEX] || '').trim();
-  if (current) return;
-  try {
-    await updateCell(0, GRADE_COLUMN_INDEX, 'Grade');
-    headerRow[GRADE_COLUMN_INDEX] = 'Grade';
-    logger.info('[recording-sync] set Grade header in column I');
-  } catch (err) {
-    logger.warn('[recording-sync] unable to set Grade header in column I', { error: err.message });
-  }
-}
-
 async function syncRecordings(options = {}) {
   const {
     agentNames,
@@ -384,33 +369,14 @@ async function syncRecordings(options = {}) {
     throw new Error('Missing 8x8 credentials for recording sync (EIGHT_BY_EIGHT_CLIENT_ID/SECRET).');
   }
 
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL must be configured to persist recordings in Postgres.');
+  }
+
   const agentFilter = buildAgentFilter(agentNames);
   if (agentFilter && agentFilter.size === 0) {
     throw new Error('No agent names configured for recording sync.');
   }
-
-  const existingRows = await listExistingRows();
-  await ensureGradeHeader(existingRows, logger);
-  const existingIds = new Set();
-  const existingRowById = new Map();
-  existingRows.forEach((row, index) => {
-    if (!row) return;
-    const headerRow = index === 0;
-    const candidateId = String(row?.[5] || '').trim();
-    if (candidateId && (!headerRow || candidateId.toLowerCase() !== 'recording id')) {
-      existingIds.add(candidateId);
-      existingRowById.set(candidateId, { rowIndex: index, row });
-      return;
-    }
-    const link = String(row?.[2] || '').trim();
-    if (!link) return;
-    const headerLink = headerRow && link.toLowerCase() === 'call recording';
-    if (headerLink) return;
-    const parsedId = extractRecordingIdFromLink(link);
-    if (parsedId) existingIds.add(parsedId);
-  });
-
-  logger.info(`[recording-sync] loaded ${existingIds.size} existing recording IDs from sheet`);
 
   const { recordings, region, token } = await fetchAllRecordings({
     clientId,
@@ -424,7 +390,6 @@ async function syncRecordings(options = {}) {
 
   logger.info(`[recording-sync] fetched ${recordings.length} recordings from API`);
 
-  const rowsToAppend = [];
   let considered = 0;
   let skippedOldRecordings = 0;
   let skippedWrongAgent = 0;
@@ -435,7 +400,8 @@ async function syncRecordings(options = {}) {
   let summariesFailed = 0;
   let gradesSucceeded = 0;
   let gradesFailed = 0;
-  const updatesToApply = [];
+  let insertedCalls = 0;
+  let updatedCalls = 0;
 
   for (const recording of recordings) {
     if (!recording?.id) continue;
@@ -456,13 +422,6 @@ async function syncRecordings(options = {}) {
       continue;
     }
 
-    const alreadyInSheet = existingIds.has(recording.id);
-    if (!alreadyInSheet && isOlderThanLookback(recording, lookbackThreshold)) {
-      skippedOldRecordings += 1;
-      continue;
-    }
-
-    considered += 1;
     const transcriptionOn = String(process.env.ENABLE_TRANSCRIPTION || 'true').toLowerCase() === 'true';
     const summarizationOn = String(process.env.ENABLE_SUMMARIZATION || 'true').toLowerCase() === 'true';
     const gradingOn = String(process.env.ENABLE_GRADING || 'true').toLowerCase() === 'true';
@@ -494,106 +453,54 @@ async function syncRecordings(options = {}) {
         error: presignErr.message,
       });
     }
-    if (alreadyInSheet) {
-      skippedDuplicates += 1;
-      const existing = existingRowById.get(recording.id);
-      const row = existing?.row || [];
-      const rowIndex = existing?.rowIndex;
-      const currentTranscription = String(row?.[6] || '').trim();
-      const currentSummary = String(row?.[7] || '').trim();
-      const currentGrade = String(row?.[8] || '').trim();
-      const needsSummary = summarizationOn && currentTranscription && !currentSummary;
-      const needsGrade = gradingOn && currentTranscription && !currentGrade;
 
-      if (!needsSummary && !needsGrade) {
-        logger.debug(
-          `[recording-sync] skipped duplicate id=${recording.id} agent="${agentName}" phone=${customerPhone}`
-        );
-        continue;
-      }
+    const existingCall = await findCallByRecordingId(recording.id);
+    const alreadyPersisted = Boolean(existingCall);
 
-      if (backfillThreshold && callTimestampMs && callTimestampMs < backfillThreshold) {
-        logger.debug(
-          `[recording-sync] skipped backfill (outside ${backfillMinutes}m window) id=${recording.id}`
-        );
-        continue;
-      }
-
-      let backfillTranscription = currentTranscription;
-      // If no transcription on the row but we want to fill, we can transcribe again
-      if (!backfillTranscription && transcriptionOn) {
-        try {
-          backfillTranscription = await transcribeRecording(publicUrl, {
-            logger,
-            recordingId: recording.id,
-          });
-          transcriptionsSucceeded += 1;
-          logger.info(`[recording-sync] ✓ transcription backfill complete for ${recording.id}`);
-        } catch (transErr) {
-          transcriptionsFailed += 1;
-          logger.warn(
-            `[recording-sync] transcription backfill failed for ${recording.id}, continuing without backfill`,
-            { error: transErr.message }
-          );
-          continue;
-        }
-      }
-
-      let updatedSummary = currentSummary;
-      if (needsSummary && backfillTranscription) {
-        try {
-          updatedSummary = await summarizeCall(backfillTranscription, {
-            logger,
-            recordingId: recording.id,
-          });
-          summariesSucceeded += 1;
-          logger.info(`[recording-sync] ✓ summary backfill complete for ${recording.id}`);
-          updatesToApply.push({
-            rowIndex,
-            columnIndex: 7,
-            value: updatedSummary,
-          });
-        } catch (sumErr) {
-          summariesFailed += 1;
-          logger.warn(
-            `[recording-sync] summarization backfill failed for ${recording.id}, leaving blank`,
-            { error: sumErr.message }
-          );
-        }
-      }
-
-      if (needsGrade && backfillTranscription) {
-        try {
-          const grade = await gradeCall(backfillTranscription, {
-            logger,
-            recordingId: recording.id,
-          });
-          const gradeSynopsis = grade?.synopsis || '';
-          gradesSucceeded += 1;
-          logger.info(`[recording-sync] ✓ grading backfill complete for ${recording.id}`);
-          updatesToApply.push({
-            rowIndex,
-            columnIndex: 8,
-            value: gradeSynopsis,
-          });
-        } catch (gradeErr) {
-          gradesFailed += 1;
-          logger.warn(
-            `[recording-sync] grading backfill failed for ${recording.id}, leaving blank`,
-            { error: gradeErr.message }
-          );
-        }
-      }
-
+    if (!alreadyPersisted && isOlderThanLookback(recording, lookbackThreshold)) {
+      skippedOldRecordings += 1;
       continue;
     }
-    existingIds.add(recording.id);
 
-    logger.info(`[recording-sync] ✓ processing: agent="${agentName}" phone=${customerPhone} time=${callTimeEst} duration=${durationFormatted} id=${recording.id}`);
-    
-    // Transcribe the recording
-    let transcription = '';
-    if (transcriptionOn) {
+    const hasTranscription = Boolean(existingCall?.transcription);
+    const hasSummary = Boolean(existingCall?.summary);
+    const hasGrade =
+      Number.isFinite(existingCall?.qa_total_score) ||
+      Boolean(existingCall?.grade_synopsis) ||
+      Boolean(existingCall?.qa_payload);
+
+    const needsTranscription = transcriptionOn && !hasTranscription;
+    const needsSummary = summarizationOn && (!hasSummary || (!existingCall?.summary && needsTranscription));
+    const needsGrade = gradingOn && !hasGrade;
+    const requiresWork = !alreadyPersisted || needsTranscription || needsSummary || needsGrade;
+
+    if (alreadyPersisted && !requiresWork) {
+      skippedDuplicates += 1;
+      continue;
+    }
+
+    if (
+      alreadyPersisted &&
+      requiresWork &&
+      backfillThreshold &&
+      callTimestampMs &&
+      callTimestampMs < backfillThreshold
+    ) {
+      skippedDuplicates += 1;
+      logger.debug(
+        `[recording-sync] skipped backfill (outside ${backfillMinutes}m window) id=${recording.id}`
+      );
+      continue;
+    }
+
+    considered += 1;
+
+    logger.info(
+      `[recording-sync] processing agent="${agentName}" phone=${customerPhone} time=${callTimeEst} duration=${durationFormatted} id=${recording.id}`
+    );
+
+    let transcription = existingCall?.transcription || '';
+    if (!transcription && transcriptionOn) {
       try {
         transcription = await transcribeRecording(publicUrl, {
           logger,
@@ -603,96 +510,94 @@ async function syncRecordings(options = {}) {
         logger.info(`[recording-sync] ✓ transcription complete for ${recording.id}`);
       } catch (transErr) {
         transcriptionsFailed += 1;
-        logger.warn(`[recording-sync] transcription failed for ${recording.id}, continuing without transcription`, {
-          error: transErr.message,
-        });
-        transcription = ''; // Leave empty if transcription fails
+        logger.warn(
+          `[recording-sync] transcription failed for ${recording.id}, continuing without transcription`,
+          { error: transErr.message }
+        );
+        transcription = '';
       }
     }
-    
-    // Summarize the call using OpenAI
-    let summary = '';
-    if (summarizationOn && transcription) {
+
+    let summary = existingCall?.summary || '';
+    if ((!summary || !summary.trim()) && summarizationOn && transcription) {
       try {
         summary = await summarizeCall(transcription, {
           logger,
           recordingId: recording.id,
+          agentName,
         });
         summariesSucceeded += 1;
         logger.info(`[recording-sync] ✓ summary complete for ${recording.id}`);
       } catch (sumErr) {
         summariesFailed += 1;
-        logger.warn(`[recording-sync] summarization failed for ${recording.id}, continuing without summary`, {
-          error: sumErr.message,
-        });
-        summary = ''; // Leave empty if summarization fails
+        logger.warn(
+          `[recording-sync] summarization failed for ${recording.id}, continuing without summary`,
+          { error: sumErr.message }
+        );
+        summary = '';
       }
     }
-    
-    // Grade the call using the transcription
-    let gradeSynopsis = '';
-    if (gradingOn && transcription) {
+
+    let gradeResult =
+      existingCall?.qa_payload ||
+      (existingCall?.grade_synopsis ? parseGradeSynopsis(existingCall.grade_synopsis) : null);
+
+    if ((!gradeResult || !Number.isFinite(existingCall?.qa_total_score)) && gradingOn && transcription) {
       try {
-        const grade = await gradeCall(transcription, {
+        gradeResult = await gradeCall(transcription, {
           logger,
           recordingId: recording.id,
         });
-        gradeSynopsis = grade?.synopsis || '';
         gradesSucceeded += 1;
         logger.info(`[recording-sync] ✓ grading complete for ${recording.id}`);
       } catch (gradeErr) {
         gradesFailed += 1;
-        logger.warn(`[recording-sync] grading failed for ${recording.id}, continuing without grade`, {
-          error: gradeErr.message,
-        });
-        gradeSynopsis = ''; // Leave empty if grading fails
+        logger.warn(
+          `[recording-sync] grading failed for ${recording.id}, continuing without grade`,
+          { error: gradeErr.message }
+        );
+        gradeResult = gradeResult || null;
       }
     }
-    
-    rowsToAppend.push([
+
+    await persistCallArtifacts({
+      recordingId: recording.id,
       agentName,
       customerPhone,
-      publicUrl,
-      callTimeEst,
-      durationFormatted,
-      String(recording.id),
+      recordingUrl: publicUrl,
+      callTimestamp: callTimestampMs ? new Date(callTimestampMs) : new Date(),
+      durationSeconds,
       transcription,
       summary,
-      gradeSynopsis,
-    ]);
+      grade: gradeResult,
+      rawRecording: recording,
+    });
+
+    if (alreadyPersisted) {
+      updatedCalls += 1;
+    } else {
+      insertedCalls += 1;
+    }
   }
 
   logger.info(
     `[recording-sync] filter summary: total=${recordings.length} ` +
-    `skipped_old=${skippedOldRecordings} skipped_wrong_agent=${skippedWrongAgent} ` +
-    `skipped_duplicate=${skippedDuplicates} matched=${considered} new=${rowsToAppend.length} ` +
-    `transcriptions_succeeded=${transcriptionsSucceeded} transcriptions_failed=${transcriptionsFailed} ` +
-    `summaries_succeeded=${summariesSucceeded} summaries_failed=${summariesFailed} ` +
-    `grades_succeeded=${gradesSucceeded} grades_failed=${gradesFailed}`
+      `skipped_old=${skippedOldRecordings} skipped_wrong_agent=${skippedWrongAgent} ` +
+      `skipped_duplicate=${skippedDuplicates} matched=${considered} inserted=${insertedCalls} updated=${updatedCalls} ` +
+      `transcriptions_succeeded=${transcriptionsSucceeded} transcriptions_failed=${transcriptionsFailed} ` +
+      `summaries_succeeded=${summariesSucceeded} summaries_failed=${summariesFailed} ` +
+      `grades_succeeded=${gradesSucceeded} grades_failed=${gradesFailed}`
   );
 
-  if (rowsToAppend.length > 0) {
-    logger.info(`[recording-sync] appending ${rowsToAppend.length} new rows to sheet...`);
-    await appendRows(rowsToAppend);
-    logger.info(`[recording-sync] ✓ successfully appended ${rowsToAppend.length} rows`);
-  } else {
-    logger.info('[recording-sync] no new recordings to append');
-  }
-
-  if (updatesToApply.length > 0) {
-    logger.info(`[recording-sync] applying ${updatesToApply.length} backfill updates to sheet...`);
-    await updateCells(updatesToApply);
-    logger.info('[recording-sync] ✓ backfill updates applied');
-  }
-
   logger.info(
-    `[recording-sync] COMPLETE: fetched=${recordings.length} matched=${considered} appended=${rowsToAppend.length} lookback=${lookbackMinutes}m`
+    `[recording-sync] COMPLETE: fetched=${recordings.length} matched=${considered} inserted=${insertedCalls} updated=${updatedCalls} lookback=${lookbackMinutes}m`
   );
 
   return {
     fetched: recordings.length,
     matched: considered,
-    appended: rowsToAppend.length,
+    inserted: insertedCalls,
+    updated: updatedCalls,
   };
 }
 

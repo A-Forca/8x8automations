@@ -9,12 +9,18 @@
   "scripts": {
     "start": "node index.js",
     "trello:fetch": "node trello/fetch_boards.js",
-    "recordings:sync": "node scripts/runRecordingSync.js"
+    "recordings:sync": "node scripts/runRecordingSync.js",
+    "migrate": "node lib/db/migrate.js",
+    "backfill:sheets": "node scripts/backfillSheetsToPg.js",
+    "metrics:recompute": "node scripts/recomputeDailyMetrics.js",
+    "insights:generate": "node scripts/generateAgentInsights.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "googleapis": "^165.0.0",
-    "openai": "^4.20.0"
+    "openai": "^4.20.0",
+    "pg": "^8.16.3"
   }
 }

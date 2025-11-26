@@ -52,6 +52,7 @@ async function summarizeWithOpenAI(transcription, options = {}) {
 
   const model = options.model || process.env.OPENAI_SUMMARY_MODEL || 'gpt-5-mini-2025-08-07';
   const logger = options.logger || console;
+  const agentName = options.agentName ? String(options.agentName).trim() : '';
 
   if (!transcription || !transcription.trim()) {
     throw new SummarizationError('Empty transcription provided', 400);
@@ -73,6 +74,13 @@ async function summarizeWithOpenAI(transcription, options = {}) {
     const client = new OpenAI({ apiKey });
     logger.debug('[summarization] sending transcription to OpenAI for summarization...');
 
+    const agentInstruction = agentName
+      ? `Agent name (use exact spelling in summary): ${agentName}`
+      : null;
+    const userPrompt = agentInstruction
+      ? `${agentInstruction}\n\nTranscript:\n${transcription}`
+      : `Please provide a concise summary of this phone call transcript:\n\n${transcription}`;
+
     const requestPayload = {
       model,
       input: [
@@ -83,7 +91,7 @@ async function summarizeWithOpenAI(transcription, options = {}) {
         },
         {
           role: 'user',
-          content: `Please provide a concise summary of this phone call transcript:\n\n${transcription}`,
+          content: userPrompt,
         },
       ],
       text: { format: { type: 'text' }, verbosity: textVerbosity },
