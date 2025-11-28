@@ -1,4 +1,4 @@
-import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, Tooltip, Bar } from 'recharts';
+import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, Tooltip, Bar, LabelList } from 'recharts';
 import type { CategoryBreakdown } from '../api/types';
 
 interface Props {
@@ -13,14 +13,16 @@ export function CategoryBreakdown({ categories }: Props) {
   return (
     <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer>
-        <BarChart data={categories}>
+        <BarChart data={categories} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="label" tick={{ fontSize: 12 }} />
           <Tooltip
             formatter={(value: number) => value?.toFixed(1)}
             labelStyle={{ fontWeight: 600 }}
           />
-          <Bar dataKey="avgScore" fill="#6366f1" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="avgScore" fill="#6366f1" radius={[6, 6, 0, 0]}>
+            <LabelList dataKey="avgScore" position="top" formatter={(value: number) => value?.toFixed(1)} />
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
