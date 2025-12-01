@@ -42,8 +42,8 @@ export default function App() {
   });
 
   const insightsQuery = useQuery({
-    queryKey: ['agent-insights', selectedAgentId],
-    queryFn: () => fetchAgentInsights(selectedAgentId!, 3),
+    queryKey: ['agent-insights', selectedAgentId, rangeDays],
+    queryFn: () => fetchAgentInsights(selectedAgentId!, { limit: 3, windowDays: rangeDays }),
     enabled: Boolean(selectedAgentId),
     staleTime: 5 * 60_000,
   });
@@ -132,4 +132,3 @@ export default function App() {
     </div>
   );
 }
-

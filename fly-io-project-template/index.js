@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const {
@@ -18,6 +19,11 @@ const {
   listAllCalls,
   normalizeRangeDays,
 } = require('./lib/db/analytics');
+const {
+  generateAgentInsight,
+  resolveRange: resolveInsightsRange,
+  DEFAULT_WINDOW_DAYS: DEFAULT_INSIGHTS_WINDOW_DAYS,
+} = require('./lib/insights');
 
 const app = express();
 const port = Number(process.env.PORT) || 8080;
@@ -28,6 +34,14 @@ const dashboardOrigins = (process.env.DASHBOARD_ORIGINS ||
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
+
+app.use(
+  '/profile-pics',
+  express.static(path.join(__dirname, 'profile-pics'), {
+    maxAge: '30d',
+    etag: true,
+  })
+);
 
 app.use(
   cors({
@@ -76,6 +90,14 @@ const toPositiveNumber = (value, fallback) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 };
+
+const toDateString = (date) => date.toISOString().slice(0, 10);
+
+function parseInsightsWindowDays(value) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return DEFAULT_INSIGHTS_WINDOW_DAYS;
+  return parsed;
+}
 
 function resolveAgentFilter() {
   const raw = process.env.RECORDING_AGENT_FILTER;
@@ -293,11 +315,44 @@ app.get(
   asyncHandler(async (req, res) => {
     const { agentId } = req.params;
     const limit = Math.min(Math.max(1, Number(req.query?.limit) || 3), 20);
+    const windowDays = parseInsightsWindowDays(
+      req.query?.windowDays ?? req.query?.rangeDays ?? DEFAULT_INSIGHTS_WINDOW_DAYS
+    );
+    const targetRange = resolveInsightsRange(windowDays);
+    const targetStart = toDateString(targetRange.current.start);
+    const targetEnd = toDateString(targetRange.current.end);
+
     const agent = await getAgentProfile(agentId);
     if (!agent) {
       return res.status(404).json({ error: 'Agent not found' });
     }
-    const insights = await getAgentInsights(agentId, limit);
+    let insights = await getAgentInsights(agentId, { limit, fromDate: targetStart, toDate: targetEnd });
+
+    const latest = insights[0];
+    const isFresh = latest && latest.fromDate === targetStart && latest.toDate === targetEnd;
+
+    if (!isFresh) {
+      try {
+        const generated = await generateAgentInsight({
+          agentId,
+          agentName: agent.fullName,
+          windowDays: targetRange.windowDays,
+          logger: console,
+        });
+        if (generated) {
+          insights = await getAgentInsights(agentId, { limit, fromDate: targetStart, toDate: targetEnd });
+        }
+      } catch (err) {
+        console.error('[insights] auto-generation failed', {
+          agentId,
+          error: err?.message || err,
+        });
+      }
+    }
+    if (!insights.length) {
+      insights = await getAgentInsights(agentId, { limit });
+    }
+
     return res.json({
       ok: true,
       agent: {
@@ -305,6 +360,11 @@ app.get(
         fullName: agent.fullName,
       },
       insights,
+      window: {
+        start: targetStart,
+        end: targetEnd,
+        days: targetRange.windowDays,
+      },
     });
   })
 );
@@ -648,18 +708,25 @@ app.post('/trello/cards', requireSharedSecret, async (req, res) => {
 // Global error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
+  const context = {
+    path: req.originalUrl,
+    method: req.method,
+    message: err?.message,
+    stack: err?.stack,
+  };
   if (err instanceof EightByEightError) {
+    console.error('[error][8x8]', context);
     return res.status(err.status || 500).json({
       error: err.message,
       details: err.details,
     });
   }
-  console.error('Unhandled error:', err);
+  console.error('[error][unhandled]', context);
   return res.status(500).json({ error: err.message || 'Internal server error' });
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server listening on port ${port} (host=0.0.0.0)`);
 });
 
 process.on('SIGTERM', () => {

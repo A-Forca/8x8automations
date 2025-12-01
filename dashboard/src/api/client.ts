@@ -39,9 +39,14 @@ export async function fetchAgentMetrics(
 
 export async function fetchAgentInsights(
   agentId: string,
-  limit = 3
+  options: { limit?: number; windowDays?: number } = {}
 ): Promise<AgentInsight[]> {
-  const params = new URLSearchParams({ limit: String(limit) });
+  const params = new URLSearchParams({
+    limit: String(options.limit ?? 3),
+  });
+  if (options.windowDays !== undefined) {
+    params.set('windowDays', String(options.windowDays));
+  }
   const data = await request<{ insights: AgentInsight[] }>(
     `/agents/${agentId}/insights?${params.toString()}`
   );
@@ -73,4 +78,3 @@ export async function fetchAllCalls(options: {
   const data = await request<{ calls: AgentCall[] }>(`/calls?${params.toString()}`);
   return data.calls;
 }
-

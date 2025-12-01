@@ -1,4 +1,5 @@
 import type { AgentListItem } from '../api/types';
+import { getProfilePhoto } from '../utils/profilePhoto';
 
 interface AgentGridProps {
   agents: AgentListItem[];
@@ -23,7 +24,7 @@ export function AgentGrid({ agents, selectedAgentId, onSelect }: AgentGridProps)
           >
             <img
               src={
-                agent.profilePhotoUrl ||
+                getProfilePhoto(agent.fullName, agent.profilePhotoUrl) ||
                 `https://ui-avatars.com/api/?background=6366f1&color=fff&name=${encodeURIComponent(agent.fullName)}`
               }
               alt={agent.fullName}
@@ -41,4 +42,3 @@ export function AgentGrid({ agents, selectedAgentId, onSelect }: AgentGridProps)
     </div>
   );
 }
-

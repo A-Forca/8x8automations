@@ -3,6 +3,7 @@ const { query } = require('./db/client');
 
 const DEFAULT_WINDOW_DAYS = Number(process.env.INSIGHTS_WINDOW_DAYS) || 7;
 const DEFAULT_MODEL = process.env.OPENAI_INSIGHTS_MODEL || 'gpt-4o-mini';
+const TIME_ZONE = process.env.APP_TIME_ZONE || 'America/New_York';
 
 function toDateString(date) {
   return date.toISOString().slice(0, 10);
@@ -16,8 +17,7 @@ function subtractDays(date, days) {
 
 function resolveRange(windowDays = DEFAULT_WINDOW_DAYS) {
   const normalized = Math.max(3, Math.min(30, Math.round(windowDays)));
-  const today = new Date();
-  const end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+  const end = startOfTodayInTz();
   const start = subtractDays(end, normalized - 1);
   const previousEnd = subtractDays(start, 1);
   const previousStart = subtractDays(previousEnd, normalized - 1);
@@ -26,6 +26,17 @@ function resolveRange(windowDays = DEFAULT_WINDOW_DAYS) {
     current: { start, end },
     previous: { start: previousStart, end: previousEnd },
   };
+}
+
+function startOfTodayInTz(tz = TIME_ZONE) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date());
+  const lookup = (type) => Number(parts.find((p) => p.type === type)?.value);
+  return new Date(Date.UTC(lookup('year'), lookup('month') - 1, lookup('day')));
 }
 
 function summarizeRollup(rows = []) {
@@ -66,10 +77,16 @@ function summarizeRollup(rows = []) {
 async function fetchRollup(agentId, startDate, endDate) {
   const { rows } = await query(
     `
-      SELECT metric_date, call_count, avg_score, avg_call_seconds, total_call_seconds
-      FROM daily_agent_metrics
+      SELECT
+        call_date AS metric_date,
+        COUNT(*) AS call_count,
+        AVG(qa_total_score) AS avg_score,
+        AVG(duration_seconds) AS avg_call_seconds,
+        SUM(duration_seconds) AS total_call_seconds
+      FROM calls
       WHERE agent_id = $1
-        AND metric_date BETWEEN $2 AND $3
+        AND call_date BETWEEN $2 AND $3
+      GROUP BY call_date
       ORDER BY metric_date
     `,
     [agentId, toDateString(startDate), toDateString(endDate)]
@@ -305,5 +322,6 @@ async function generateInsightsForAllAgents(options = {}) {
 module.exports = {
   generateAgentInsight,
   generateInsightsForAllAgents,
+  resolveRange,
+  DEFAULT_WINDOW_DAYS,
 };
-

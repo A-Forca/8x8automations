@@ -1,7 +1,12 @@
+const fs = require('fs');
+const path = require('path');
 const { query } = require('./client');
 
 const MAX_RANGE_DAYS = 90;
 const MIN_RANGE_DAYS = 1;
+const TIME_ZONE = process.env.APP_TIME_ZONE || 'America/New_York';
+const PUBLIC_BASE_URL = process.env.PUBLIC_BASE_URL || 'https://8x8-call-analyzer.fly.dev';
+const PROFILE_PICS_DIR = path.join(__dirname, '..', 'profile-pics');
 
 function toDateString(date) {
   return date.toISOString().slice(0, 10);
@@ -19,10 +24,35 @@ function subtractDays(date, days) {
   return clone;
 }
 
+function startOfTodayInTz(tz = TIME_ZONE) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date());
+  const lookup = (type) => Number(parts.find((p) => p.type === type)?.value);
+  return new Date(Date.UTC(lookup('year'), lookup('month') - 1, lookup('day')));
+}
+
+function findLocalProfilePhoto(fullName) {
+  if (!fullName) return null;
+  const first = fullName.split(/\s+/)[0]?.toLowerCase();
+  if (!first) return null;
+  const exts = ['.png', '.jpg', '.jpeg'];
+  for (const ext of exts) {
+    const filename = `${first}${ext}`;
+    const filePath = path.join(PROFILE_PICS_DIR, filename);
+    if (fs.existsSync(filePath)) {
+      return `${PUBLIC_BASE_URL}/profile-pics/${filename}`;
+    }
+  }
+  return null;
+}
+
 function resolveRange(days) {
   const normalizedDays = normalizeRangeDays(days);
-  const now = new Date();
-  const endDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const endDate = startOfTodayInTz();
   const startDate = subtractDays(endDate, normalizedDays - 1);
   return {
     startDate,
@@ -51,11 +81,12 @@ async function getAgentProfile(agentId) {
   );
   const row = rows[0];
   if (!row) return null;
+  const fallbackPhoto = row.profile_photo_url || findLocalProfilePhoto(row.full_name);
   return {
     id: row.id,
     fullName: row.full_name,
     email: row.email,
-    profilePhotoUrl: row.profile_photo_url,
+    profilePhotoUrl: fallbackPhoto,
     metadata: row.metadata || {},
   };
 }
@@ -95,10 +126,11 @@ async function listAgentsWithKpis(rangeDays = 7) {
     const totalCalls = Number(row.total_calls) || 0;
     const avgCallSeconds = toNumber(row.avg_call_seconds);
     const totalCallSeconds = toNumber(row.total_call_seconds) || 0;
+    const profilePhotoUrl = row.profile_photo_url || findLocalProfilePhoto(row.full_name);
     return {
       id: row.id,
       fullName: row.full_name,
-      profilePhotoUrl: row.profile_photo_url,
+      profilePhotoUrl,
       totalCalls,
       avgScore: toNumber(row.avg_score),
       avgCallSeconds,
@@ -221,8 +253,19 @@ async function getAgentCategoryBreakdown(agentId, rangeDays = 30) {
   }));
 }
 
-async function getAgentInsights(agentId, limit = 3) {
+async function getAgentInsights(agentId, options = {}) {
+  const limit = options.limit ?? 3;
+  const fromDate = options.fromDate || null;
+  const toDate = options.toDate || null;
   const safeLimit = Math.min(Math.max(1, Number(limit) || 3), 20);
+
+  const filters = [];
+  const params = [agentId, safeLimit];
+  if (fromDate && toDate) {
+    filters.push('from_date = $3 AND to_date = $4');
+    params.push(fromDate, toDate);
+  }
+
   const { rows } = await query(
     `
       SELECT
@@ -237,10 +280,11 @@ async function getAgentInsights(agentId, limit = 3) {
         generated_at
       FROM agent_ai_insights
       WHERE agent_id = $1
+      ${filters.length ? `AND (${filters.join(' AND ')})` : ''}
       ORDER BY generated_at DESC
       LIMIT $2
     `,
-    [agentId, safeLimit]
+    params
   );
   return rows.map((row) => ({
     id: row.id,
@@ -358,4 +402,3 @@ module.exports = {
   listAgentCalls,
   listAllCalls,
 };
-

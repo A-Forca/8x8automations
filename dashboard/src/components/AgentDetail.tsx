@@ -13,6 +13,7 @@ import { MetricCard } from './MetricCard';
 import { CallList } from './CallList';
 import { fetchAgentCalls } from '../api/client';
 import type { AgentMetricsResponse, AgentCall } from '../api/types';
+import { getProfilePhoto } from '../utils/profilePhoto';
 
 interface AgentDetailProps {
   metrics: AgentMetricsResponse | undefined;
@@ -51,7 +52,7 @@ export function AgentDetail({ metrics, insights }: AgentDetailProps) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <img
               src={
-                agent.profilePhotoUrl ||
+                getProfilePhoto(agent.fullName, agent.profilePhotoUrl) ||
                 `https://ui-avatars.com/api/?background=0ea5e9&color=fff&name=${encodeURIComponent(agent.fullName)}`
               }
               alt={agent.fullName}
@@ -131,4 +132,3 @@ export function AgentDetail({ metrics, insights }: AgentDetailProps) {
     </div>
   );
 }
-
