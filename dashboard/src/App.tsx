@@ -7,7 +7,7 @@ import { AgentDetail } from './components/AgentDetail';
 import { InsightsPanel } from './components/InsightsPanel';
 import { SpreadsheetView } from './components/SpreadsheetView';
 
-const RANGE_OPTIONS = [7, 30, 60];
+const RANGE_OPTIONS = [1, 7, 30, 60];
 
 function useSelectedAgentId(agents: { id: string }[] | undefined) {
   const [selectedAgentId, setSelectedAgentId] = useState<string | null>(null);
