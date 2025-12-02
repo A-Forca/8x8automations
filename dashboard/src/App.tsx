@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchAgents, fetchAgentInsights, fetchAgentMetrics } from './api/client';
+import type { AgentInsight, AgentListItem, AgentMetricsResponse } from './api/types';
 import { AgentGrid } from './components/AgentGrid';
 import { AgentDetail } from './components/AgentDetail';
 import { InsightsPanel } from './components/InsightsPanel';
@@ -27,26 +28,62 @@ function useSelectedAgentId(agents: { id: string }[] | undefined) {
 export default function App() {
   const [rangeDays, setRangeDays] = useState(30);
   const [showSpreadsheet, setShowSpreadsheet] = useState(false);
-  const agentsQuery = useQuery({
+  const queryClient = useQueryClient();
+  const agentsQuery = useQuery<AgentListItem[]>({
     queryKey: ['agents', rangeDays],
     queryFn: () => fetchAgents(rangeDays),
-    staleTime: 60_000,
+    staleTime: 10 * 60_000,
+    gcTime: 20 * 60_000,
+    placeholderData: (prev: AgentListItem[] | undefined) => prev ?? undefined,
   });
 
   const [selectedAgentId, setSelectedAgentId] = useSelectedAgentId(agentsQuery.data);
 
-  const metricsQuery = useQuery({
+  const metricsQuery = useQuery<AgentMetricsResponse>({
     queryKey: ['agent-metrics', selectedAgentId, rangeDays],
     queryFn: () => fetchAgentMetrics(selectedAgentId!, rangeDays),
     enabled: Boolean(selectedAgentId),
+    staleTime: 10 * 60_000,
+    gcTime: 20 * 60_000,
+    placeholderData: (prev: AgentMetricsResponse | undefined) => prev ?? undefined,
   });
 
-  const insightsQuery = useQuery({
+  const insightsQuery = useQuery<AgentInsight[]>({
     queryKey: ['agent-insights', selectedAgentId, rangeDays],
     queryFn: () => fetchAgentInsights(selectedAgentId!, { limit: 3, windowDays: rangeDays }),
     enabled: Boolean(selectedAgentId),
-    staleTime: 5 * 60_000,
+    staleTime: 10 * 60_000,
+    gcTime: 20 * 60_000,
+    placeholderData: (prev: AgentInsight[] | undefined) => prev ?? undefined,
   });
+
+  // Prefetch the other ranges in the background to make toggling instant.
+  useEffect(() => {
+    const otherRanges = RANGE_OPTIONS.filter((r) => r !== rangeDays);
+    if (!agentsQuery.data) return;
+    otherRanges.forEach((r) => {
+      queryClient.prefetchQuery({
+        queryKey: ['agents', r],
+        queryFn: () => fetchAgents(r),
+        staleTime: 10 * 60_000,
+        gcTime: 20 * 60_000,
+      });
+      if (selectedAgentId) {
+        queryClient.prefetchQuery({
+          queryKey: ['agent-metrics', selectedAgentId, r],
+          queryFn: () => fetchAgentMetrics(selectedAgentId, r),
+          staleTime: 10 * 60_000,
+          gcTime: 20 * 60_000,
+        });
+        queryClient.prefetchQuery({
+          queryKey: ['agent-insights', selectedAgentId, r],
+          queryFn: () => fetchAgentInsights(selectedAgentId, { limit: 3, windowDays: r }),
+          staleTime: 10 * 60_000,
+          gcTime: 20 * 60_000,
+        });
+      }
+    });
+  }, [agentsQuery.data, rangeDays, selectedAgentId, queryClient]);
 
   const insightsContent = useMemo(() => {
     if (insightsQuery.isLoading) return <p style={{ color: '#94a3b8' }}>Loading...</p>;
@@ -58,14 +95,6 @@ export default function App() {
       );
     return <InsightsPanel insights={insightsQuery.data || []} />;
   }, [insightsQuery.data, insightsQuery.error, insightsQuery.isLoading]);
-
-  if (agentsQuery.isLoading) {
-    return (
-      <div style={{ display: 'grid', placeItems: 'center', minHeight: '100vh' }}>
-        <p>Loading agents…</p>
-      </div>
-    );
-  }
 
   if (agentsQuery.error) {
     return (
@@ -102,6 +131,9 @@ export default function App() {
                     {option}d
                   </button>
                 ))}
+                {agentsQuery.isFetching && (
+                  <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>Refreshing…</span>
+                )}
               </div>
             </div>
             <button

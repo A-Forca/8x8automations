@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import {
   LineChart,
   Line,
@@ -14,6 +15,7 @@ import { CallList } from './CallList';
 import { fetchAgentCalls } from '../api/client';
 import type { AgentMetricsResponse, AgentCall } from '../api/types';
 import { getProfilePhoto } from '../utils/profilePhoto';
+import { TrainingPanel } from './TrainingPanel';
 
 interface AgentDetailProps {
   metrics: AgentMetricsResponse | undefined;
@@ -21,6 +23,22 @@ interface AgentDetailProps {
 }
 
 export function AgentDetail({ metrics, insights }: AgentDetailProps) {
+  const [infoTab, setInfoTab] = useState<'insights' | 'training'>('insights');
+
+  const agentId = metrics?.agent.id || null;
+
+  const callsQuery = useQuery<AgentCall[]>({
+    queryKey: ['agent-calls', agentId],
+    queryFn: () => fetchAgentCalls(agentId!, { limit: 50, includeTranscript: true }),
+    enabled: Boolean(agentId),
+  });
+  const callsError =
+    callsQuery.error instanceof Error
+      ? callsQuery.error
+      : callsQuery.error
+        ? new Error('Failed to load calls')
+        : null;
+
   if (!metrics) {
     return (
       <div className="panel" style={{ gridColumn: 'span 2' }}>
@@ -30,17 +48,6 @@ export function AgentDetail({ metrics, insights }: AgentDetailProps) {
   }
 
   const { agent, summary, charts, categories } = metrics;
-  const callsQuery = useQuery<AgentCall[]>({
-    queryKey: ['agent-calls', agent.id],
-    queryFn: () => fetchAgentCalls(agent.id, { limit: 50, includeTranscript: true }),
-    enabled: Boolean(agent.id),
-  });
-  const callsError =
-    callsQuery.error instanceof Error
-      ? callsQuery.error
-      : callsQuery.error
-        ? new Error('Failed to load calls')
-        : null;
 
   const formatScore = (value: number | null) =>
     value !== null && Number.isFinite(value) ? value.toFixed(1) : '—';
@@ -116,8 +123,44 @@ export function AgentDetail({ metrics, insights }: AgentDetailProps) {
       </div>
 
       <div className="panel">
-        <h3>Actionable Insights</h3>
-        {insights}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h3 style={{ margin: 0 }}>Coaching</h3>
+          <div className="range-toggle" style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+            <button
+              type="button"
+              onClick={() => setInfoTab('insights')}
+              className={infoTab === 'insights' ? 'active' : ''}
+              style={{
+                border: infoTab === 'insights' ? '1px solid #4f46e5' : '1px solid #cbd5f5',
+                background: infoTab === 'insights' ? '#4f46e5' : '#fff',
+                color: infoTab === 'insights' ? '#fff' : '#1e293b',
+                borderRadius: '999px',
+                padding: '0.35rem 0.9rem',
+                cursor: 'pointer',
+              }}
+            >
+              Actionable Insights
+            </button>
+            <button
+              type="button"
+              onClick={() => setInfoTab('training')}
+              className={infoTab === 'training' ? 'active' : ''}
+              style={{
+                border: infoTab === 'training' ? '1px solid #4f46e5' : '1px solid #cbd5f5',
+                background: infoTab === 'training' ? '#4f46e5' : '#fff',
+                color: infoTab === 'training' ? '#fff' : '#1e293b',
+                borderRadius: '999px',
+                padding: '0.35rem 0.9rem',
+                cursor: 'pointer',
+              }}
+            >
+              Training
+            </button>
+          </div>
+        </div>
+        <div style={{ marginTop: '0.85rem' }}>
+          {infoTab === 'insights' ? insights : <TrainingPanel categories={categories} />}
+        </div>
       </div>
 
       <div className="panel">
